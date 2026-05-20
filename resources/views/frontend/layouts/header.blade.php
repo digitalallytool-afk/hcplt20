@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>@yield('title', $web_setting->site_name ?? 'Haryana Cricket Premier League (HCPL)')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width; initial-scale=1.0" />
   <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />
@@ -26,9 +26,9 @@
   <nav class="navbar navbar-expand-lg">
  	<div class="container">
  	  
- 	    	<a class="navbar-brand"  href="index.php">
+ 	    	<a class="navbar-brand"  href="{{ route('home') }}">
  	       
- 	         <img src="{{ asset('frontend') }}/images/logo.png" alt="hcpl" >
+ 	         <img src="{{ $web_setting && $web_setting->logo ? asset($web_setting->logo) : asset('frontend/images/logo.png') }}" alt="{{ $web_setting->site_name ?? 'hcpl' }}" >
 
 	  	
 	  	 </a> 

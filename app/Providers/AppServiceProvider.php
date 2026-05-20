@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('web_settings')) {
+                \Illuminate\Support\Facades\View::share('web_setting', \App\Models\WebSetting::first());
+            }
+        } catch (\Exception $e) {
+            // Silence exceptions during migration/setup
+        }
     }
 }

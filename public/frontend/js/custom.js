@@ -235,13 +235,10 @@ wow.init();
 
 
   $(window).on('load', function() {
-     setTimeout(function(){
-        $('#myModal3').modal('show');
+     if ($('#myModal3').length) {
+         setTimeout(function(){
+            $('#myModal3').modal('show');
 
-
-     }, 2000);
-    });    
-  
-
-
-
+         }, 2000);
+     }
+    });

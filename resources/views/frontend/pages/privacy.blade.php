@@ -1,18 +1,12 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Contact Duron uPVC | Windows, Doors & Profile Supply</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
-    <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" content="Contact Duron uPVC for uPVC windows, doors and profile supply. Get expert advice, pricing and installation support.">
- 
-   <?php include 'header.php';?>
-   
+@extends('frontend.layouts.main')
+@section('title', 'Privacy Policy - HCPL')
+@section('meta_description', 'Privacy Policy for Haryana Cricket Premier League')
+@section('meta_keywords', 'privacy policy, hcpl')
+@section('canonical')
+<link rel="canonical" href="{{ url()->current() }}" />
+@endsection
 
-
-    
+@section('content')
 <div class="pad100  mt-78"  >
  <div class="container">
   <div class="row">
@@ -150,4 +144,4 @@ By using this website, you consent to this Privacy Policy. We may update this po
 
 
 
-<?php include 'footer.php';?>
+@endsection

@@ -164,6 +164,8 @@ Route::get('/team', [HomeController::class, 'team'])->name('team');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/video', [HomeController::class, 'video'])->name('video');
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
+Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
+Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
 
 
 

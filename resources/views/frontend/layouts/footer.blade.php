@@ -5,7 +5,8 @@
 
             <div class="col-lg-3 col-md-12">
                 <div class="ft-logo">
-                    <img src="https://websitework.online/hcpl-new/images/logo.png" alt="hcpl-new" width="100">
+                    <img src="{{ $web_setting && $web_setting->logo ? asset($web_setting->logo) : 'https://websitework.online/hcpl-new/images/logo.png' }}"
+                        alt="{{ $web_setting->site_name ?? 'hcpl-new' }}" width="100">
 
 
                 </div>
@@ -15,15 +16,15 @@
 </p>-->
 
                 <div class="social-media mt-5">
-                    <a href="https://www.facebook.com/people/HCPL-Haryana-Cricket-Premier-League/61589184445646/?mibextid=wwXIfr&rdid=C3HHftvzTWyAgCvu&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F14YQSKQWu3n%2F%3Fmibextid%3DwwXIfr"
-                        target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/hcplt20?igsh=MWY3dWlpbGIydGU5dw%3D%3D&utm_source=qr"
-                        target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://youtube.com/@haryanacricketpremierleague?si=q2E4UIT90McMbaVL" target="_blank"><i
-                            class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                    <a href="https://x.com/home" target="_blank"><a href="https://twitter.com/" target="_blank">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </a>
+                    <a href="{{ $web_setting->facebook_url ?? '#' }}" target="_blank"><i class="fa fa-facebook"
+                            aria-hidden="true"></i></a>
+                    <a href="{{ $web_setting->instagram_url ?? '#' }}" target="_blank"><i class="fa fa-instagram"
+                            aria-hidden="true"></i></a>
+                    <a href="{{ $web_setting->youtube_url ?? '#' }}" target="_blank"><i class="fa fa-youtube-play"
+                            aria-hidden="true"></i></a>
+                    <a href="{{ $web_setting->twitter_url ?? '#' }}" target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
                 </div>
 
             </div>
@@ -35,11 +36,11 @@
                     <h6>Quick Links</h6>
                     <ul class="ft50">
 
-                        <li><a href="about-us.php">About Us</a></li>
-                        <li><a href="teams.php">Our Teams</a></li>
-                        <li><a href="contact-us.php">Contct Us</a></li>
-                        <li><a href="privacy.php">Privacy Policy</a></li>
-                        <li><a href="terms-and-conditions.php">Terms And Conditions </a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('team') }}">Our Teams</a></li>
+                        <li><a href="{{ route('contact') }}">Contct Us</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}">Terms And Conditions </a></li>
 
 
 
@@ -56,9 +57,9 @@
                     <h6>Registration</h6>
                     <ul class="ft50">
 
-                        <li><a href="#">Player Registration</a></li>
-                        <li><a href="#">Owner Registration</a></li>
-                        <li><a href="#">Sponsor Registration</a></li>
+                        <li><a href="{{ route('player-registration') }}">Player Registration</a></li>
+                        <li><a href="{{ route('owner-registration') }}">Owner Registration</a></li>
+                        <li><a href="{{ route('sponsor-registration') }}">Sponsor Registration</a></li>
 
 
                     </ul>
@@ -77,14 +78,17 @@
                     <strong class="text-white">ARK NextGen Sports Pvt. Ltd.</strong>
 
                     <ul class="ft-address">
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>165, New Railway Road, Bhim Nagar,
-                                Gurugram, Haryana-122001</span></li>
+                        <li><i class="fa fa-map-marker"
+                                aria-hidden="true"></i><span>{{ $web_setting->address ?? '165, New Railway Road, Bhim Nagar, Gurugram, Haryana-122001' }}</span>
+                        </li>
                         <li><i class="fa fa-phone" aria-hidden="true"></i><span> <a
-                                    href="tel:+91-+91 9211335612">+91-+91 9211335612</a></span></li>
+                                    href="tel:{{ $web_setting->phone ?? '+919211335612' }}">+91-{{ $web_setting->phone ?? '+91 9211335612' }}</a></span>
+                        </li>
 
 
                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a
-                                    href="mailto:info@hcplt20.com">info@hcplt20.com</a></span></p>
+                                    href="mailto:{{ $web_setting->email ?? 'info@hcplt20.com' }}">{{ $web_setting->email ?? 'info@hcplt20.com' }}</a></span>
+                        </li>
 
                     </ul>
                 </div>
@@ -95,7 +99,8 @@
 
                     <div class="row">
                         <div class="col-md-12 text-center mt-4">
-                            <p>© 2026 HCPL — Haryana Cricket Premier League. All rights reserved. </p>
+                            <p>© 2026 {{ $web_setting->site_name ?? 'HCPL — Haryana Cricket Premier League' }}. All
+                                rights reserved. </p>
                         </div>
 
 
@@ -124,7 +129,9 @@
     </div>
 
     @include('frontend.pages.login');
-    @include('frontend.pages.popup');
+    @if(request()->routeIs('home'))
+        @include('frontend.pages.popup')
+    @endif
 
     <!--
   

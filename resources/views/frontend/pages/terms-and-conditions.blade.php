@@ -1,18 +1,12 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
-    <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" content="Contact Duron uPVC for uPVC windows, doors and profile supply. Get expert advice, pricing and installation support.">
- 
-   <?php include 'header.php';?>
-   
+@extends('frontend.layouts.main')
+@section('title', 'Terms and Conditions - HCPL')
+@section('meta_description', 'Terms and Conditions for Haryana Cricket Premier League')
+@section('meta_keywords', 'terms and conditions, hcpl')
+@section('canonical')
+<link rel="canonical" href="{{ url()->current() }}" />
+@endsection
 
-
-    
+@section('content')
 <div class="pad100  mt-78 terms-section"  >
  <div class="container">
   <div class="row">
@@ -328,4 +322,4 @@ This website and the Content herein is provided by the Company on an "as is", "a
 
 
 
-<?php include 'footer.php';?>
+@endsection

@@ -81,4 +81,12 @@ class HomeController extends Controller
 
     return view('frontend.pages.contact-us');
   }
+
+    public function privacy(){ 
+        return view('frontend.pages.privacy');
+    }
+
+    public function terms(){ 
+        return view('frontend.pages.terms-and-conditions');
+    }
 }

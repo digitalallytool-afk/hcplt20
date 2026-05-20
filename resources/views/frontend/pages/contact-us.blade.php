@@ -94,13 +94,13 @@
 	                   
 	                 
 	                  <h5>Address</h5>
-	                  <p>165, New Railway Road, Bhim Nagar, Gurugram, Haryana-122001</p>
+	                  <p>{{ $web_setting->address ?? '165, New Railway Road, Bhim Nagar, Gurugram, Haryana-122001' }}</p>
 	              </div>
 	              <div class="cnt-add mt-4">
 	                 
 	                  <h5>Contact</h5>
-	                  <p><a href="mailto:Info@hcplt20.com">Email:Info@hcplt20.com</a><br>
-	                  <a href="tel:919211335612">Phone No: +91 - 9211335612</a></p>
+	                  <p><a href="mailto:{{ $web_setting->email ?? 'info@hcplt20.com' }}">Email: {{ $web_setting->email ?? 'info@hcplt20.com' }}</a><br>
+	                  <a href="tel:{{ $web_setting->phone ?? '+919211335612' }}">Phone No: {{ $web_setting->phone ?? '+91 9211335612' }}</a></p>
 	              </div>
 	              
 	               <div class="cnt-add mt-4">
