@@ -1,39 +1,14 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
-
-@section('meta_description', 'hcpl')
-
-@section('meta_keywords', 'hcpl')
-
-@section('canonical')
-    <link rel="canonical" href="{{ url()->current() }}" />
-@endsection
+@section('title', 'Forgot Password - HCPL')
 
 @section('content')
     <style>
         :root {
-            --light-bg: #fff8f0;
-            --gold: #f4c242;
-            --gold-hover: #d9a82e;
-            --dark-text: #3c3b3b;
-            --muted-text: #666;
+            --gold: #d8571f;
             --white: #ffffff;
-            --nav-bg: #0b0f16;
+            --dark-text: #12172a;
         }
-
-
-
-        /* Hero Section */
-        /* .registration-hero {
-                                                        height: 300px;
-                                                        background: linear-gradient(rgba(11, 15, 22, 0.7), rgba(11, 15, 22, 0.7)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1600&q=80') center/cover no-repeat;
-                                                        display: flex;
-                                                        align-items: center;
-                                                        justify-content: center;
-                                                        text-align: center;
-                                                        margin-top:79px;
-                                                    }*/
 
         .hero-title {
             font-family: 'DM Sans', sans-serif;
@@ -41,13 +16,10 @@
             font-weight: 900;
             color: #000;
             text-transform: uppercase;
-
         }
 
-        /* Form Wizard Styling */
         .registration-container {
-
-            padding: 100px 0;
+            padding: 150px 0 100px 0; /* Extra top padding to clear header */
             position: relative;
             z-index: 10;
         }
@@ -93,7 +65,7 @@
 
         .step-item.active .step-number {
             background: var(--gold);
-            color: #000;
+            color: #fff;
         }
 
         .step-label h6 {
@@ -108,7 +80,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Form Controls */
         .form-content {
             padding: 60px;
         }
@@ -121,8 +92,7 @@
             color: var(--dark-text);
         }
 
-        .form-control,
-        .form-select {
+        .form-control {
             padding: 15px 20px;
             border-radius: 8px;
             border: 2px solid #eee;
@@ -131,10 +101,9 @@
             transition: all 0.3s ease;
         }
 
-        .form-control:focus,
-        .form-select:focus {
+        .form-control:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 5px rgba(244, 194, 66, 0.1);
+            box-shadow: 0 0 0 5px rgba(216, 87, 31, 0.1);
             background: #fff;
         }
 
@@ -149,35 +118,9 @@
             padding-bottom: 10px;
         }
 
-        .photo-upload-box {
-            width: 150px;
-            height: 150px;
-            border: 3px dashed #ddd;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .photo-upload-box:hover {
-            border-color: var(--gold);
-            background: rgba(244, 194, 66, 0.05);
-        }
-
-        .photo-upload-box i {
-            font-size: 2rem;
-            color: #ddd;
-            margin-bottom: 10px;
-        }
-
-        /* Buttons */
         .btn-next {
-            background: #f5c518 !important;
-            color: #000;
+            background: var(--gold) !important;
+            color: #fff;
             padding: 15px 40px;
             border-radius: 8px;
             font-weight: 800;
@@ -186,20 +129,9 @@
         }
 
         .btn-next:hover {
-            background: #1a222e;
+            background: #b07d00 !important;
             transform: translateY(-3px);
             color: var(--white);
-        }
-
-        .btn-prev {
-            background: #19398a !important;
-            color: #fff !important;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 800;
-            border: none;
-            transition: all 0.3s ease;
-            margin-right: 15px;
         }
 
         @media (max-width: 991px) {
@@ -225,63 +157,14 @@
                 flex-direction: row !important;
                 overflow-x: auto;
             }
-
-            .hero-title {
-                font-size: 40px;
-            }
         }
     </style>
 
-
-    <div class="registration-section mt-78">
-
-
-
-        <div class="registration-slider">
-
-
-
-
-            @forelse ($sliders as $slider)
-                <div class="item">
-                    <div class="hero-thumnail">
-                        <img src="{{ 'storage/' . $slider->image }}" class="w-100">
-
-                    </div>
-                </div>
-
-            @empty
-
-                <div class="item">
-                    <div class="hero-thumnail">
-                        <img src="{{ asset('frontend') }}/images/Player-Registration1.web" class="w-100">
-
-                    </div>
-                </div>
-            @endforelse
-
-
-
-
-
-        </div>
-    </div>
-
-
-
-    <!-- Hero -->
-    <!--<header class="registration-hero">
-                                                    <div class="container">
-                                                      
-                                                    </div>
-                                                </header>-->
-
-    <!-- Registration Form Wizard -->
     <div class="container registration-container">
         <div class="row justify-content-center">
             <div class="col-xl-10">
-                <h1 class="hero-title text-center">Player Registration</h1>
-                <p class="fw-bold text-center" style="color:#f5c518">JOIN THE LEAGUE OF CHAMPIONS</p>
+                <h1 class="hero-title text-center">Reset Password</h1>
+                <p class="fw-bold text-center" style="color:#d8571f">HARYANA CRICKET PREMIER LEAGUE</p>
 
                 <div class="form-wizard">
                     <div class="row g-0">
@@ -292,14 +175,14 @@
                                     <div class="step-item active" id="step1-nav">
                                         <div class="step-number">01</div>
                                         <div class="step-label">
-                                            <h6>Contact Details</h6>
+                                            <h6>Identity Verification</h6>
                                             <span>Mobile or Email</span>
                                         </div>
                                     </div>
                                     <div class="step-item" id="step2-nav">
                                         <div class="step-number">02</div>
                                         <div class="step-label">
-                                            <h6>Verification</h6>
+                                            <h6>Secure Access</h6>
                                             <span>Enter OTP</span>
                                         </div>
                                     </div>
@@ -307,16 +190,7 @@
                                         <div class="step-number">03</div>
                                         <div class="step-label">
                                             <h6>Security</h6>
-                                            <span>Create Password</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-auto pt-5 round-box">
-                                        <div class="p-4 rounded-4"
-                                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
-                                            <small class="text-white-50 d-block mb-2">Need help?</small>
-                                            <h6 class="mb-0 text-white">Call: +91 9211335612</h6>
-                                            <small class="text-white-50">Support available 10AM - 6PM</small>
+                                            <span>New Password</span>
                                         </div>
                                     </div>
                                 </div>
@@ -326,12 +200,12 @@
                         <!-- Form Content -->
                         <div class="col-lg-8">
                             <div class="form-content">
-                                <form id="playerForm">
+                                <form id="forgotPasswordForm">
                                     @csrf
                                     <!-- Step 1: Contact Details -->
                                     <div id="step1">
-                                        <h3 class="form-section-title">Player Registration</h3>
-                                        <p class="text-muted mb-4">Enter your mobile number or email address to get started.</p>
+                                        <h3 class="form-section-title">Find Your Account</h3>
+                                        <p class="text-muted mb-4">Enter your registered mobile number or email address.</p>
 
                                         <div id="alert-error-1" class="alert alert-danger" style="display: none;"></div>
 
@@ -371,24 +245,25 @@
 
                                     <!-- Step 3: Security -->
                                     <div id="step3" style="display: none;">
-                                        <h3 class="form-section-title">Create Password</h3>
-                                        <p class="text-muted mb-4">Set a strong password for your account.</p>
+                                        <h3 class="form-section-title">Create New Password</h3>
+                                        <p class="text-muted mb-4">Set a strong new password for your account.</p>
 
                                         <div id="alert-error-3" class="alert alert-danger" style="display: none;"></div>
+                                        <div id="alert-success-3" class="alert alert-success" style="display: none;"></div>
 
                                         <div class="row g-3">
                                             <div class="col-md-12">
-                                                <label class="form-label">Create Password</label>
-                                                <input type="password" id="password" class="form-control" placeholder="Enter password">
+                                                <label class="form-label">New Password</label>
+                                                <input type="password" id="password" class="form-control" placeholder="Enter new password">
                                             </div>
                                             <div class="col-md-12">
                                                 <label class="form-label">Confirm Password</label>
-                                                <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm password">
+                                                <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm new password">
                                             </div>
                                         </div>
 
                                         <div class="mt-4">
-                                            <button type="button" class="btn btn-next" id="btn-create-password">Complete Registration <i class="fa fa-spinner fa-spin ms-2" id="loader-3" style="display: none;"></i></button>
+                                            <button type="button" class="btn btn-next" id="btn-reset-password">Update Password <i class="fa fa-spinner fa-spin ms-2" id="loader-3" style="display: none;"></i></button>
                                         </div>
                                     </div>
                                 </form>
@@ -455,7 +330,7 @@
                 document.getElementById('contact_type').value = type;
 
                 try {
-                    const response = await fetch("{{ route('player-registration.send-otp') }}", {
+                    const response = await fetch("{{ route('forgot-password-otp.send-otp') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -504,7 +379,7 @@
                 successBox.style.display = 'none';
 
                 try {
-                    const response = await fetch("{{ route('player-registration.resend-otp') }}", {
+                    const response = await fetch("{{ route('forgot-password-otp.resend-otp') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -551,7 +426,7 @@
                 loader.style.display = 'inline-block';
 
                 try {
-                    const response = await fetch("{{ route('player-registration.verify-otp') }}", {
+                    const response = await fetch("{{ route('forgot-password-otp.verify-otp') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -579,8 +454,8 @@
                 }
             });
 
-            // Step 3: Create Password
-            document.getElementById('btn-create-password').addEventListener('click', async function() {
+            // Step 3: Reset Password
+            document.getElementById('btn-reset-password').addEventListener('click', async function() {
                 const contact = document.getElementById('contact_input').value.trim();
                 const type = document.getElementById('contact_type').value;
                 const password = document.getElementById('password').value;
@@ -588,6 +463,7 @@
                 const btn = this;
                 const loader = document.getElementById('loader-3');
                 const errorBox = document.getElementById('alert-error-3');
+                const successBox = document.getElementById('alert-success-3');
 
                 if (password.length < 8) {
                     errorBox.textContent = 'Password must be at least 8 characters long.';
@@ -609,11 +485,12 @@
                 }
 
                 errorBox.style.display = 'none';
+                successBox.style.display = 'none';
                 btn.disabled = true;
                 loader.style.display = 'inline-block';
 
                 try {
-                    const response = await fetch("{{ route('player-registration.create-password') }}", {
+                    const response = await fetch("{{ route('forgot-password-otp.reset-password') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -631,9 +508,13 @@
                     }
 
                     if (response.ok) {
-                        window.location.href = data.redirect;
+                        successBox.textContent = data.message || 'Password successfully updated! Redirecting...';
+                        successBox.style.display = 'block';
+                        setTimeout(() => {
+                            window.location.href = data.redirect;
+                        }, 2000);
                     } else {
-                        errorBox.textContent = data.message || 'Failed to create password.';
+                        errorBox.textContent = data.message || 'Failed to update password.';
                         errorBox.style.display = 'block';
                         btn.disabled = false;
                         loader.style.display = 'none';

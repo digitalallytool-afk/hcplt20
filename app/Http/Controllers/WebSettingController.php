@@ -44,6 +44,9 @@ class WebSettingController extends Controller
             'phone' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
             'about_us_summary' => 'nullable|string',
+            'registration_actual_price' => 'nullable|integer|min:0',
+            'registration_discounted_price' => 'nullable|integer|min:0',
+            'registration_max_discount_players' => 'nullable|integer|min:0',
         ]);
 
         // 2. Get or Create Settings

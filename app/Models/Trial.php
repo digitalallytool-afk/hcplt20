@@ -16,4 +16,11 @@ class Trial extends Model
         'registration_link',
         'is_active',
     ];
+
+    public function playerProfiles()
+    {
+        return $this->belongsToMany(PlayerProfile::class, 'player_trials')
+                    ->withPivot('trial_result', 'trial_status_date', 'trial_remark', 'id')
+                    ->withTimestamps();
+    }
 }

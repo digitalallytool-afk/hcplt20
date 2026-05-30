@@ -12,51 +12,47 @@
       <!-- Bento Grid Header Stats -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <!-- Total Registered Players -->
-        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-amber-400 transition-colors">
           <div class="flex justify-between items-start">
             <span class="material-symbols-outlined text-primary p-2 bg-surface-container-low rounded-lg">group</span>
-            <span
-              class="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary-container/20 rounded">+12%</span>
+            <span class="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary-container/20 rounded">Total</span>
           </div>
           <div class="mt-4">
             <p class="text-label-md font-label-md text-on-surface-variant">Total Registered Players</p>
-            <h3 class="text-display font-display text-on-surface">14,282</h3>
+            <h3 class="text-display font-display text-on-surface">{{ number_format($totalPlayers) }}</h3>
+          </div>
+        </div>
+        <!-- Verified Players -->
+        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-amber-400 transition-colors">
+          <div class="flex justify-between items-start">
+            <span class="material-symbols-outlined text-green-600 p-2 bg-green-50 rounded-lg">verified</span>
+            <span class="text-label-sm font-label-sm text-green-600 px-2 py-1 bg-green-50 rounded">Active</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-label-md font-label-md text-on-surface-variant">Paid / Verified Players</p>
+            <h3 class="text-display font-display text-on-surface">{{ number_format($verifiedPlayers) }}</h3>
           </div>
         </div>
         <!-- Upcoming Trials -->
-        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-amber-400 transition-colors">
           <div class="flex justify-between items-start">
-            <span
-              class="material-symbols-outlined text-primary p-2 bg-surface-container-low rounded-lg">assignment_ind</span>
-            <span class="text-label-sm font-label-sm text-on-surface-variant">Next: 48h</span>
+            <span class="material-symbols-outlined text-amber-600 p-2 bg-amber-50 rounded-lg">assignment_ind</span>
+            <span class="text-label-sm font-label-sm text-amber-600 px-2 py-1 bg-amber-50 rounded">Upcoming</span>
           </div>
           <div class="mt-4">
-            <p class="text-label-md font-label-md text-on-surface-variant">Upcoming Trials</p>
-            <h3 class="text-display font-display text-on-surface">24</h3>
+            <p class="text-label-md font-label-md text-on-surface-variant">Active Trials</p>
+            <h3 class="text-display font-display text-on-surface">{{ $upcomingTrials }}</h3>
           </div>
         </div>
-        <!-- Matches Today -->
-        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+        <!-- Total Revenue -->
+        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-amber-400 transition-colors">
           <div class="flex justify-between items-start">
-            <span
-              class="material-symbols-outlined text-primary p-2 bg-surface-container-low rounded-lg">sports_cricket</span>
-            <span class="text-label-sm font-label-sm text-error px-2 py-1 bg-error-container/30 rounded">Live Now</span>
+            <span class="material-symbols-outlined text-indigo-600 p-2 bg-indigo-50 rounded-lg">payments</span>
+            <span class="text-label-sm font-label-sm text-indigo-600 px-2 py-1 bg-indigo-50 rounded">Estimated</span>
           </div>
           <div class="mt-4">
-            <p class="text-label-md font-label-md text-on-surface-variant">Matches Today</p>
-            <h3 class="text-display font-display text-on-surface">08</h3>
-          </div>
-        </div>
-        <!-- Recent Revenue -->
-        <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
-          <div class="flex justify-between items-start">
-            <span class="material-symbols-outlined text-primary p-2 bg-surface-container-low rounded-lg">payments</span>
-            <span class="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary-container/20 rounded">Record
-              Day</span>
-          </div>
-          <div class="mt-4">
-            <p class="text-label-md font-label-md text-on-surface-variant">Recent Revenue (24h)</p>
-            <h3 class="text-display font-display text-on-surface">₹4.2L</h3>
+            <p class="text-label-md font-label-md text-on-surface-variant">Total Est. Revenue</p>
+            <h3 class="text-display font-display text-on-surface">₹{{ number_format($totalRevenue) }}</h3>
           </div>
         </div>
       </div>
@@ -69,66 +65,44 @@
               <button class="text-label-sm font-label-sm text-secondary hover:underline">View All Activity</button>
             </div>
             <div class="divide-y divide-outline-variant">
-              <!-- Registration Entry -->
-              <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
-                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-blue-600 text-[20px]">person_add</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between">
-                    <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">Rahul Sharma</span>
-                      registered for U-19 League Trials</p>
-                    <span class="text-label-sm font-label-sm text-on-surface-variant">2 mins ago</span>
+              @forelse($recentActivities as $activity)
+                @if($activity->payment_status === 'completed')
+                <!-- Payment Entry -->
+                <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
                   </div>
-                  <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Zone: Mumbai North • All-rounder •
-                    Right Arm Pace</p>
-                </div>
-              </div>
-              <!-- Payment Entry -->
-              <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
-                <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between">
-                    <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">Payment
-                        Confirmed</span> for Team Titans Registration</p>
-                    <span class="text-label-sm font-label-sm text-on-surface-variant">14 mins ago</span>
+                  <div class="flex-1">
+                    <div class="flex justify-between">
+                      <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">{{ $activity->first_name }} {{ $activity->last_name }}</span>
+                        completed payment.</p>
+                      <span class="text-label-sm font-label-sm text-on-surface-variant">{{ $activity->updated_at->diffForHumans() }}</span>
+                    </div>
+                    <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">ID: {{ $activity->player_id ?? 'Pending' }} • {{ $activity->state }} • Role: {{ $activity->player_role }}</p>
                   </div>
-                  <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Ref ID: #HCPL-99283 • Amount:
-                    ₹25,000 • Status: Settled</p>
                 </div>
-              </div>
-              <!-- Registration Entry -->
-              <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
-                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-blue-600 text-[20px]">person_add</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between">
-                    <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">Ananya Patel</span>
-                      registered for Women's Premier League</p>
-                    <span class="text-label-sm font-label-sm text-on-surface-variant">45 mins ago</span>
+                @else
+                <!-- Registration Entry -->
+                <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-amber-600 text-[20px]">person_add</span>
                   </div>
-                  <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Zone: Gujarat East • Wicketkeeper
-                    Batter</p>
-                </div>
-              </div>
-              <!-- Payment Entry -->
-              <div class="p-6 flex gap-4 hover:bg-slate-50 transition-colors">
-                <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between">
-                    <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">Trial Fee
-                        Received</span> from 12 New Players</p>
-                    <span class="text-label-sm font-label-sm text-on-surface-variant">1 hour ago</span>
+                  <div class="flex-1">
+                    <div class="flex justify-between">
+                      <p class="text-body-md font-body-md text-on-surface"><span class="font-bold">{{ $activity->first_name }} {{ $activity->last_name }}</span>
+                        registered (Pending Payment).</p>
+                      <span class="text-label-sm font-label-sm text-on-surface-variant">{{ $activity->created_at->diffForHumans() }}</span>
+                    </div>
+                    <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Role: {{ $activity->player_role }} • Phone: {{ $activity->phone_number }}</p>
                   </div>
-                  <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Bulk Processing • Batch #B-404 •
-                    Total: ₹18,000</p>
                 </div>
-              </div>
+                @endif
+              @empty
+                <div class="p-6 text-center text-slate-500">
+                  <span class="material-symbols-outlined text-3xl mb-2 opacity-50">history</span>
+                  <p>No recent activities found.</p>
+                </div>
+              @endforelse
             </div>
           </div>
         </div>
@@ -164,29 +138,20 @@
             <div class="space-y-4">
               <div>
                 <div class="flex justify-between text-label-sm font-label-sm mb-2">
-                  <span class="text-on-surface-variant">Venue Utilization</span>
-                  <span class="text-on-surface">92%</span>
+                  <span class="text-on-surface-variant">Payment Conversion Rate</span>
+                  <span class="text-on-surface">{{ $paymentConversionRate }}%</span>
                 </div>
-                <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                  <div class="bg-secondary h-full" style="width: 92%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between text-label-sm font-label-sm mb-2">
-                  <span class="text-on-surface-variant">Trial Completion</span>
-                  <span class="text-on-surface">64%</span>
-                </div>
-                <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                  <div class="bg-secondary h-full" style="width: 64%"></div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-full" style="width: {{ $paymentConversionRate }}%"></div>
                 </div>
               </div>
               <div>
                 <div class="flex justify-between text-label-sm font-label-sm mb-2">
-                  <span class="text-on-surface-variant">Player Verification</span>
-                  <span class="text-on-surface">88%</span>
+                  <span class="text-on-surface-variant">Trial Assignment Rate (Verified Players)</span>
+                  <span class="text-on-surface">{{ $trialAssignmentRate }}%</span>
                 </div>
-                <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                  <div class="bg-secondary h-full" style="width: 88%"></div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-full" style="width: {{ $trialAssignmentRate }}%"></div>
                 </div>
               </div>
             </div>
@@ -199,7 +164,7 @@
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA6QTcXBcZHBf8ZOf9xGVCJNPUBn0fPwgl3LrwlQaRm1-SRsTMaLj6vyap5cWafk2RXimmKNMnamNX_Z8O5S9KQmOQt8exbbb9MqsKPRTZvDcZDENhmWf2-LFrG23KjX1mby10qfnDy57ZqWMQ9mcRsxq1-H6SBuAIqdY_fLXZzBlQllLJrojjeHdZTp-a_s_EUiOSJIinGQLjecmbsYOtDo19Yhr5PAbhb7QAHh0WVVe-M1Dm7ka7BQs3Or7PwqqS6d8rECpl2Cfa" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent flex flex-col justify-end p-6">
               <p class="text-amber-400 font-label-sm text-label-sm mb-1 uppercase tracking-widest">Global Event</p>
-              <h4 class="text-white font-h3 text-h3 leading-tight">Season 6 Registrations Opening Soon</h4>
+              <h4 class="text-white font-h3 text-h3 leading-tight">HCPL Season 1 Registrations Are Live!</h4>
             </div>
           </div>
         </div>

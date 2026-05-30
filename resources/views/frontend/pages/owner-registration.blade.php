@@ -280,35 +280,31 @@
         <div class="field">
           <label>Preferred Team Name</label>
           <select name="preferred_team_name">
-            <option value="" disabled selected>Select preferred team name</option>
-            <option>Gurugram Gladiators</option>
-            <option>Faridabad Falcons</option>
-            <option>Ambala Avengers</option>
-            <option>Rohtak Royals</option>
-            <option>Hisar Hawks</option>
-            <option>Panipat Panthers</option>
-            <option>Karnal Kings</option>
-            <option>Sonipat Strikers</option>
-            <option>Other / Custom Name</option>
-          </select>
+                <option value="" disabled selected>Select preferred team name</option>
+                <option>Rohtak Warriors</option>
+                <option>Hisar Titans</option>
+                <option>Sirsa Royals</option>
+                <option>Gurugram Giants</option>
+                <option>Faridabad Fighters</option>
+                <option>Sonipat Tigers</option>
+                <option>Karnal Kings</option>
+                <option>Ambala Avengers</option>
+            </select>
           <span class="error-text" id="error-preferred_team_name"></span>
         </div>
         <div class="field">
           <label>Preferred City / District <span class="req">*</span></label>
           <select name="preferred_district" required>
             <option value="" disabled selected>Select preferred city / district</option>
-            <option>Gurugram</option>
-            <option>Faridabad</option>
-            <option>Ambala</option>
             <option>Rohtak</option>
             <option>Hisar</option>
-            <option>Panipat</option>
-            <option>Karnal</option>
+            <option>Sirsa</option>
+            <option>Gurugram</option>
+            <option>Faridabad</option>
             <option>Sonipat</option>
-            <option>Yamunanagar</option>
-            <option>Rewari</option>
-            <option>Other</option>
-          </select>
+            <option>Karnal</option>
+            <option>Ambala</option>
+        </select>
           <span class="error-text" id="error-preferred_district"></span>
         </div>
         <div class="field">

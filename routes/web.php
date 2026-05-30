@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/league', [AdminController::class, 'league'])->name('league');
     Route::get('/trial', [AdminController::class, 'trial'])->name('trial');
     Route::get('/player', [AdminController::class, 'player'])->name('player');
+    Route::post('/player/{id}/update', [AdminController::class, 'updatePlayer'])->name('admin.player.update');
     Route::get('/media', [\App\Http\Controllers\MediaController::class, 'index'])->name('media.index');
     Route::post('/media', [\App\Http\Controllers\MediaController::class, 'store'])->name('media.store');
     Route::get('/media/{id}/edit', [\App\Http\Controllers\MediaController::class, 'edit'])->name('media.edit');
@@ -49,6 +50,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/trials/{trial}/update', [\App\Http\Controllers\TrialController::class, 'update'])->name('trials.update');
     Route::delete('/trials/{trial}', [\App\Http\Controllers\TrialController::class, 'destroy'])->name('trials.delete');
     Route::post('/trials/{trial}/toggle', [\App\Http\Controllers\TrialController::class, 'toggleStatus'])->name('trials.toggle');
+
+    // Assign Trial Routes
+    Route::get('/assign-trials', [\App\Http\Controllers\AssignTrialController::class, 'index'])->name('assign_trials.index');
+    Route::post('/assign-trials/get-districts', [\App\Http\Controllers\AssignTrialController::class, 'getDistricts'])->name('assign_trials.get_districts');
+    Route::post('/assign-trials/get-players', [\App\Http\Controllers\AssignTrialController::class, 'getPlayers'])->name('assign_trials.get_players');
+    Route::post('/assign-trials/assign', [\App\Http\Controllers\AssignTrialController::class, 'assign'])->name('assign_trials.assign');
+    Route::post('/assign-trials/unassign', [\App\Http\Controllers\AssignTrialController::class, 'unassign'])->name('assign_trials.unassign');
+    Route::post('/assign-trials/update-result', [\App\Http\Controllers\AssignTrialController::class, 'updateResult'])->name('assign_trials.update_result');
+    Route::get('/assign-trials/player/{id}/history', [\App\Http\Controllers\AssignTrialController::class, 'playerHistory'])->name('assign_trials.history');
 
     // Match Routes
     Route::get('/matches', [\App\Http\Controllers\MatchController::class, 'index'])->name('matches.index');
@@ -155,6 +165,23 @@ Route::post('/contact/submit', [\App\Http\Controllers\ContactController::class, 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about-us', [HomeController::class, 'about'])->name('about');
 Route::get('/player-registration', [HomeController::class, 'player_registration'])->name('player-registration');
+Route::post('/player-registration/send-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'sendOtp'])->name('player-registration.send-otp');
+Route::post('/player-registration/resend-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'resendOtp'])->name('player-registration.resend-otp');
+Route::post('/player-registration/verify-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'verifyOtp'])->name('player-registration.verify-otp');
+Route::post('/player-registration/create-password', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'createPassword'])->name('player-registration.create-password');
+
+// OTP-Based Forgot Password
+Route::get('/forgot-password-otp', [\App\Http\Controllers\Auth\ForgotPasswordOtpController::class, 'showLinkRequestForm'])->name('forgot-password-otp');
+Route::post('/forgot-password-otp/send-otp', [\App\Http\Controllers\Auth\ForgotPasswordOtpController::class, 'sendOtp'])->name('forgot-password-otp.send-otp');
+Route::post('/forgot-password-otp/resend-otp', [\App\Http\Controllers\Auth\ForgotPasswordOtpController::class, 'resendOtp'])->name('forgot-password-otp.resend-otp');
+Route::post('/forgot-password-otp/verify-otp', [\App\Http\Controllers\Auth\ForgotPasswordOtpController::class, 'verifyOtp'])->name('forgot-password-otp.verify-otp');
+Route::post('/forgot-password-otp/reset-password', [\App\Http\Controllers\Auth\ForgotPasswordOtpController::class, 'resetPassword'])->name('forgot-password-otp.reset-password');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/player/dashboard', [\App\Http\Controllers\Player\DashboardController::class, 'index'])->name('player.dashboard');
+    Route::post('/player/profile/save', [\App\Http\Controllers\Player\ProfileController::class, 'saveProfile'])->name('player.profile.save');
+    Route::post('/player/profile/verify-payment', [\App\Http\Controllers\Player\ProfileController::class, 'verifyPayment'])->name('player.profile.verify-payment');
+});
 
 Route::get('/owner-registration', [HomeController::class, 'owner_registration'])->name('owner-registration');
 

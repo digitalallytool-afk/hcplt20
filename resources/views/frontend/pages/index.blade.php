@@ -457,8 +457,8 @@
                     </div>
 
                     @foreach ($ambassadors as $ambassador)
-                        @if ($loop->first)
-                            <div class="col-md-12 text-align center">
+                        @if ($loop->iteration <= 2)
+                            <div class="col-md-6 text-align center">
                                 <div class="praveen-kumar" style="max-width:300px;border-radius:15px;overflow:hidden">
 
 

@@ -245,19 +245,25 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Sponsorship Category *</label>
-                                    <select name="category" class="form-select">
+                                  <select name="category" class="form-select">
                                         <option value="" disabled selected>Select Category</option>
                                         <option>Title Sponsor</option>
-                                        <option>Platinum Partner</option>
-                                        <option>Gold Partner</option>
-                                        <option>Silver Partner</option>
-                                        <option>Media Partner</option>
+                                        <option>Powered By Sponsor</option>
+                                        <option>Co-Sponsor</option>
+                                        <option>Associate Sponsor</option>
+                                        <option>Team Sponsor</option>
+                                        <option>Local Sponsor</option>
+                                        <option>Match Sponsor</option>
+                                        <option>Awards Sponsor</option>
+                                        <option>Official Partners</option>
+                                        <option>Ground Partners</option>
+                                        <option>Digital Partners</option>
                                         <option>Other</option>
                                     </select>
                                     <span class="error-text" id="error-category"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Estimated Budget (in ₹)</label>
+                                    <label class="form-label">Estimated Budget (in Lakhs ₹)</label>
                                     <input type="number" name="budget" class="form-control" placeholder="Budget amount">
                                     <span class="error-text" id="error-budget"></span>
                                 </div>

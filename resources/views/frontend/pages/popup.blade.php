@@ -17,14 +17,32 @@
                     <div class="popup-thumb">
                         <span>HCPL SEASON 1</span>
                         <h5>REGISTRATON FEE</h5>
+                        @php
+                            $setting = \App\Models\WebSetting::first();
+                            $remainingSlots = \App\Models\WebSetting::getRemainingDiscountSlots();
+                            $currentPrice = \App\Models\WebSetting::getCurrentRegistrationPrice();
+                            $actualPrice = $setting ? $setting->registration_actual_price : 2999;
+                            $maxPlayers = $setting ? $setting->registration_max_discount_players : 3000;
+                        @endphp
                         <div style="display: flex; align-items: baseline; gap: 6px;">
                             <span
-                                style="font-size: 46px; font-weight: 900; color: #E85B0F; line-height: 1;">₹1499</span>
-                            <span
-                                style="font-size: 14px; color: #888; font-weight: 500;text-transform:capitalize">only</span>
+                                style="font-size: 46px; font-weight: 900; color: #E85B0F; line-height: 1;">₹{{ $currentPrice }}</span>
+                            @if($remainingSlots > 0 && $currentPrice < $actualPrice)
+                                <span style="font-size: 20px; color: #888; text-decoration: line-through;">₹{{ $actualPrice }}</span>
+                            @else
+                                <span
+                                    style="font-size: 14px; color: #888; font-weight: 500;text-transform:capitalize">only</span>
+                            @endif
                         </div>
-                        <p>First <b style="color: #E85B0F;">0</b> players only</p>
-                        <div class="register-btn">REGISTER NOW</div>
+                        
+                        @if($remainingSlots > 0)
+                            <p style="margin-bottom: 2px;">First <b style="color: #E85B0F;">{{ $maxPlayers }}</b> players only.</p>
+                            <p style="font-size: 0.85em; color: #d9534f; font-weight: 800; margin-top:0;">Only {{ $remainingSlots }} spots left!</p>
+                        @else
+                            <p>Registration Open</p>
+                        @endif
+                        
+                        <a href="{{ route('player-registration') }}" class="register-btn" style="display:block; text-decoration:none;">REGISTER NOW</a>
 
                     </div>
                 </div>

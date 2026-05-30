@@ -130,6 +130,12 @@
 
       <div class="px-4 py-2 mt-4 text-[10px] font-black uppercase tracking-widest text-slate-500">League Central</div>
       
+      <a class="flex items-center px-3 py-3 rounded-xl transition-all {{ request()->routeIs('player') ? 'bg-slate-900 text-white border-l-4 border-amber-400 font-bold' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/50' }}"
+        href="{{ route('player') }}">
+        <span class="material-symbols-outlined mr-3 {{ request()->routeIs('player') ? 'text-amber-400' : '' }}">groups</span>
+        <span class="text-sm font-medium tracking-tight">Registered Players</span>
+      </a>
+
       <a class="flex items-center px-3 py-3 rounded-xl transition-all {{ request()->routeIs('teams.index') ? 'bg-slate-900 text-white border-l-4 border-amber-400 font-bold' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/50' }}"
         href="{{ route('teams.index') }}">
         <span class="material-symbols-outlined mr-3 {{ request()->routeIs('teams.index') ? 'text-amber-400' : '' }}">shield</span>
@@ -172,6 +178,12 @@
         href="{{ route('trials.index') }}">
         <span class="material-symbols-outlined mr-3 {{ request()->routeIs('trials.index') ? 'text-amber-400' : '' }}">assignment_ind</span>
         <span class="text-sm font-medium tracking-tight">Trial Management</span>
+      </a>
+
+      <a class="flex items-center px-3 py-3 rounded-xl transition-all {{ request()->routeIs('assign_trials.index') ? 'bg-slate-900 text-white border-l-4 border-amber-400 font-bold' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/50' }}"
+        href="{{ route('assign_trials.index') }}">
+        <span class="material-symbols-outlined mr-3 {{ request()->routeIs('assign_trials.index') ? 'text-amber-400' : '' }}">how_to_reg</span>
+        <span class="text-sm font-medium tracking-tight">Assign Trials</span>
       </a>
 
       <a class="flex items-center px-3 py-3 rounded-xl transition-all {{ request()->routeIs('management.index') ? 'bg-slate-900 text-white border-l-4 border-amber-400 font-bold' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900/50' }}"

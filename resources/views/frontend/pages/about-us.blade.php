@@ -172,12 +172,12 @@
                     <h2 class="heading">Our Team</h2>
                 </div>
 
-                <div class="col-lg-9 col-md-12 mx-auto">
+                <div class="col-lg-12 col-md-12 ">
                     <div class="row">
 
 
                         @foreach ($members as $member)
-                            <div class="col-md-4 mb-4">
+                            <div class="col-md-3 mb-4">
                                 <div class="team-thumbnail">
                                     <div class="profile-img">
                                         @if ($member->image)

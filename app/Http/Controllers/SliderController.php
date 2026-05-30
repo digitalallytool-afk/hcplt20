@@ -51,9 +51,10 @@ class SliderController extends Controller
             'sub_title' => 'nullable|string|max:255',
             'link' => 'nullable|url|max:255',
             'status' => 'required|boolean',
+            'order'=> 'required|integer|',
         ]);
 
-        $data = $request->only(['title', 'sub_title', 'link', 'status']);
+        $data = $request->only(['title', 'sub_title', 'link', 'status','order']);
 
         if ($request->hasFile('image')) {
             // Delete old image

@@ -169,6 +169,7 @@
 
     function editSlider(id) {
         $.get(`/registration-sliders/${id}/edit`, function(data) {
+            console.log(data)
             openDrawer();
             $('#slider_id').val(data.id);
             $('#order').val(data.order);

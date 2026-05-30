@@ -66,6 +66,30 @@
                 <div class="border-t border-slate-50 pt-12">
                     <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-10 flex items-center gap-3">
                         <span class="w-2 h-6 bg-amber-400 rounded-full"></span>
+                        Registration Pricing Strategy
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+                        <div class="relative group">
+                            <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors uppercase tracking-widest">Actual Price (₹)</label>
+                            <input type="number" name="registration_actual_price" id="registration_actual_price" value="{{ old('registration_actual_price', $setting->registration_actual_price ?? 2999) }}" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
+                        </div>
+
+                        <div class="relative group">
+                            <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors uppercase tracking-widest">Discounted Price (₹)</label>
+                            <input type="number" name="registration_discounted_price" id="registration_discounted_price" value="{{ old('registration_discounted_price', $setting->registration_discounted_price ?? 1499) }}" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
+                        </div>
+
+                        <div class="relative group">
+                            <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors uppercase tracking-widest">Max Discount Players limit</label>
+                            <input type="number" name="registration_max_discount_players" id="registration_max_discount_players" value="{{ old('registration_max_discount_players', $setting->registration_max_discount_players ?? 3000) }}" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-50 pt-12">
+                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-10 flex items-center gap-3">
+                        <span class="w-2 h-6 bg-amber-400 rounded-full"></span>
                         Social Ecosystem Links
                     </h3>
 
