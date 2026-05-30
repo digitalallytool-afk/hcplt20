@@ -159,3 +159,39 @@
 
 
      </nav>
+
+      <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const nestedToggles = document.querySelectorAll('.dropdown-menu .dropdown-toggle');
+          
+          nestedToggles.forEach(function (toggle) {
+              toggle.addEventListener('click', function (e) {
+                  if (window.innerWidth < 992) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      
+                      const nextEl = this.nextElementSibling;
+                      if (nextEl && nextEl.classList.contains('dropdown-menu')) {
+                          const isShown = nextEl.classList.contains('show');
+                          
+                          // Close other open nested menus inside the parent dropdown
+                          const parentMenu = this.closest('.dropdown-menu');
+                          if (parentMenu) {
+                              parentMenu.querySelectorAll('.dropdown-menu.show').forEach(function(openMenu) {
+                                  if (openMenu !== nextEl) {
+                                      openMenu.classList.remove('show');
+                                  }
+                              });
+                          }
+                          
+                          if (isShown) {
+                              nextEl.classList.remove('show');
+                          } else {
+                              nextEl.classList.add('show');
+                          }
+                      }
+                  }
+              });
+          });
+      });
+      </script>
