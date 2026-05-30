@@ -20,4 +20,7 @@ jobs:
 
           script: |
             cd /home/hcplt20/htdocs/hcplt20.com
+            git stash
+            git clean -fd
+            rm -f storage.zip
             bash deploy.sh
