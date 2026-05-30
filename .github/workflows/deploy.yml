@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
 
           script: |
-            cd /home/deploy/htdocs/hcplt20.com
+            cd /home/hcplt20/htdocs/hcplt20.com
             git reset --hard HEAD
             rm -f storage.zip
             git pull origin main
