@@ -154,29 +154,12 @@ class ForgotPasswordOtpController extends Controller
             session()->put('mobile_otp_reset_' . $mobile, $otp);
             session()->put('mobile_otp_reset_time_' . $mobile, now());
 
-            $client = new Client();
-            $response = $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
-                'headers' => [
-                    'accept' => 'application/json',
-                    'authorization' => $this->fast2SmsApiKey,
-                    'content-type' => 'application/json',
-                ],
-                'json' => [
-                    'route' => 'q',
-                    'message' => 'Your OTP for HCPL Password Reset is ' . $otp,
-                    'flash' => 0,
-                    'numbers' => $mobile,
-                ]
-            ]);
+            \App\Jobs\SendMobileOtpJob::dispatch($mobile, $otp, 'Password Reset');
 
-            $result = json_decode($response->getBody(), true);
-            if (isset($result['return']) && $result['return'] === true) {
-                return response()->json(['success' => true, 'message' => 'OTP sent successfully']);
-            }
-            
-            return response()->json(['success' => false, 'message' => $result['message'] ?? 'Failed to send OTP'], 400);
+            return response()->json(['success' => true, 'message' => 'OTP sent successfully']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to send OTP: ' . $e->getMessage()], 400);
+            Log::error("Failed to dispatch mobile OTP job for password reset: " . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Failed to process OTP request.'], 500);
         }
     }
 
