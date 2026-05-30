@@ -19,4 +19,7 @@ php artisan storage:link || true
 echo "Caching..."
 php artisan optimize
 
+echo "Restarting queues..."
+php artisan queue:restart
+
 echo "Deployment finished!"
