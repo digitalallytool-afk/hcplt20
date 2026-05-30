@@ -25,7 +25,7 @@
         /* Hero Section */
         .teams-hero {
             height: 350px;
-            background: linear-gradient(rgba(11, 15, 22, 0.8), rgba(11, 15, 22, 0.8)), url('http://127.0.0.1:8000/frontend/images/team.jpeg') center/cover no-repeat;
+            background: linear-gradient(rgba(11, 15, 22, 0.8), rgba(11, 15, 22, 0.8)), url('https://hcplt20.com//frontend/images/team.jpeg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;

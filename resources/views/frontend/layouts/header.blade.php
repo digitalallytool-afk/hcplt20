@@ -103,12 +103,12 @@
                      <li class="nav-item"><a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown"
                              aria-expanded="false"> Registration <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                          <ul class="dropdown-menu">
-                             <li class="nav-item dropdown dropend">
-                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                     Player Registration 
-                                     <i class="fa fa-angle-right d-none d-lg-inline-block ms-2" aria-hidden="true"></i>
-                                     <i class="fa fa-angle-down d-lg-none ms-2" aria-hidden="true"></i>
-                                 </a>
+                              <li class="nav-item dropdown dropend">
+                                  <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
+                                      Player Registration 
+                                      <i class="fa fa-angle-right d-none d-lg-inline-block ms-2" aria-hidden="true"></i>
+                                      <i class="fa fa-angle-down d-lg-none ms-2" aria-hidden="true"></i>
+                                  </a>
                                  <ul class="dropdown-menu">
                                      <li><a href="{{ route('player-registration') }}" class="nav-link">Mens Registration</a></li>
                                      <li><a href="{{ route('player-registration') }}" class="nav-link">Womens Registration</a></li>
