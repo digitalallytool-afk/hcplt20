@@ -165,6 +165,9 @@ Route::post('/contact/submit', [\App\Http\Controllers\ContactController::class, 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about-us', [HomeController::class, 'about'])->name('about');
 Route::get('/player-registration', [HomeController::class, 'player_registration'])->name('player-registration');
+// Route::get('/player-registration', function () {
+//     return "<h1 style='text-align:center;margin-top:100px;'>Registration Not Started</h1>";
+// })->name('player-registration');
 Route::post('/player-registration/send-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'sendOtp'])->name('player-registration.send-otp');
 Route::post('/player-registration/resend-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'resendOtp'])->name('player-registration.resend-otp');
 Route::post('/player-registration/verify-otp', [\App\Http\Controllers\Auth\PlayerRegistrationController::class, 'verifyOtp'])->name('player-registration.verify-otp');

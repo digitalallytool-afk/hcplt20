@@ -168,7 +168,25 @@
         <div class="container">
             <div class="row">
 
+                @foreach ($teams as $team)
 
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card-premium">
+                        <div class="team-logo-wrapper">
+                            @if ($team->logo)
+                                            <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }}"
+                                                style="width: 64px; height: 64px; object-fit: contain;">
+                                        @else
+                                            🛡️
+                                        @endif
+                                        </div>
+                                        <h3 class="team-name">{{ $team->name }}</h3>
+                                        <p class="team-location">{{ $team->city }}</p>
+                                        <a href="{{route('team.details',$team->id)}}" class="view-squad-btn">View Squad</a>
+                                    </div>
+                                </div>
+                      @endforeach
 
                 <!-- Team 1 -->
                 <div class="col-lg-3 col-md-6">
