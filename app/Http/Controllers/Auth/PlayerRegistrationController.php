@@ -99,7 +99,8 @@ class PlayerRegistrationController extends Controller
             return $this->verifyFast2SmsOtp($contact, $otp);
         } else {
             $savedOtp = session()->get('email_otp_' . $contact);
-            if ($savedOtp && $savedOtp == $otp) {
+            $otpTime = session()->get('email_otp_time_' . $contact);
+            if ($savedOtp && $otpTime && now()->diffInMinutes($otpTime) <= 5 && $savedOtp == $otp) {
                 session()->put('otp_verified_' . $contact, true);
                 return response()->json(['success' => true, 'message' => 'OTP verified successfully']);
             }
@@ -185,7 +186,8 @@ class PlayerRegistrationController extends Controller
     private function verifyFast2SmsOtp($mobile, $otp)
     {
         $savedOtp = session()->get('mobile_otp_' . $mobile);
-        if ($savedOtp && $savedOtp == $otp) {
+        $otpTime = session()->get('mobile_otp_time_' . $mobile);
+        if ($savedOtp && $otpTime && now()->diffInMinutes($otpTime) <= 5 && $savedOtp == $otp) {
             session()->put('otp_verified_' . $mobile, true);
             return response()->json(['success' => true, 'message' => 'OTP verified successfully']);
         }

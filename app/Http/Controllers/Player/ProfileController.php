@@ -191,20 +191,23 @@ class ProfileController extends Controller
                 // Send Fast2SMS Success Message
                 if ($profile->phone_number) {
                     try {
-                        $message = "Your registration is successful!\nName: {$profile->first_name} {$profile->last_name}\nRole: {$profile->player_role}\nPlayer ID: {$profile->player_id}";
+                        $name = trim($profile->first_name . ' ' . $profile->last_name);
                         $client = new Client();
                         $fast2SmsApiKey = 'u1YtfjPlkHRa2EzeVOw4ymUWF7IQbLpvDXNc0nhKg8Zir3SqosB7yVCPx6flwh2Fojg5RNG8JEUrktT1';
                         
                         $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
                             'headers' => [
+                                'accept' => 'application/json',
                                 'authorization' => $fast2SmsApiKey,
-                                'Content-Type'  => 'application/x-www-form-urlencoded'
+                                'content-type' => 'application/json',
                             ],
-                            'form_params' => [
-                                'message'  => $message,
-                                'language' => 'english',
-                                'route'    => 'q',
-                                'numbers'  => $profile->phone_number
+                            'json' => [
+                                'route' => 'dlt',
+                                'sender_id' => 'ARKSPT',
+                                'message' => '217194',
+                                'variables_values' => "{$name}|{$profile->player_id}|{$profile->age_category}",
+                                'numbers' => $profile->phone_number,
+                                'flash' => 0,
                             ]
                         ]);
                     } catch (\Exception $e) {

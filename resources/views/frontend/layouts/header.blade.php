@@ -125,6 +125,7 @@
                      </li>
 
                      <li class="nav-item"> <a class="nav-link" href="{{ route('team') }}">Teams</a></li>
+                     <li class="nav-item"> <a class="nav-link" href="{{ route('sponsors') }}">Sponsors</a></li>
 
                      <li class="nav-item"><a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown"
                              aria-expanded="false"> Media <i class="fa fa-angle-down" aria-hidden="true"></i></a>

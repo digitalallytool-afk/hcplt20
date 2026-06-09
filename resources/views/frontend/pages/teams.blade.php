@@ -15,7 +15,7 @@
     <style>
         :root {
             --light-bg: #fff8f0;
-            --gold: #d8571f;
+            --gold: #ff6600;
             --dark-bg: #0b0f16;
             --white: #ffffff;
             --dark-text: #3c3b3b;
@@ -46,7 +46,7 @@
         }
 
         .team-card-premium {
-            background: linear-gradient(45deg, #19398a, #4576f1);
+            background: linear-gradient(45deg, #0a1c3e, #0a1c3e);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 50px 30px;
@@ -164,123 +164,124 @@
     </header>
 
     <!-- Teams Grid -->
-    <section class="pad100">
+    <section class="pad100" style="background-color: #ffffff">
         <div class="container">
             <div class="row">
+                <!-- Men's Section Header -->
+                <div class="col-md-12 mb-4">
+                    <h2 style="font-family: 'DM Sans', sans-serif; font-weight: 800; text-transform: uppercase; color: var(--gold); border-bottom: 2px solid rgba(255,102,0,0.2); padding-bottom: 10px; letter-spacing: 1px;">Men's Teams</h2>
+                </div>
 
-                @foreach ($teams as $team)
+                @php
+                    $mens_db_teams = $teams->where('gender', 'Men');
+                    $womens_db_teams = $teams->where('gender', 'Women');
+                @endphp
 
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            @if ($team->logo)
-                                            <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }}"
-                                                style="width: 64px; height: 64px; object-fit: contain;">
-                                        @else
-                                            🛡️
-                                        @endif
-                                        </div>
-                                        <h3 class="team-name">{{ $team->name }}</h3>
-                                        <p class="team-location">{{ $team->city }}</p>
-                                        <a href="{{route('team.details',$team->id)}}" class="view-squad-btn">View Squad</a>
-                                    </div>
+                @if($mens_db_teams->count() > 0)
+                    @foreach ($mens_db_teams as $team)
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="team-card-premium">
+                                <div class="team-logo-wrapper">
+                                    @if ($team->logo)
+                                        <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }}"
+                                            style="width: 64px; height: 64px; object-fit: contain;">
+                                    @else
+                                        🛡️
+                                    @endif
                                 </div>
-                      @endforeach
-
-                <!-- Team 1 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            ⚔️
+                                <h3 class="team-name">{{ $team->name }}</h3>
+                                <p class="team-location">{{ $team->city }}</p>
+                                <a href="{{route('team.details',$team->id)}}" class="view-squad-btn">View Squad</a>
+                            </div>
                         </div>
-                        <h3 class="team-name">Rohtak Warriors</h3>
-                        <p class="team-location">Rohtak</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
+                    @endforeach
+                @else
+                    <!-- Fallback Men's Teams -->
+                    <!-- Team 1 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">⚔️</div>
+                            <h3 class="team-name">Rohtak Warriors</h3>
+                            <p class="team-location">Rohtak</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
                     </div>
+                    <!-- Team 2 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🦅</div>
+                            <h3 class="team-name">Hisar Titans</h3>
+                            <p class="team-location">Hisar</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 3 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">👑</div>
+                            <h3 class="team-name">Sirsa Royals</h3>
+                            <p class="team-location">Sirsa</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 4 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🏔️</div>
+                            <h3 class="team-name">Gurugram Giants</h3>
+                            <p class="team-location">Gurugram</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 5 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🥊</div>
+                            <h3 class="team-name">Faridabad Fighters</h3>
+                            <p class="team-location">Faridabad</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 6 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🐯</div>
+                            <h3 class="team-name">Sonipat Tigers</h3>
+                            <p class="team-location">Sonipat</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 7 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🏆</div>
+                            <h3 class="team-name">Karnal Kings</h3>
+                            <p class="team-location">Karnal</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                    <!-- Team 8 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card-premium">
+                            <div class="team-logo-wrapper">🛡️</div>
+                            <h3 class="team-name">Ambala Avengers</h3>
+                            <p class="team-location">Ambala</p>
+                            <a href="#" class="view-squad-btn">View Squad</a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            <!-- Women's Section -->
+            <div class="row mt-5 pt-4">
+                <div class="col-md-12 mb-4">
+                    <h2 style="font-family: 'DM Sans', sans-serif; font-weight: 800; text-transform: uppercase; color: var(--gold); border-bottom: 2px solid rgba(255,102,0,0.2); padding-bottom: 10px; letter-spacing: 1px;">Women's Teams</h2>
                 </div>
 
-                <!-- Team 2 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🔱
-                        </div>
-                        <h3 class="team-name">Hisar Titans</h3>
-                        <p class="team-location">Hisar</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 3 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            👑
-                        </div>
-                        <h3 class="team-name">Sirsa Royals</h3>
-                        <p class="team-location">Sirsa</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 4 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🦁
-                        </div>
-                        <h3 class="team-name">Gurugram Giants</h3>
-                        <p class="team-location">Gurugram</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 5 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🥊
-                        </div>
-                        <h3 class="team-name">Faridabad Fighters</h3>
-                        <p class="team-location">Faridabad</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 6 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🐯
-                        </div>
-                        <h3 class="team-name">Sonipat Tigers</h3>
-                        <p class="team-location">Sonipat</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 7 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🏆
-                        </div>
-                        <h3 class="team-name">Karnal Kings</h3>
-                        <p class="team-location">Karnal</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
-                    </div>
-                </div>
-
-                <!-- Team 8 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card-premium">
-                        <div class="team-logo-wrapper">
-                            🛡️
-                        </div>
-                        <h3 class="team-name">Ambala Avengers</h3>
-                        <p class="team-location">Ambala</p>
-                        <a href="#" class="view-squad-btn">View Squad</a>
+                <div class="col-md-12">
+                    <div class="text-center py-5" style="background: #0a1c3e; border: 1px dashed rgba(255, 102, 0, 0.3); border-radius: 20px; padding: 50px 20px; margin: 20px 0;">
+                        <h3 style="color: #ffffff; font-family: 'DM Sans', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.8rem;">Teams Will Be Announced Soon</h3>
+                        <p style="color: #cbd5e1; margin-bottom: 0; font-size: 1rem; opacity: 0.95;">Stay tuned! The official women's franchise teams will be revealed shortly.</p>
                     </div>
                 </div>
             </div>

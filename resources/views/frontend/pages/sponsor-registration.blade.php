@@ -69,43 +69,44 @@
         }
 
         .benefit-card {
-            background: linear-gradient(45deg, #19398a, #0f48d9);
+            background: #ffffff;
             padding: 40px;
             border-radius: 15px;
             height: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             margin-top: 30px;
         }
 
         .benefit-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(244, 194, 66, 0.1);
+            box-shadow: 0 20px 40px rgba(244, 194, 66, 0.2);
             border-color: #f5c518;
         }
 
         .benefit-icon {
             width: 60px;
             height: 60px;
-            background: #fff;
+            background: #0a1c3e;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             color: #f5c518;
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto;
         }
 
         .benefit-card h4 {
-            color: #f5c518;
-            font-size: 20px
+            color: #0a1c3e;
+            font-size: 20px;
+            font-weight: 700;
         }
 
         .benefit-card p {
-            color: #fff
+            color: #5a6b7e;
         }
 
         /* Form Container */
@@ -205,7 +206,7 @@
     </header>
 
     <!-- Registration Section -->
-    <section class="section-padding">
+    <section class="section-padding" style="background-color: #ffffff;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-9">
@@ -291,9 +292,9 @@
     </section>
 
     <!-- Why Partner Section -->
-    <section class="section-padding bg-grey">
+    <section class="section-padding" style="background-color: #0a1c3e;">
         <div class="container">
-            <h2 class="heading text-center">Why Partner with HCPL?</h2>
+            <h2 class="heading text-center" style="color: #ffffff;">Why Partner with <span style="color: #f5c518;">HCPL?</span></h2>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="benefit-card">

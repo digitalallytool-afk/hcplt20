@@ -21,9 +21,10 @@ class TeamController extends Controller
             'city' => 'nullable|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
             'owner_name' => 'nullable|string|max:255',
+            'gender' => 'required|string|in:Men,Women',
         ]);
 
-        $data = $request->only(['name', 'city', 'owner_name', 'order']);
+        $data = $request->only(['name', 'city', 'owner_name', 'gender', 'order']);
         
         if ($request->hasFile('logo')) {
             $data['logo'] = $request->file('logo')->store('teams', 'public');
@@ -49,9 +50,10 @@ class TeamController extends Controller
             'city' => 'nullable|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
             'owner_name' => 'nullable|string|max:255',
+            'gender' => 'required|string|in:Men,Women',
         ]);
 
-        $data = $request->only(['name', 'city', 'owner_name', 'order']);
+        $data = $request->only(['name', 'city', 'owner_name', 'gender', 'order']);
 
         if ($request->hasFile('logo')) {
             if ($team->logo) {

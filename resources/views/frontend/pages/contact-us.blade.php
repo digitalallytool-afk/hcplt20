@@ -16,7 +16,7 @@
    
 </div>
     
-<div class="pad100"  >
+<div class="pad100"  style="background-color: #ffffff">
  <div class="container">
   <div class="row">
       

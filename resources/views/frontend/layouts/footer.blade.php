@@ -6,7 +6,7 @@
             <div class="col-lg-3 col-md-12">
                 <div class="ft-logo">
                     <img src="{{ $web_setting && $web_setting->logo ? asset($web_setting->logo) : 'https://websitework.online/hcpl-new/images/logo.png' }}"
-                        alt="{{ $web_setting->site_name ?? 'hcpl-new' }}" width="100">
+                        alt="{{ $web_setting->site_name ?? 'hcpl-new' }}" width="180">
 
 
                 </div>
@@ -40,9 +40,11 @@
 
                         <li><a href="{{ route('about') }}">About Us</a></li>
                         <li><a href="{{ route('team') }}">Our Teams</a></li>
+                        <li><a href="{{ route('sponsors') }}">Sponsors</a></li>
                         <li><a href="{{ route('contact') }}">Contct Us</a></li>
                         <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                         <li><a href="{{ route('terms') }}">Terms And Conditions </a></li>
+                        <li><a href="{{ route('faq') }}">FAQ</a></li>
 
 
 
@@ -135,8 +137,128 @@
         @include('frontend.pages.popup')
     @endif
 
+    <!-- Sticky Floating Action Buttons -->
+    <style>
+        .floating-action-group {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the WhatsApp circle over the pill button */
+            gap: 12px;
+        }
+
+        .floating-register-btn {
+            background: #0a1c3e;
+            color: #ffffff;
+            padding: 14px 28px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 10px 30px rgba(10, 28, 62, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none !important;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'DM Sans', sans-serif;
+            white-space: nowrap;
+            position: relative;
+        }
+        .floating-register-btn:hover {
+            background: #ff6600;
+            color: #ffffff;
+            border-color: #ff6600;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 102, 0, 0.35);
+        }
+        .floating-register-btn .btn-icon {
+            font-size: 1.2rem;
+        }
+        .floating-register-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: inherit;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.4;
+            animation: floatPulse 2s infinite;
+        }
+        @keyframes floatPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1.25);
+                opacity: 0;
+            }
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp-btn {
+            background: #25D366;
+            color: #ffffff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 2rem;
+            border: 2px solid #ffffff;
+        }
+        .floating-whatsapp-btn:hover {
+            transform: translateY(-3px) scale(1.08);
+            background: #128C7E;
+            color: #ffffff;
+            box-shadow: 0 15px 30px rgba(18, 140, 126, 0.4);
+        }
+
+        @media (max-width: 767px) {
+            .floating-action-group {
+                bottom: 20px;
+                right: 20px;
+                gap: 8px;
+            }
+            .floating-register-btn {
+                padding: 12px 22px;
+                font-size: 0.8rem;
+            }
+            .floating-whatsapp-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+
+    <div class="floating-action-group">
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/919211335612?text=Hello%21%20I%27m%20interested%20in%20joining%20Haryana%20Cricket%20Premier%20League%20%28HCPL%29.%20Please%20share%20more%20details%20about%20player%20registration%20and%20league%20schedules." target="_blank" class="floating-whatsapp-btn">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+        </a>
+
+        <!-- Floating Register Now Button -->
+        <a href="{{ route('player-registration') }}" class="floating-register-btn">
+            <span class="btn-icon">🏏</span> Register Now
+        </a>
+    </div>
+
+    <!-- Commented out old widgets -->
     <!--
-  
 <a href="https://api.whatsapp.com/send/?phone=+919818898917" target="_blank" class="whatsapp"><img src="images/whatsapp-icon.svg" alt="whatsapp" class="w-100"></a>
         <div class="fixedbtn sgfrfi" data-bs-toggle="modal" data-bs-target="#enquiry"><span class="btnrt">Enquire Now</span></div> -->
 

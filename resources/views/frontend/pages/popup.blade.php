@@ -26,7 +26,7 @@
                         @endphp
                         <div style="display: flex; align-items: baseline; gap: 6px;">
                             <span
-                                style="font-size: 46px; font-weight: 900; color: #E85B0F; line-height: 1;">₹{{ $currentPrice }}</span>
+                                style="font-size: 46px; font-weight: 900; color: #ff6600; line-height: 1;">₹{{ $currentPrice }}</span>
                             @if($remainingSlots > 0 && $currentPrice < $actualPrice)
                                 <span style="font-size: 20px; color: #888; text-decoration: line-through;">₹{{ $actualPrice }}</span>
                             @else
@@ -36,7 +36,7 @@
                         </div>
                         
                         @if($remainingSlots > 0)
-                            <p style="margin-bottom: 2px;">First <b style="color: #E85B0F;">{{ $maxPlayers }}</b> players only.</p>
+                            <p style="margin-bottom: 2px;">First <b style="color: #ff6600;">{{ $maxPlayers }}</b> players only.</p>
                             <p style="font-size: 0.85em; color: #d9534f; font-weight: 800; margin-top:0;">Only {{ $remainingSlots }} spots left!</p>
                         @else
                             <p>Registration Open</p>
@@ -59,7 +59,7 @@
         font-size: 11px;
         font-weight: 700;
         letter-spacing: 3px;
-        color: #E85B0F;
+        color: #ff6600;
         text-transform: uppercase;
         margin: 0 0 6px;
     }
@@ -81,7 +81,7 @@
 
     .register-btn {
         width: 100%;
-        background: #E85B0F;
+        background: #ff6600;
         color: #fff;
         text-align: center;
         border: none;
@@ -116,7 +116,7 @@
 
     .popup-img {
         width: 50%;
-        border-right: 5px solid #E85B0F
+        border-right: 5px solid #ff6600
     }
 
     .popup-thumb {
@@ -136,7 +136,7 @@
         top: 0px;
         z-index: 99;
         border: none;
-        background: #E85B0F;
+        background: #ff6600;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,8 +166,8 @@
 
         .popup-img {
             width: 100%;
-            border-right: 0px solid #E85B0F;
-            border-bottom: px solid #E85B0F;
+            border-right: 0px solid #ff6600;
+            border-bottom: px solid #ff6600;
         }
     }
 </style>

@@ -17,10 +17,91 @@ class HomeController extends Controller
     $sliders = Slider::where('status', 1)->orderBy('order', 'asc')->get();
     $trials = Trial::where('is_active', 1)->orderBy('created_at', 'desc')->get();
     $matches = MatchSchedule::orderBy('created_at', 'desc')->get();
-    $ambassadors = Ambassador::where('status', 1)->orderBy('order', 'asc')->get();
+    
+    // 1. Ambassadors and Chief Mentors
+    $chiefMentors = Ambassador::where('status', 1)
+        ->where(function($query) {
+            $query->where('name', 'like', '%Praveen%')
+                  ->orWhere('name', 'like', '%Pardeep%');
+        })
+        ->orderBy('order', 'asc')
+        ->get();
+    if ($chiefMentors->isEmpty()) {
+        $chiefMentors = Ambassador::where('status', 1)->orderBy('order', 'asc')->take(1)->get();
+    }
+    $chiefMentorIds = $chiefMentors->pluck('id')->toArray();
+    
+    $guestAmbassadors = Ambassador::where('status', 1)
+        ->whereNotIn('id', $chiefMentorIds)
+        ->orderBy('order', 'asc')
+        ->get();
+
+    // 2. Teams
     $teams = Team::where('status', 1)->orderBy('order', 'asc')->get();
+    $mens_db_teams = $teams->where('gender', 'Men');
+    $womens_db_teams = $teams->where('gender', 'Women');
+
+    // 3. News
     $news = NewsArticle::with('category')->where('status', 1)->orderBy('order', 'asc')->orderBy('published_at', 'desc')->get();
-    return view('frontend.pages.index', compact('sliders', 'trials', 'matches', 'ambassadors', 'teams', 'news'));
+
+    // 4. Videos Section
+    $dbVideos = Media::where('type', 'video')->where('status', 1)->orderBy('order', 'asc')->take(2)->get();
+    $videoList = [];
+    foreach ($dbVideos as $video) {
+        $videoList[] = [
+            'video_url' => $video->video_url
+        ];
+    }
+    
+    // Fallbacks for URLs
+    if (count($videoList) < 1) {
+        $videoList[] = [
+            'video_url' => 'https://youtu.be/jPBYnWjueOk?si=UPng_Cuos4cpCx_1'
+        ];
+    }
+    if (count($videoList) < 2) {
+        $videoList[] = [
+            'video_url' => 'https://www.youtube.com/watch?v=Kz69c-U05_E'
+        ];
+    }
+
+    // Simple fixed titles and descriptions
+    $videoList[0]['title'] = 'ABOUT LEAGUE';
+    $videoList[0]['description'] = 'Discover the vision, structure, and excitement of the Haryana Cricket Premier League (HCPL).';
+
+    $videoList[1]['title'] = 'TRIAL & REGISTRATION PROCESS';
+    $videoList[1]['description'] = 'A complete step-by-step guide to registering online and preparing for the zone-wise trials.';
+
+    // Add ytId and isYoutube flags to each videoItem
+    foreach ($videoList as &$videoItem) {
+        $url = $videoItem['video_url'];
+        $videoItem['is_youtube'] = (str_contains($url, 'youtube.com') || str_contains($url, 'youtu.be'));
+        $videoItem['yt_id'] = '';
+        if ($videoItem['is_youtube']) {
+            $videoItem['yt_id'] = $this->extractYoutubeId($url);
+        }
+    }
+    unset($videoItem);
+
+    return view('frontend.pages.index', compact(
+        'sliders', 
+        'trials', 
+        'matches', 
+        'chiefMentors', 
+        'guestAmbassadors', 
+        'mens_db_teams', 
+        'womens_db_teams', 
+        'news', 
+        'videoList'
+    ));
+  }
+
+  private function extractYoutubeId($url) {
+      $videoId = '';
+      if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $match)) {
+          $videoId = $match[1];
+      }
+      return $videoId;
   }
 
   public function about(){ 
@@ -88,5 +169,13 @@ class HomeController extends Controller
 
     public function terms(){ 
         return view('frontend.pages.terms-and-conditions');
+    }
+
+    public function faq(){ 
+        return view('frontend.pages.faq');
+    }
+
+    public function sponsors(){ 
+        return view('frontend.pages.sponsors');
     }
 }

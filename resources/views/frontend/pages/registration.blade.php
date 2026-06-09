@@ -12,6 +12,9 @@
 
 @section('content')
     <style>
+        body {
+            background: #ffffff !important;
+        }
         :root {
             --light-bg: #fff8f0;
             --gold: #f4c242;
@@ -60,7 +63,7 @@
         }
 
         .wizard-sidebar {
-            background: #19398a;
+            background: #0a1c3e;
             padding: 50px 40px;
             color: var(--white);
             height: 100%;
@@ -228,6 +231,270 @@
 
             .hero-title {
                 font-size: 40px;
+            }
+        }
+
+        /* Why Register Section */
+        .why-register-section {
+            background: #0a1c3e;
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .why-register-section .section-title {
+            color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+        }
+
+        .why-register-section .section-subtitle {
+            color: #f4c242;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(244, 194, 66, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .why-icon {
+            font-size: 2.5rem;
+            background: rgba(244, 194, 66, 0.1);
+            border: 1px solid rgba(244, 194, 66, 0.25);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover .why-icon {
+            background: #f4c242;
+            color: #000000;
+            transform: scale(1.05);
+        }
+
+        .why-card h4 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .why-card p {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Player Journey / Roadmap Styling */
+        .roadmap-section {
+            background: #ffffff;
+            padding: 100px 0;
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(10, 28, 62, 0.05);
+        }
+        .roadmap-section .section-title {
+            color: #0a1c3e;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-size: 2.6rem;
+            text-transform: uppercase;
+        }
+        .roadmap-section .section-subtitle {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+        .roadmap-container-flow {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        /* Connection line for desktop */
+        .roadmap-line {
+            position: absolute;
+            top: 55px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: repeating-linear-gradient(to right, #cbd5e1, #cbd5e1 8px, transparent 8px, transparent 16px);
+            z-index: 1;
+        }
+        .roadmap-card {
+            background: #0a1c3e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px 24px;
+            text-align: center;
+            width: 23%;
+            min-width: 240px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 12px 30px rgba(10, 28, 62, 0.08);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .roadmap-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 102, 0, 0.4);
+            background: #0d224b;
+        }
+        .roadmap-step-badge {
+            background: #ff6600;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 15px rgba(255, 102, 0, 0.25);
+            border: 3px solid #0a1c3e;
+            transition: all 0.3s ease;
+        }
+        .roadmap-card:hover .roadmap-step-badge {
+            background: #f4c242;
+            color: #0a1c3e;
+            box-shadow: 0 6px 15px rgba(244, 194, 66, 0.4);
+            transform: scale(1.05);
+            border-color: #0d224b;
+        }
+        .roadmap-card h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .roadmap-card p {
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        .fee-badge-dynamic {
+            background: rgba(255, 102, 0, 0.12);
+            border: 1px dashed #ff6600;
+            color: #ff6600;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        .fee-badge-strike {
+            text-decoration: line-through;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-right: 6px;
+        }
+        .criteria-box-v2 {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-top: 15px;
+            text-align: left;
+            width: 100%;
+        }
+        .criteria-box-v2 div {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .criteria-box-v2 div:last-child {
+            margin-bottom: 0;
+        }
+        .criteria-box-v2 span {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: #a0aec0;
+        }
+
+        .roadmap-card-footer {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        .highlight-badge-static {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.88rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        .roadmap-card:hover .highlight-badge-static {
+            background: rgba(255, 102, 0, 0.15);
+            border-color: rgba(255, 102, 0, 0.4);
+            color: #ff6600;
+        }
+
+        @media (max-width: 991px) {
+            .roadmap-container-flow {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .roadmap-card {
+                width: 80%;
+                max-width: 450px;
+            }
+            .roadmap-line {
+                display: none;
             }
         }
     </style>
@@ -399,6 +666,128 @@
             </div>
         </div>
     </div>
+
+    <!-- Why Register Section -->
+    <section class="why-register-section">
+        <div class="container">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Why Register?</h2>
+                    <p class="section-subtitle">Benefits of joining the Haryana Cricket Premier League</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-card">
+                        <div class="why-icon">🏏</div>
+                        <h4>Opportunity to play in a professional league</h4>
+                        <p>Compete in a professional domestic structure modeled after top global sports leagues.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-card">
+                        <div class="why-icon">🔍</div>
+                        <h4>Professional Franchise Scouting</h4>
+                        <p>Get noticed by scouts, franchise owners, and senior coaches during trials and matches.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-card">
+                        <div class="why-icon">📺</div>
+                        <h4>Exposure and recognition on LIVE broadcast</h4>
+                        <p>Every match broadcasted LIVE across media networks, bringing your talent to national light.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="why-card">
+                        <div class="why-icon">🏆</div>
+                        <h4>Prize pool and rewards</h4>
+                        <p>Compete for a total prize pool of ₹1 Crore, championship trophies, cars, bikes, and certificates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Journey / Roadmap Section -->
+    <section class="roadmap-section">
+        <div class="container">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Player Journey</h2>
+                    <p class="section-subtitle">Your Roadmap to Professional Cricket</p>
+                </div>
+            </div>
+
+            <div class="roadmap-container-flow">
+                <div class="roadmap-line"></div>
+
+                <!-- Step 1 -->
+                <div class="roadmap-card">
+                    <div class="roadmap-step-badge">1</div>
+                    <h3>Register & Pay</h3>
+                    <p>Fill out your player details online, verify your contact number, and pay the dynamic trial registration fee to secure your official slot.</p>
+                    <div class="roadmap-card-footer">
+                        <div class="fee-badge-dynamic" style="margin-top: 0;">
+                            @if(isset($web_setting) && $web_setting->registration_discounted_price)
+                                <span class="fee-badge-strike">₹{{ $web_setting->registration_actual_price }}</span>
+                                <span>₹{{ $web_setting->registration_discounted_price }} Only</span>
+                            @else
+                                <span>₹1499 Only</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="roadmap-card">
+                    <div class="roadmap-step-badge">2</div>
+                    <h3>Selection Trials</h3>
+                    <p>Attend zone-wise physical selection trials across Haryana. Selectors will evaluate your skills based on age groups.</p>
+                    <div class="roadmap-card-footer">
+                        <div class="criteria-box-v2" style="margin-top: 0; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; width: 100%;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 4px; margin-bottom: 0;">
+                                <span style="font-weight: 700; color: #ffffff; font-size: 0.8rem;">👦 Men:</span>
+                                <span style="color: #ff6600; font-weight: 700; font-size: 0.78rem;">U-16 & Open</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; padding-top: 2px;">
+                                <span style="font-weight: 700; color: #ffffff; font-size: 0.8rem;">👧 Women:</span>
+                                <span style="color: #ff6600; font-weight: 700; font-size: 0.78rem;">Open Age</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="roadmap-card">
+                    <div class="roadmap-step-badge">3</div>
+                    <h3>Franchise Auction</h3>
+                    <p>Shortlisted players enter the official draft auction pool, where franchise owners bid to secure the best talent for their squads.</p>
+                    <div class="roadmap-card-footer">
+                        <span class="highlight-badge-static">💰 Franchise Bids</span>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="roadmap-card">
+                    <div class="roadmap-step-badge">4</div>
+                    <h3>League Glory</h3>
+                    <p>Play matches under professional franchise jerseys with live television coverage, massive cash rewards, and championship glory.</p>
+                    <div class="roadmap-card-footer">
+                        <span class="highlight-badge-static">🏆 ₹1 Crore Pool</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Wizard Script -->
     <script>

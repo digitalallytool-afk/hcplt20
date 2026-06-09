@@ -5,7 +5,7 @@
 
             <div class="col-lg-3 col-md-12">
                 <div class="ft-logo">
-                    <img src="{{ $web_setting && $web_setting->logo ? asset($web_setting->logo) : 'https://websitework.online/hcpl-new/images/logo.png' }}" alt="{{ $web_setting->site_name ?? 'hcpl-new' }}" width="100">
+                    <img src="{{ $web_setting && $web_setting->logo ? asset($web_setting->logo) : 'https://websitework.online/hcpl-new/images/logo.png' }}" alt="{{ $web_setting->site_name ?? 'hcpl-new' }}" width="180">
 
 
                 </div>
@@ -35,9 +35,11 @@
 
                         <li><a href="{{ route('about') }}">About Us</a></li>
                         <li><a href="{{ route('team') }}">Our Teams</a></li>
+                        <li><a href="{{ route('sponsors') }}">Sponsors</a></li>
                         <li><a href="{{ route('contact') }}">Contct Us</a></li>
                         <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                         <li><a href="{{ route('terms') }}">Terms And Conditions </a></li>
+                        <li><a href="{{ route('faq') }}">FAQ</a></li>
 
 
 

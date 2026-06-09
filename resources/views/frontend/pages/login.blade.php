@@ -18,7 +18,7 @@
     }
     .top-stripe {
       height: 4px;
-      background: linear-gradient(90deg, #19398a, #d8571f, #19398a);
+      background: linear-gradient(90deg, #19398a, #ff6600, #19398a);
       margin-bottom: 2rem;
     }
     .logo-box {
@@ -30,15 +30,15 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 14px;
-      border: 2px solid #d8571f;
+      border: 2px solid #ff6600;
     }
-    .logo-box i { font-size: 30px; color: #d8571f; }
+    .logo-box i { font-size: 30px; color: #ff6600; }
     .login-header { text-align: center; margin-bottom: 1.75rem; }
     .league-name {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 3px;
-      color: #d8571f;
+      color: #ff6600;
       text-transform: uppercase;
       margin-bottom: 7px;
     }
@@ -98,12 +98,12 @@
       cursor: pointer;
     }
     .remember input { accent-color: #19398a; width: 14px; height: 14px; }
-    .forgot { font-size: 13px; color: #d8571f; font-weight: 600; text-decoration: none; margin-left: 10px;}
+    .forgot { font-size: 13px; color: #ff6600; font-weight: 600; text-decoration: none; margin-left: 10px;}
     .forgot:hover { text-decoration: underline; }
     .btn-login {
       width: 100%;
       padding:8px;
-      background: #d8571f;
+      background: #ff6600;
       color: #fff;
       border: none;
       border-bottom: 3px solid #b07d00;
@@ -120,7 +120,7 @@
     .login-footer { margin-top: 1.25rem; text-align: center; }
     .footer-divider { height: 1px; background: rgba(0,0,0,0.06); margin-bottom: 1rem; }
     .login-footer span { font-size: 13px; color: #5a6b7e; }
-    .login-footer a { font-size: 13px; color: #d8571f; font-weight: 700; text-decoration: none; }
+    .login-footer a { font-size: 13px; color: #ff6600; font-weight: 700; text-decoration: none; }
     .login-footer a:hover { text-decoration: underline; }
     
     </style>
@@ -305,7 +305,7 @@
                         </div>
                         <button type="button" class="btn-login mt-3" id="fp-btn-verify-otp">Verify OTP <i class="fa fa-spinner fa-spin ms-2" id="fp-loader-2" style="display: none;"></i></button>
                         <div class="text-center mt-3">
-                            <button type="button" class="btn btn-link p-0" id="fp-btn-resend-otp" style="font-size:13px; color:#d8571f; text-decoration:none; font-weight:600;" disabled>Resend OTP <span id="fp-resend-timer">(60s)</span></button>
+                            <button type="button" class="btn btn-link p-0" id="fp-btn-resend-otp" style="font-size:13px; color:#ff6600; text-decoration:none; font-weight:600;" disabled>Resend OTP <span id="fp-resend-timer">(60s)</span></button>
                         </div>
                     </div>
 

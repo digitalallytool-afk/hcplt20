@@ -11,6 +11,7 @@ class Team extends Model
         'city',
         'logo',
         'owner_name',
+        'gender',
         'order',
         'status',
     ];

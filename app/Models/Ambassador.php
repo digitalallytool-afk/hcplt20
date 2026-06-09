@@ -12,5 +12,7 @@ class Ambassador extends Model
         'image',
         'order',
         'status',
+        'description',
+        'badge_text',
     ];
 }

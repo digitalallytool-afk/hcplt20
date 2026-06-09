@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="lg:col-span-9 space-y-8">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
                             <div class="relative group">
                                 <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Franchise Name</label>
                                 <input type="text" name="name" id="name" placeholder="e.g. Rohtak Royals" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/10 outline-none transition-all">
@@ -48,6 +48,13 @@
                             <div class="relative group">
                                 <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Representing City</label>
                                 <input type="text" name="city" id="city" placeholder="e.g. Rohtak" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/10 outline-none transition-all">
+                            </div>
+                            <div class="relative group">
+                                <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Gender Category</label>
+                                <select name="gender" id="gender" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-[18px] text-sm font-bold text-slate-900 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/10 outline-none transition-all">
+                                    <option value="Men">Men's Team</option>
+                                    <option value="Women">Women's Team</option>
+                                </select>
                             </div>
                         </div>
 
@@ -98,8 +105,9 @@
 
                 <!-- Info Section -->
                 <div class="mb-8 sm:mb-10">
-                    <div class="flex items-center gap-2 mb-1">
+                    <div class="flex items-center justify-between gap-2 mb-1">
                         <span class="text-[10px] font-black text-amber-500 uppercase tracking-widest">{{ $team->city }}</span>
+                        <span class="text-[10px] font-black px-2 py-0.5 rounded bg-slate-100 text-slate-600 uppercase tracking-widest">{{ $team->gender }}'s</span>
                     </div>
                     <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-4 tracking-tight uppercase">{{ $team->name }}</h3>
                     
@@ -194,6 +202,7 @@
             $('#name').val(data.name);
             $('#city').val(data.city);
             $('#owner_name').val(data.owner_name);
+            $('#gender').val(data.gender || 'Men');
             $('#order').val(data.order);
             if (data.logo) {
                 $('#previewLogo').attr('src', `/storage/${data.logo}`).removeClass('hidden');

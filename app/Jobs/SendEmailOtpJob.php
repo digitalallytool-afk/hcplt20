@@ -34,12 +34,17 @@ class SendEmailOtpJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            $otpValue = $this->otp;
-            $typeValue = $this->type;
+            if ($this->type === 'Password Reset') {
+                $subject = "HCPL Password Reset OTP";
+                $messageText = "Dear User,\n\nYour OTP for password reset on the Haryana Cricket Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
+            } else {
+                $subject = "HCPL Registration OTP";
+                $messageText = "Dear User,\n\nYour OTP for registration/login to the Haryana Cricket Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
+            }
             
-            Mail::raw("Your OTP for HCPL {$typeValue} is: {$otpValue}\n\nThis OTP is valid for 10 minutes.", function ($message) {
+            Mail::raw($messageText, function ($message) use ($subject) {
                 $message->to($this->email)
-                        ->subject("HCPL {$this->type} OTP");
+                        ->subject($subject);
             });
         } catch (\Exception $e) {
             Log::error("Failed to send OTP via Job to {$this->email}: " . $e->getMessage());

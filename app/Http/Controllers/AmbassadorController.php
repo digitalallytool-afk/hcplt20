@@ -20,9 +20,11 @@ class AmbassadorController extends Controller
             'name' => 'required|string|max:255',
             'designation' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'description' => 'nullable|string',
+            'badge_text' => 'nullable|string|max:255',
         ]);
 
-        $data = $request->only(['name', 'designation', 'order']);
+        $data = $request->only(['name', 'designation', 'order', 'description', 'badge_text']);
         
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('ambassadors', 'public');
@@ -47,9 +49,11 @@ class AmbassadorController extends Controller
             'name' => 'required|string|max:255',
             'designation' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'description' => 'nullable|string',
+            'badge_text' => 'nullable|string|max:255',
         ]);
 
-        $data = $request->only(['name', 'designation', 'order']);
+        $data = $request->only(['name', 'designation', 'order', 'description', 'badge_text']);
 
         if ($request->hasFile('image')) {
             if ($ambassador->image) {

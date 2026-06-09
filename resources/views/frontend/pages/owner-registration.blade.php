@@ -191,6 +191,19 @@
 .form-block2 .field{width:100%;display: inline-block;}
 .form-block3 .field{width: 100%;display: inline-block;}
 }
+
+#ownerForm {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    padding: 50px;
+    border: 1px solid #eee;
+}
+@media(max-width:768px){
+    #ownerForm {
+        padding: 25px;
+    }
+}
     </style>
 
 
@@ -220,7 +233,7 @@
 </div>
 
 
-<section class="pad100" >
+<section class="pad100"  style="background-color: #ffffff">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-md-12 mx-auto">

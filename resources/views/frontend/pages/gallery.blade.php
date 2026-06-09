@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-	<section class="pad100 mt-78">
+	<section class="pad100 mt-78" style="background-color: #ffffff">
     <div class="container">
         
         <div class="row">

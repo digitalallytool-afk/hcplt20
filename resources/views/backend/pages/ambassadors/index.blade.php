@@ -57,6 +57,14 @@
                                 <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Display Order</label>
                                 <input type="number" name="order" id="order" value="0" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
                             </div>
+                            <div class="relative group">
+                                <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Badge Text</label>
+                                <input type="text" name="badge_text" id="badge_text" placeholder="e.g. LEAGUE ICON" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Description / Biography (Required for Chief Mentor)</label>
+                            <textarea name="description" id="description" placeholder="Biography details of the Chief Mentor/Ambassador..." rows="4" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all"></textarea>
                         </div>
                         
                         <div class="pt-4">
@@ -191,6 +199,8 @@
             $('#name').val(data.name);
             $('#designation').val(data.designation);
             $('#order').val(data.order);
+            $('#badge_text').val(data.badge_text);
+            $('#description').val(data.description);
             if (data.image) {
                 $('#previewImage').attr('src', `/storage/${data.image}`).removeClass('hidden');
             }

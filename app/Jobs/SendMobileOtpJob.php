@@ -37,7 +37,11 @@ class SendMobileOtpJob implements ShouldQueue
     {
         try {
             $client = new Client();
-            $message = "Your OTP for HCPL {$this->type} is {$this->otp}";
+            if ($this->type === 'Password Reset') {
+                $templateId = '217197';
+            } else {
+                $templateId = '217193';
+            }
             
             $response = $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
                 'headers' => [
@@ -46,14 +50,17 @@ class SendMobileOtpJob implements ShouldQueue
                     'content-type' => 'application/json',
                 ],
                 'json' => [
-                    'route' => 'q',
-                    'message' => $message,
-                    'flash' => 0,
+                    'route' => 'dlt',
+                    'sender_id' => 'ARKSPT',
+                    'message' => $templateId,
+                    'variables_values' => (string)$this->otp,
                     'numbers' => $this->mobile,
+                    'flash' => 0,
                 ]
             ]);
 
             $result = json_decode($response->getBody(), true);
+            Log::info("Fast2SMS API Response for {$this->mobile}: " . json_encode($result));
             if (!isset($result['return']) || $result['return'] !== true) {
                 Log::error("Fast2SMS failed to send OTP to {$this->mobile}: " . ($result['message'] ?? 'Unknown error'));
                 throw new \Exception($result['message'] ?? 'Failed to send OTP via Fast2SMS');
