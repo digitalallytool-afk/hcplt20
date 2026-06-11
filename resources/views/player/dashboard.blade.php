@@ -776,7 +776,6 @@
                                                 class="text-danger">*</span></label>
                                         <select name="age_category" id="age_category" class="form-select" required>
                                             <option value="">Select Category</option>
-                                            <option value="Under 16">Under 16</option>
                                             <option value="Open Age">Open Age</option>
                                         </select>
                                     </div>
@@ -1278,12 +1277,6 @@
 
                 if (gender === 'Female' && dobValue) {
                     // Restrict to Open Age for females and validate DOB immediately
-                    Array.from(ageCategorySelect.options).forEach(opt => {
-                        if (opt.value === 'Under 16') {
-                            opt.disabled = true;
-                        }
-                    });
-                    
                     let dobDate = new Date(dobValue);
                     let limitDate = new Date('2011-01-01');
                     
@@ -1295,43 +1288,15 @@
                         clearError(dobSelect);
                         clearError(ageCategorySelect);
                     }
-                } else if (gender === 'Female') {
-                    // If no DOB yet, just disable Under 16
-                    Array.from(ageCategorySelect.options).forEach(opt => {
-                        if (opt.value === 'Under 16') {
-                            opt.disabled = true;
-                        }
-                    });
-                    ageCategorySelect.value = '';
                 } else if (gender === 'Male' && dobValue) {
-                    // Restore options and calculate based on age
-                    Array.from(ageCategorySelect.options).forEach(opt => {
-                        opt.disabled = false;
-                    });
-                    
-                    let dobDate = new Date(dobValue);
-                    let today = new Date();
-                    let age = today.getFullYear() - dobDate.getFullYear();
-                    let m = today.getMonth() - dobDate.getMonth();
-                    if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
-                        age--;
-                    }
-                    
-                    if (age < 16) {
-                        ageCategorySelect.value = 'Under 16';
-                    } else {
-                        ageCategorySelect.value = 'Open Age';
-                    }
+                    ageCategorySelect.value = 'Open Age';
                     clearError(dobSelect);
                     clearError(ageCategorySelect);
+                } else if (gender) {
+                    ageCategorySelect.value = 'Open Age';
+                    clearError(ageCategorySelect);
                 } else {
-                    // Reset if male but no dob, or empty gender
-                    Array.from(ageCategorySelect.options).forEach(opt => {
-                        opt.disabled = false;
-                    });
-                    if (gender !== 'Female') {
-                        ageCategorySelect.value = '';
-                    }
+                    ageCategorySelect.value = '';
                 }
                 saveDraft();
             }

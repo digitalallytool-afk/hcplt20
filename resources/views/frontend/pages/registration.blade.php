@@ -756,7 +756,7 @@
                         <div class="criteria-box-v2" style="margin-top: 0; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; width: 100%;">
                             <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 4px; margin-bottom: 0;">
                                 <span style="font-weight: 700; color: #ffffff; font-size: 0.8rem;">👦 Men:</span>
-                                <span style="color: #ff6600; font-weight: 700; font-size: 0.78rem;">U-16 & Open</span>
+                                <span style="color: #ff6600; font-weight: 700; font-size: 0.78rem;">Open Age</span>
                             </div>
                             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; padding-top: 2px;">
                                 <span style="font-weight: 700; color: #ffffff; font-size: 0.8rem;">👧 Women:</span>
