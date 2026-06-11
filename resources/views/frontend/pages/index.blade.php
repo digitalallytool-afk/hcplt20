@@ -969,7 +969,7 @@
                             <div class="benefit-point-card">
                                 <div class="benefit-card-icon">🏆</div>
                                 <div class="benefit-card-content">
-                                    <h4>Prize Pool and ewards</h4>
+                                    <h4>Prize Pool and Rewards</h4>
                                     <p>Compete for a total prize pool of ₹1 Crore, trophies, cars, bikes, and other rewards.</p>
                                 </div>
                             </div>
