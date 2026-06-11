@@ -189,6 +189,7 @@
                                         🛡️
                                     @endif
                                 </div>
+                                <h3 class="team-name">{{ $team->name }}</h3>
                                 <p class="team-location">{{ $team->city }}</p>
                                 <a href="{{route('team.details',$team->id)}}" class="view-squad-btn">View Squad</a>
                             </div>
@@ -202,6 +203,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Rohtak-Warriors-Logo-(1).png') }}" alt="Rohtak Warriors" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Rohtak Warriors</h3>
                             <p class="team-location">Rohtak</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -212,6 +214,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Hisar-titans-logo-(1).png') }}" alt="Hisar Titans" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Hisar Titans</h3>
                             <p class="team-location">Hisar</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -222,6 +225,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Sirsa-Royals-logo-(2).png') }}" alt="Sirsa Royals" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Sirsa Royals</h3>
                             <p class="team-location">Sirsa</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -232,6 +236,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Gurugram-giants-logo-(1).png') }}" alt="Gurugram Giants" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Gurugram Giants</h3>
                             <p class="team-location">Gurugram</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -242,6 +247,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/faridabad.png') }}" alt="Faridabad Fighters" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Faridabad Fighters</h3>
                             <p class="team-location">Faridabad</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -252,6 +258,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Sonipat-tigers-logo-(1).png') }}" alt="Sonipat Tigers" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Sonipat Tigers</h3>
                             <p class="team-location">Sonipat</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -262,6 +269,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Karnal-kings-logo-(1).png') }}" alt="Karnal Kings" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Karnal Kings</h3>
                             <p class="team-location">Karnal</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
@@ -272,6 +280,7 @@
                             <div class="team-logo-wrapper" style="width: 100%; height: auto; background: transparent; border: none; border-radius: 0; margin-bottom: 15px; font-size: inherit;">
                                 <img src="{{ asset('frontend/images/hpcl/Ambala-avengers-logo-(1).png') }}" alt="Ambala Avengers" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                             </div>
+                            <h3 class="team-name">Ambala Avengers</h3>
                             <p class="team-location">Ambala</p>
                             <a href="#" class="view-squad-btn">View Squad</a>
                         </div>
