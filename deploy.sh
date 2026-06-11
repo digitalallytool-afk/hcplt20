@@ -23,3 +23,5 @@ echo "Restarting queues..."
 php artisan queue:restart
 
 echo "Deployment finished!"
+# Trigger deploy: 2026-06-11
+
