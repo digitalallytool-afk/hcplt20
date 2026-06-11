@@ -140,7 +140,7 @@
        <!--<div class="login-card">
             <img src="images/logo.png" alt="HCPL Logo" class="login-logo" onerror="this.src='images/hcpl-logo.jpeg'">
             <h1 class="login-title">Welcome Back</h1>
-            <p class="login-subtitle">Haryana Cricket Premier League</p>
+            <p class="login-subtitle">Haryana Corporate Premier League</p>
 
             <form action="#">
                 <div class="mb-2">
@@ -183,7 +183,7 @@
       <div class="logo-box">
         <i class="ti ti-trophy"></i>
       </div>
-      <div class="league-name">Haryana Cricket Premier League</div>
+      <div class="league-name">Haryana Corporate Premier League</div>
       <div class="welcome">Welcome Back</div>
       <div class="taglines">Sign in to your HCPL account</div>
     </div>
@@ -272,7 +272,7 @@
                         <div class="logo-box">
                             <i class="ti ti-lock"></i>
                         </div>
-                        <div class="league-name">Haryana Cricket Premier League</div>
+                        <div class="league-name">Haryana Corporate Premier League</div>
                         <div class="welcome" id="fp-title">Reset Password</div>
                         <div class="taglines" id="fp-subtitle">Enter your registered mobile or email</div>
                     </div>

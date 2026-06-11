@@ -36,10 +36,10 @@ class SendEmailOtpJob implements ShouldQueue
         try {
             if ($this->type === 'Password Reset') {
                 $subject = "HCPL Password Reset OTP";
-                $messageText = "Dear User,\n\nYour OTP for password reset on the Haryana Cricket Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
+                $messageText = "Dear User,\n\nYour OTP for password reset on the Haryana Corporate Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
             } else {
                 $subject = "HCPL Registration OTP";
-                $messageText = "Dear User,\n\nYour OTP for registration/login to the Haryana Cricket Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
+                $messageText = "Dear User,\n\nYour OTP for registration/login to the Haryana Corporate Premier League (HCPL) portal is {$this->otp}. This OTP is valid for 5 minutes. Please do not share this OTP with anyone.\n\nRegards,\nTeam HCPL\n-ARK NEXTGEN SPORTS PRIVATE LIMITED";
             }
             
             Mail::raw($messageText, function ($message) use ($subject) {

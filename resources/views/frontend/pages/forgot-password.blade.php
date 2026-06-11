@@ -164,7 +164,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-10">
                 <h1 class="hero-title text-center">Reset Password</h1>
-                <p class="fw-bold text-center" style="color:#d8571f">HARYANA CRICKET PREMIER LEAGUE</p>
+                <p class="fw-bold text-center" style="color:#d8571f">HARYANA CORPORATE PREMIER LEAGUE</p>
 
                 <div class="form-wizard">
                     <div class="row g-0">

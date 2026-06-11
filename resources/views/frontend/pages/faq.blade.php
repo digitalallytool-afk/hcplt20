@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('title', 'Frequently Asked Questions (FAQ) - HCPL')
-@section('meta_description', 'Frequently Asked Questions about Haryana Cricket Premier League (HCPL T20) trials, rules, eligibility, registration and more.')
+@section('meta_description', 'Frequently Asked Questions about Haryana Corporate Premier League (HCPL T20) trials, rules, eligibility, registration and more.')
 @section('meta_keywords', 'hcpl faq, trials registration fee, age limit hcpl, leather ball league')
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />
@@ -110,7 +110,7 @@
 
 <div class="faq-header-banner">
     <h1>Frequently Asked Questions</h1>
-    <p>Everything you need to know about the Haryana Cricket Premier League (HCPL T20) registration, trials, and rules.</p>
+    <p>Everything you need to know about the Haryana Corporate Premier League (HCPL T20) registration, trials, and rules.</p>
 </div>
 
 <div class="faq-container">

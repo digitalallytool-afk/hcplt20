@@ -97,7 +97,7 @@
                 <div class="space-y-8">
                     <div class="relative group">
                         <label class="absolute -top-2 left-4 px-1 bg-white text-[10px] font-black text-slate-400 group-focus-within:text-amber-500 transition-colors">Hero Heading (Title)</label>
-                        <input type="text" name="title" id="title" placeholder="e.g. Haryana Cricket Premier League" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
+                        <input type="text" name="title" id="title" placeholder="e.g. Haryana Corporate Premier League" class="w-full bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:border-amber-400 outline-none transition-all">
                     </div>
 
                     <div class="relative group">

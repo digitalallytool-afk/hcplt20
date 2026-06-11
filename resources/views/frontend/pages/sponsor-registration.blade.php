@@ -197,7 +197,7 @@
             <div class="col-lg-10 mx-auto" <span class="hero-subtitle" style="color:#f4c242">PARTNER WITH THE BEST</span>
                 <h1 class="hero-title">Sponsor Registration</h1>
                 <h5 class="text-center" style="color:#f4c242">JOIN US IN BUILDING HARYANA’S BIGGEST CRICKET PLATFORM</h5>
-                <p class="text-center text-white">At HCPL – Haryana Cricket Premier League, we are committed to discovering
+                <p class="text-center text-white">At HCPL – Haryana Corporate Premier League, we are committed to discovering
                     and promoting cricket talent from across all 22 districts of Haryana. We believe strong partnerships
                     create powerful impact. If your brand wants to connect with sports enthusiasts and growing audiences,
                     HCPL offers the perfect platform.</p>

@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="footer">
-            HARYANA CRICKET PREMIER LEAGUE - SEASON 1
+            HARYANA CORPORATE PREMIER LEAGUE - SEASON 1
         </div>
     </div>
 </body>

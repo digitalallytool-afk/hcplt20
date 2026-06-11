@@ -673,7 +673,7 @@
             <div class="row text-center justify-content-center">
                 <div class="col-lg-8">
                     <h2 class="section-title">Why Register?</h2>
-                    <p class="section-subtitle">Benefits of joining the Haryana Cricket Premier League</p>
+                    <p class="section-subtitle">Benefits of joining the Haryana Corporate Premier League</p>
                 </div>
             </div>
             

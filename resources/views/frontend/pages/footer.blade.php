@@ -10,7 +10,7 @@
 
                 </div>
 
-                <!--<p>Haryana Cricket Premier League (HCPL) is a professional T20 cricket league providing a platform for emerging talent across Haryana to showcase their skills on a grand stage.
+                <!--<p>Haryana Corporate Premier League (HCPL) is a professional T20 cricket league providing a platform for emerging talent across Haryana to showcase their skills on a grand stage.
 
 </p>-->
 
@@ -94,7 +94,7 @@
 
                     <div class="row">
                         <div class="col-md-12 text-center mt-4">
-                            <p>© 2026 {{ $web_setting->site_name ?? 'HCPL — Haryana Cricket Premier League' }}. All rights reserved. </p>
+                            <p>© 2026 {{ $web_setting->site_name ?? 'HCPL — Haryana Corporate Premier League' }}. All rights reserved. </p>
                         </div>
 
                     </div>

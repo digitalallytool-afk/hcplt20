@@ -67,7 +67,7 @@ class HomeController extends Controller
 
     // Simple fixed titles and descriptions
     $videoList[0]['title'] = 'ABOUT LEAGUE';
-    $videoList[0]['description'] = 'Discover the vision, structure, and excitement of the Haryana Cricket Premier League (HCPL).';
+    $videoList[0]['description'] = 'Discover the vision, structure, and excitement of the Haryana Corporate Premier League (HCPL).';
 
     $videoList[1]['title'] = 'TRIAL & REGISTRATION PROCESS';
     $videoList[1]['description'] = 'A complete step-by-step guide to registering online and preparing for the zone-wise trials.';

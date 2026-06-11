@@ -10,7 +10,7 @@
 
                 <div class="modal-marge">
                     <div class="popup-img">
-                        <img src="{{ asset('frontend') }}/images/popup.webp" class="w-100">
+                        <img src="{{ asset('frontend') }}/images/pop-up-image.jpeg" class="w-100" width="100%">
                     </div>
 
 
@@ -103,25 +103,41 @@
     #myModal3 .modal-content {
         border-radius: 15px;
         overflow: hidden;
+        padding: 0 !important;
+        border: none !important;
     }
 
     #myModal3 .modal-body {
-        padding: 0
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     .modal-marge {
         display: flex;
-        align-items: center
+        align-items: center;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .popup-img {
         width: 50%;
-        border-right: 5px solid #ff6600
+        border-right: 5px solid #ff6600;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .popup-img img {
+        width: 100% !important;
+        height: auto;
+        display: block;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .popup-thumb {
         padding: 30px;
-        width: 54%
+        width: 50%;
+        margin: 0 !important;
     }
 
     #myModal3 .form-group {
@@ -157,17 +173,26 @@
 
     @media(max-width:560px) {
         .modal-marge {
-            display: inline-block;
-        }
-
-        .popup-thumb {
-            width: 100%
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
         }
 
         .popup-img {
-            width: 100%;
-            border-right: 0px solid #ff6600;
-            border-bottom: px solid #ff6600;
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 5px solid #ff6600 !important;
+        }
+
+        .popup-img img {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;
+        }
+
+        .popup-thumb {
+            width: 100% !important;
+            padding: 25px !important;
         }
     }
 </style>

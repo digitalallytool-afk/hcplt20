@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('title', 'Sponsorship Opportunities - HCPL')
-@section('meta_description', 'Partner with Haryana Cricket Premier League (HCPL T20). Explore sponsorship tiers, projected reach, and tournament campaign timelines for Men\'s & Women\'s seasons.')
+@section('meta_description', 'Partner with Haryana Corporate Premier League (HCPL T20). Explore sponsorship tiers, projected reach, and tournament campaign timelines for Men\'s & Women\'s seasons.')
 @section('meta_keywords', 'hcpl sponsors, cricket sponsorship India, title partner, umpire partner, digital reach')
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />

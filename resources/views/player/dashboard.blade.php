@@ -1028,6 +1028,52 @@
             };
             document.head.appendChild(s2Script);
 
+            const trialConfig = {
+                "Haryana": {
+                    districts: null
+                },
+                "Delhi (NCT)": {
+                    displayName: "Delhi",
+                    districts: ["New Delhi"]
+                },
+                "Punjab": {
+                    districts: ["Sahibzada Ajit Singh Nagar (Mohali)", "Jalandhar", "Bathinda"],
+                    displayDistricts: {
+                        "Sahibzada Ajit Singh Nagar (Mohali)": "Mohali",
+                        "Jalandhar": "Jalandhar",
+                        "Bathinda": "Bathinda"
+                    }
+                },
+                "Himachal Pradesh": {
+                    districts: ["Kangra", "Hamirpur"]
+                },
+                "Jammu and Kashmir": {
+                    districts: ["Jammu"]
+                },
+                "Uttarakhand": {
+                    districts: ["Dehradun", "Nainital"]
+                },
+                "Uttar Pradesh": {
+                    districts: ["Gautam Buddha Nagar", "Lucknow", "Bareilly", "Gorakhpur", "Allahabad"],
+                    displayDistricts: {
+                        "Gautam Buddha Nagar": "Noida",
+                        "Allahabad": "Prayagraj"
+                    }
+                },
+                "Rajasthan": {
+                    districts: ["Jaipur", "Jodhpur", "Udaipur"]
+                },
+                "Gujarat": {
+                    districts: ["Ahmedabad"]
+                },
+                "Madhya Pradesh": {
+                    districts: ["Bhopal"]
+                },
+                "Maharashtra": {
+                    districts: ["Pune"]
+                }
+            };
+
             let statesData = [];
 
             // Load States and Districts JSON
@@ -1040,12 +1086,18 @@
                         stateOptions += `<option value="${s.state}">${s.state}</option>`;
                     });
 
+                    let trialStateOptions = '<option value="">Select State</option>';
+                    Object.keys(trialConfig).forEach(stateKey => {
+                        const displayName = trialConfig[stateKey].displayName || stateKey;
+                        trialStateOptions += `<option value="${stateKey}">${displayName}</option>`;
+                    });
+
                     // Safely inject HTML first using Vanilla JS (immune to jQuery errors)
                     const stateEl = document.getElementById('state');
                     const trialStateEl = document.getElementById('trial_state');
 
                     if (stateEl) stateEl.innerHTML = stateOptions;
-                    if (trialStateEl) trialStateEl.innerHTML = stateOptions;
+                    if (trialStateEl) trialStateEl.innerHTML = trialStateOptions;
 
                     statesReady = true;
                     tryInitSelect2();
@@ -1065,13 +1117,13 @@
             // Handle State change for Personal Info
             if (typeof $ !== 'undefined') {
                 $('#state').on('change', function() {
-                    populateDistricts(this.value, document.getElementById('district'));
+                    populateDistricts(this.value, document.getElementById('district'), false);
                 });
             } else {
                 const stateEl = document.getElementById('state');
                 if (stateEl) {
                     stateEl.addEventListener('change', function() {
-                        populateDistricts(this.value, document.getElementById('district'));
+                        populateDistricts(this.value, document.getElementById('district'), false);
                     });
                 }
             }
@@ -1079,18 +1131,18 @@
             // Handle State change for Trial Info
             if (typeof $ !== 'undefined') {
                 $('#trial_state').on('change', function() {
-                    populateDistricts(this.value, document.getElementById('trial_district'));
+                    populateDistricts(this.value, document.getElementById('trial_district'), true);
                 });
             } else {
                 const trialStateEl = document.getElementById('trial_state');
                 if (trialStateEl) {
                     trialStateEl.addEventListener('change', function() {
-                        populateDistricts(this.value, document.getElementById('trial_district'));
+                        populateDistricts(this.value, document.getElementById('trial_district'), true);
                     });
                 }
             }
 
-            function populateDistricts(stateName, districtSelect) {
+            function populateDistricts(stateName, districtSelect, isTrial = false) {
                 if (!districtSelect) return;
 
                 if (!stateName) {
@@ -1100,9 +1152,20 @@
                     const stateObj = statesData.find(s => s.state === stateName);
                     if (stateObj && stateObj.districts) {
                         let options = '<option value="">Select District</option>';
-                        stateObj.districts.forEach(d => {
-                            options += `<option value="${d}">${d}</option>`;
-                        });
+                        if (isTrial && trialConfig[stateName]) {
+                            const allowedDists = trialConfig[stateName].districts;
+                            const displayDists = trialConfig[stateName].displayDistricts || {};
+                            stateObj.districts.forEach(d => {
+                                if (allowedDists === null || allowedDists.includes(d)) {
+                                    const dispName = displayDists[d] || d;
+                                    options += `<option value="${d}">${dispName}</option>`;
+                                }
+                            });
+                        } else {
+                            stateObj.districts.forEach(d => {
+                                options += `<option value="${d}">${d}</option>`;
+                            });
+                        }
                         districtSelect.innerHTML = options;
                         districtSelect.disabled = false;
                     }

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('title', 'Terms and Conditions - HCPL')
-@section('meta_description', 'Terms and Conditions for Haryana Cricket Premier League')
+@section('meta_description', 'Terms and Conditions for Haryana Corporate Premier League')
 @section('meta_keywords', 'terms and conditions, hcpl')
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />
@@ -37,7 +37,7 @@
 </ul>
 
 <h2>Player Eligibility & Registration</h2>
-<p>Participation in the Haryana Cricket Premier League (HCPL) is subject to strict eligibility and registration requirements:</p>
+<p>Participation in the Haryana Corporate Premier League (HCPL) is subject to strict eligibility and registration requirements:</p>
 <p><strong>Eligibility Criteria</strong></p>
 <p><strogn>Under-16 Category:</strogn></p>
 <ul>

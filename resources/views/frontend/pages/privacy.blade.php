@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('title', 'Privacy Policy - HCPL')
-@section('meta_description', 'Privacy Policy for Haryana Cricket Premier League')
+@section('meta_description', 'Privacy Policy for Haryana Corporate Premier League')
 @section('meta_keywords', 'privacy policy, hcpl')
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />

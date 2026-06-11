@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'About HCPL T20 - Haryana Cricket Premier League')
+@section('title', 'About HCPL T20 - Haryana Corporate Premier League')
 
-@section('meta_description', 'Learn about Haryana Cricket Premier League (HCPL T20) – a professional cricket platform built to discover and promote cricket talent across North India.')
+@section('meta_description', 'Learn about Haryana Corporate Premier League (HCPL T20) – a professional cricket platform built to discover and promote cricket talent across North India.')
 
-@section('meta_keywords', 'about hcpl, haryana cricket premier league, cricket trials, hcpl t20')
+@section('meta_keywords', 'about hcpl, haryana corporate premier league, cricket trials, hcpl t20')
 
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -151,7 +151,7 @@
                 <div class="col-lg-7">
                     <div class="about-text mb-3">
                         <h1 class="heading">About HCPL</h1>
-                        <p>Haryana Cricket Premier League (HCPL) is a professional cricket platform created to discover and
+                        <p>Haryana Corporate Premier League (HCPL) is a professional cricket platform created to discover and
                             promote cricket talent across Haryana. The league is designed to provide players with
                             opportunities to showcase their skills through player trials, team auctions, and competitive
                             franchise matches.</p>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <img src="{{ asset('frontend') }}/images/about-inner.webp" alt="About HCPL" class="w-100" style="border-radius: 20px;">
+                    <img src="{{ asset('frontend') }}/images/about-use-page-image.jpeg" alt="About HCPL" class="w-100" style="border-radius: 20px;">
                 </div>
             </div>
         </div>

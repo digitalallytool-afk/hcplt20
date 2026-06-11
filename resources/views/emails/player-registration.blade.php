@@ -8,7 +8,7 @@
         
         <p style="margin-bottom: 20px;">Dear {{ trim($profile->first_name . ' ' . $profile->last_name) }},</p>
         
-        <p style="margin-bottom: 15px;">Your registration for HCPL – Haryana Cricket Premier League has been successfully completed.</p>
+        <p style="margin-bottom: 15px;">Your registration for HCPL – Haryana Corporate Premier League has been successfully completed.</p>
         <p style="margin-bottom: 25px;">We are excited to welcome you to one of Haryana’s biggest professional cricket platforms.</p>
         
         <p style="font-weight: bold; margin-bottom: 10px; color: #0a1c3e;">Registration Details:</p>

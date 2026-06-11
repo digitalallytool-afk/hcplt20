@@ -214,7 +214,7 @@
                <div class="owner-text">
                   <h1 class="heading" style="color:#19398a">Team Ownership Opportunity</h1>
                   <strong>Own a Team in HCPL</strong>
-                  <p>Haryana Cricket Premier League offers businesses and cricket enthusiasts the opportunity to own a franchise team and become part of an exciting cricket league.</p>
+                  <p>Haryana Corporate Premier League offers businesses and cricket enthusiasts the opportunity to own a franchise team and become part of an exciting cricket league.</p>
                   <p>With 8 franchise teams, HCPL provides owners with a platform to build their teams, participate in the player auction, and compete for the championship.</p>
                   <p>Owning a team in HCPL also provides excellent brand visibility, promotion, and engagement with cricket fans across Haryana.</p>
             </div>        

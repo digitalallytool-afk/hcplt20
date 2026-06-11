@@ -32,8 +32,8 @@
                                         <div class="container">
                                             <div class="content-left">
                                                 <div class="join-tag">Join HCPL</div>
-                                                <h1 class="title-main">HARYANA CRICKET<br><span>PREMIER LEAGUE</span></h1>
-                                                <p class="tagline">From Grounds to Glory &nbsp;&nbsp;<span class="hashtag-badge-cursive" style="font-size: 2rem; color: #ff6600; text-shadow: 0 0 15px rgba(255, 102, 0, 0.4); vertical-align: middle;">#LathGadDiya</span></p>
+                                                <h1 class="title-main">HARYANA CORPORATE<br><span>PREMIER LEAGUE</span></h1>
+                                                <p class="tagline">From Grounds to Glory</p>
                                                 <div class="season-pill">
                                                     <span class="dot-live"></span>
                                                     Season 1 &nbsp;·&nbsp; Coming Soon
@@ -59,7 +59,7 @@
                                     <div class="content-left">
                                         <div class="join-tag">Join HCPL</div>
                                         <h1 class="title-main">HARYANA CRICKET<br><span>PREMIER LEAGUE</span></h1>
-                                        <p class="tagline">From Grounds to Glory &nbsp;&nbsp;<span class="hashtag-badge-cursive" style="font-size: 2rem; color: #ff6600; text-shadow: 0 0 15px rgba(255, 102, 0, 0.4); vertical-align: middle;">#LathGadDiya</span></p>
+                                        <p class="tagline">From Grounds to Glory &nbsp;&nbsp;<span class="hashtag-badge-brush banner-size"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span></p>
                                         <div class="season-pill">
                                             <span class="dot-live"></span>
                                             Season 1 &nbsp;·&nbsp; Coming Soon
@@ -89,7 +89,7 @@
 
         <!-- Home Page Registration & Benefits Section -->
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Dancing+Script:wght@700&family=Kaushan+Script&family=Water+Brush&family=Yellowtail&display=swap');
             .hashtag-badge-cursive {
                 font-family: 'Dancing Script', cursive;
                 font-size: 1.8rem;
@@ -99,6 +99,112 @@
                 letter-spacing: 1.5px;
                 margin: 5px 0;
                 text-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+            }
+            .hashtag-badge-brush {
+                font-family: 'Water Brush', cursive;
+                font-weight: 700;
+                color: #0a1c3e; /* Navy blue matching the image */
+                -webkit-text-stroke: 1.2px #0a1c3e; /* Artificially thickens the brush stroke */
+                display: inline-block;
+                letter-spacing: 0.5px;
+                margin: 5px 0;
+                text-shadow: none;
+                text-transform: none !important; /* Preserves the exact case: #LathGadDiya */
+                vertical-align: middle;
+            }
+            .hashtag-badge-brush.orange {
+                color: #ff6600 !important;
+                -webkit-text-stroke: 1.2px #ff6600 !important;
+            }
+            .hashtag-badge-brush .lath {
+                color: #ff6600 !important;
+                -webkit-text-stroke: 1.2px #ff6600 !important;
+            }
+            .hashtag-badge-brush .gaddiya {
+                color: #0a1c3e;
+                -webkit-text-stroke: 1.2px #0a1c3e;
+            }
+            /* Dark background contexts */
+            .banner-caption .hashtag-badge-brush .gaddiya,
+            .hashtag-badge-brush.on-dark .gaddiya,
+            .hashtag-badge-brush.orange .gaddiya {
+                color: #ffffff !important;
+                -webkit-text-stroke: 1.2px #ffffff !important;
+            }
+            
+            /* Sizing classes */
+            .hashtag-badge-brush.banner-size {
+                font-size: 3.2rem;
+            }
+            .hashtag-badge-brush.heading-size {
+                font-size: 3rem;
+            }
+            .hashtag-badge-brush.normal-size {
+                font-size: 2.2rem;
+            }
+
+            /* Responsive queries */
+            @media (max-width: 991px) {
+                .hashtag-badge-brush.banner-size {
+                    font-size: 2.4rem;
+                }
+                .hashtag-badge-brush.heading-size {
+                    font-size: 2.2rem;
+                }
+                .hashtag-badge-brush.normal-size {
+                    font-size: 1.8rem;
+                }
+            }
+            @media (max-width: 575px) {
+                .hashtag-badge-brush.banner-size {
+                    font-size: 2rem;
+                    display: block;
+                    margin-top: 5px;
+                    margin-left: 0 !important;
+                }
+                .hashtag-badge-brush.heading-size {
+                    font-size: 1.8rem;
+                    display: block;
+                    margin-top: 5px;
+                    margin-left: 0 !important;
+                }
+                .hashtag-badge-brush.normal-size {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .hashtag-badge-kaushan {
+                font-family: 'Kaushan Script', cursive;
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #0a1c3e;
+                -webkit-text-stroke: 0.8px #0a1c3e;
+                display: inline-block;
+                letter-spacing: 0.5px;
+                margin: 5px 0;
+                text-shadow: none;
+                text-transform: none !important;
+            }
+            .hashtag-badge-kaushan.orange {
+                color: #ff6600 !important;
+                -webkit-text-stroke: 0.8px #ff6600 !important;
+            }
+            .hashtag-badge-caveat {
+                font-family: 'Caveat Brush', cursive;
+                font-size: 2.4rem;
+                font-weight: 700;
+                color: #0a1c3e;
+                -webkit-text-stroke: 0.5px #0a1c3e;
+                display: inline-block;
+                letter-spacing: 0.5px;
+                margin: 5px 0;
+                text-shadow: none;
+                text-transform: none !important;
+            }
+            .hashtag-badge-caveat.orange {
+                color: #ff6600 !important;
+                -webkit-text-stroke: 0.5px #ff6600 !important;
+                text-transform: none !important;
             }
             /* ===== Navy Section Text Overrides ===== */
             /* Targets headings and paragraphs inside any section with Navy bg */
@@ -826,8 +932,8 @@
                     <!-- Left Column: Benefits -->
                     <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
                         <div class="benefits-intro">
-                            <span class="badge-tag" style="background: rgba(233,187,23,0.12); border-color: rgba(233,187,23,0.4); color: #e9bb17;">HARYANA CRICKET PREMIER LEAGUE</span>
-                            <h2 class="heading mt-2 mb-3">Why Play in HCPL? <span class="hashtag-badge-cursive" style="font-size: 1.8rem; margin-left: 10px; vertical-align: middle;">#LathGadDiya</span></h2>
+                            <span class="badge-tag" style="background: rgba(233,187,23,0.12); border-color: rgba(233,187,23,0.4); color: #e9bb17;">HARYANA CORPORATE PREMIER LEAGUE</span>
+                            <h2 class="heading mt-2 mb-3">Why Play in HCPL? <span class="hashtag-badge-brush orange heading-size" style="margin-left: 10px;">#LathGadDiya</span></h2>
                             <p class="lead-text">Take your cricket career to the next level. Show your skills, get scouted, and compete at the professional level.</p>
                         </div>
                         
@@ -836,7 +942,7 @@
                             <div class="benefit-point-card">
                                 <div class="benefit-card-icon">🏏</div>
                                 <div class="benefit-card-content">
-                                    <h4>Opportunity to play in a professional league</h4>
+                                    <h4>Opportunity to Play in a Professional League</h4>
                                     <p>Get the opportunity to play in a structured, professional T20 cricket league in Haryana.</p>
                                 </div>
                             </div>
@@ -854,7 +960,7 @@
                             <div class="benefit-point-card">
                                 <div class="benefit-card-icon">📺</div>
                                 <div class="benefit-card-content">
-                                    <h4>Exposure and recognition on LIVE broadcast</h4>
+                                    <h4>Exposure and Recognition on LIVE Broadcast</h4>
                                     <p>Matches broadcasted LIVE on professional streaming networks for national recognition.</p>
                                 </div>
                             </div>
@@ -863,7 +969,7 @@
                             <div class="benefit-point-card">
                                 <div class="benefit-card-icon">🏆</div>
                                 <div class="benefit-card-content">
-                                    <h4>Prize pool and rewards</h4>
+                                    <h4>Prize Pool and ewards</h4>
                                     <p>Compete for a total prize pool of ₹1 Crore, trophies, cars, bikes, and other rewards.</p>
                                 </div>
                             </div>
@@ -958,7 +1064,7 @@
                                 </form> --}}
 
                                 <!-- Registration Opening Soon Notice -->
-                                <div class="text-center py-5" style="background: #f8fafc; border: 2px dashed rgba(255, 102, 0, 0.2); border-radius: 16px; margin: 10px 0;">
+                                <div class="text-center py-1" style="background: #f8fafc; border: 2px dashed rgba(255, 102, 0, 0.2); border-radius: 16px; margin: 2px 0;">
                                     <div style="font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));">🏏</div>
                                     <h4 style="color: #0a1c3e; font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 8px;">Registration Opening Soon</h4>
                                     <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; max-width: 320px; margin-left: auto; margin-right: auto; line-height: 1.5;">
@@ -1026,8 +1132,8 @@
                                 
                             </div>
 
-                            <div class="hashtag-container mt-4" style="margin-top: 25px;">
-                                <span class="hashtag-badge-cursive">#LathGadDiya</span>
+                            <div class="hashtag-container mt-4">
+                                 <span class="hashtag-badge-brush heading-size"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span>
                             </div>
 
                             <div class="mt-4" style="margin-top: 25px; position: relative; z-index: 10;">
@@ -1039,7 +1145,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="about-thumb">
-                            <img src="{{ asset('frontend') }}/images/about-home.webp" alt="bnp" class="w-100">
+                            <img src="{{ asset('frontend') }}/images/home-page-about-us-image.jpeg" alt="bnp" class="w-100">
                         </div>
                     </div>
 
@@ -1118,8 +1224,8 @@
                                 </div>
                                 <h2 style="color: #ff6600; font-weight: 800; font-size: 1.7rem; margin-bottom: 6px; font-family: 'DM Sans', sans-serif; letter-spacing: -0.5px;">Age Eligibility</h2>
                                 <p style="color: #cbd5e1; font-weight: 700; font-size: 0.82rem; margin-bottom: 0; line-height: 1.5; text-transform: none; text-align: center;">
-                                    <span style="display: block; margin-bottom: 2px; color: #ffffff;"><strong style="color: #ff6600;">Men:</strong> Under-16 &amp; Above 16</span>
-                                    <span style="display: block; color: #ffffff;"><strong style="color: #ff6600;">Women:</strong> Above 16 Only</span>
+                                    <span style="display: block; margin-bottom: 2px; color: #ffffff;"><strong style="color: #ff6600;">Men:</strong> Above 16</span>
+                                    <span style="display: block; color: #ffffff;"><strong style="color: #ff6600;">Women:</strong> Above 16</span>
                                 </p>
                             </div>
                         </div>
@@ -1143,7 +1249,7 @@
                     <div class="logo-pill">
                         <div>
                             <div class="logo-name text-center">HCPL T20</div>
-                            <div class="logo-sub text-center">Haryana Cricket Premier League</div>
+                            <div class="logo-sub text-center">Haryana Corporate Premier League</div>
                         </div>
                     </div>
                     <div class="h-line r"></div>
@@ -1154,7 +1260,7 @@
                 <h1>PRIZE &nbsp;<span class="b">POOL</span> </h1> </div>
             <div class="total-row">
                 <div class="td"></div>
-                <div class="tv">Total Prize Pool &nbsp;·&nbsp; <strong>₹1 Crore</strong></div>
+                <div class="tv">Total Prize Pool &nbsp;·&nbsp; <strong style="white-space: nowrap;">₹1 Crore</strong></div>
                 <div class="td r"></div>
             </div>
 
@@ -1167,7 +1273,7 @@
                     <div class="prize pr2">₹21 Lakhs</div>
                     <div class="player-img-wrap">
                         <div class="glow-base" style="width:150px;height:18px;background:rgba(100,170,255,0.45);"></div>
-                        <img class="player-img p2-img" src="{{ asset('frontend') }}/images/png 2 (1).png"
+                        <img class="player-img p2-img" src="{{ asset('frontend') }}/images/prize2.png"
                             alt="Runner Up" />
                     </div>
                     <div class="pod pd2">
@@ -1188,7 +1294,7 @@
                     <div class="prize pr1">₹51 Lakhs</div>
                     <div class="player-img-wrap">
                         <div class="glow-base" style="width:210px;height:28px;background:rgba(150,210,255,0.65);"></div>
-                        <img class="player-img p1-img" src="{{ asset('frontend') }}/images/png 1 (1).png"
+                        <img class="player-img p1-img" src="{{ asset('frontend') }}/images/prize1.png"
                             alt="Champion" />
                     </div>
                     <div class="pod pd1">
@@ -1306,7 +1412,7 @@
                     <div class="counter-radial-glow"></div>
                     
                     <div class="counter-header text-center">
-                        <span class="warning-icon">⚠️</span> ZONES ARE NEARING CAPACITY <span class="hashtag-badge-cursive" style="font-size: 1.5rem; margin-left: 10px; vertical-align: middle; color: #ff6600;">#LathGadDiya</span>
+                        <span class="warning-icon">⚠️</span> ZONES ARE NEARING CAPACITY <span class="hashtag-badge-brush normal-size on-dark" style="margin-left: 10px;"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span>
                     </div>
                     
                     <div class="row align-items-center justify-content-center text-center counter-stats-row">
@@ -1554,8 +1660,8 @@
                 <div class="row text-center video-section-header">
                     <div class="col-md-8 mx-auto">
                         <span class="badge-tag" style="background: rgba(10, 28, 62, 0.06); border-color: rgba(10, 28, 62, 0.18); color: #0a1c3e;">HCPL VIDEOS</span>
-                        <h2 class="mt-3" style="color: #0a1c3e;">About League & Trials Guide <span class="hashtag-badge-cursive" style="font-size: 1.8rem; margin-left: 10px; vertical-align: middle;">#LathGadDiya</span></h2>
-                        <p style="color: #475569;">Watch our official guides to understand the Haryana Cricket Premier League (HCPL) structure and step-by-step trial registration process.</p>
+                        <h2 class="mt-3" style="color: #0a1c3e;">About League & Trials Guide <span class="hashtag-badge-brush heading-size" style="margin-left: 10px;"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span></h2>
+                        <p style="color: #475569;">Watch our official guides to understand the Haryana Corporate Premier League (HCPL) structure and step-by-step trial registration process.</p>
                     </div>
                 </div>
 
@@ -1659,7 +1765,7 @@
 
 
                         <h2 class="heading mb-3" style="color: #0a1c3e;">Recent & Upcoming Fixtures </h2>
-                        <p style="color: #475569;">Live scores, fixtures and results from HCPL Season 1.</p>
+                        <p style="color: #475569;">Live scores, Fixtures and results from HCPL Season 1.</p>
 
                         @if (!empty($matches) && count($matches) > 0)
                             <table class="schedule-table text-center" style="background: #ffffff; border-color: rgba(0,0,0,0.08);">
@@ -1706,7 +1812,7 @@
                             </table>
                         @else
                             <div class="upcomming">
-                                fixtures Will Be Announced Soon
+                                Fixtures Will Be Announced Soon
                             </div>
                         @endif
 
@@ -1823,7 +1929,7 @@
                         <!-- Image Left -->
                         <div class="col-lg-4 col-md-12 text-center">
                             <div class="mentor-image-container" style="max-width: 320px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                                <img src="{{ asset('frontend/images/vishwas.jpeg') }}" alt="Vishwas Chauhan" class="w-100" style="border-radius: 12px; object-fit: cover;">
+                                <img src="{{ asset('frontend/images/vishwash.png') }}" alt="vishwash Chauhan" class="w-100" style="border-radius: 12px; object-fit: cover;">
                             </div>
                         </div>
                         
@@ -1831,9 +1937,9 @@
                         <div class="col-lg-8 col-md-12">
                             <div class="mentor-info-container" style="padding: 20px;">
                                 <span class="badge-tag" style="background: rgba(255, 102, 0, 0.08); border-color: rgba(255, 102, 0, 0.25); color: #ff6600; align-self: flex-start; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 11px;">LEAGUE ENTERTAINER</span>
-                                <h3 class="mentor-name" style="margin-top: 0;font-size: 32px; font-weight: 900;">Vishwas Chauhan</h3>
+                                <h3 class="mentor-name" style="margin-top: 0;font-size: 32px; font-weight: 900;">Vishwash Chauhan</h3>
                                 <h5 class="mentor-designation" style="color: #ff6600; font-weight: 700; text-transform: uppercase; margin-bottom: 20px;">Official Host of HCPL</h5>
-                                <p class="mentor-desc" style="color: #475569; font-size: 15px; line-height: 1.7; margin-bottom: 0;">
+                                <p class="mentor-desc" style="color: #475569; font-size: 15px; line-height: 1.7; margin-bottom: 0; text-align:justify" >
                                   Vishwash Chauhan is a renowned entertainer, presenter, and digital personality known for his IPL - haryanvi commentary, engaging stage presence and strong connection with audiences. His energy, charisma, and ability to captivate crowds make him a perfect fit to elevate the HCPL experience for fans and players alike.
                                 </p>
                             </div>
@@ -2012,7 +2118,7 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto text-center">
                         <h2 class="heading mb-2" style="color: #ffffff;">Latest News </h2>
-                        <p style="color: #94a3b8;">Stay updated with the latest from Haryana Cricket Premier League.</p>
+                        <p style="color: #94a3b8;">Stay updated with the latest from Haryana Corporate Premier League.</p>
                     </div>
 
                     <div class="col-md-12">
@@ -2506,7 +2612,7 @@
             <div class="container">
                 <div class="row text-center justify-content-center mb-5">
                     <div class="col-lg-8">
-                        <h2 class="heading" style="color: #0a1c3e;">Frequently Asked Questions <span class="hashtag-badge-cursive" style="font-size: 1.8rem; margin-left: 10px; vertical-align: middle;">#LathGadDiya</span></h2>
+                        <h2 class="heading" style="color: #0a1c3e;">Frequently Asked Questions <span class="hashtag-badge-brush heading-size" style="margin-left: 10px;"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span></h2>
                         <p style="color: #ff6600; font-weight: 700; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px;">Everything You Need To Know</p>
                     </div>
                 </div>
@@ -2613,7 +2719,7 @@
                                 </h2>
                                 <div id="hcollapseSeven" class="accordion-collapse collapse" aria-labelledby="hheadingSeven" data-bs-parent="#hfaqAccordion">
                                     <div class="accordion-body">
-                                        <strong>For Men's</strong> - Players Under-16 and 16 years of age and above are eligible to participate in the league.<br>
+                                        <strong>For Men's</strong> - Players 16 years of age and above are eligible to participate in the league.<br>
                                         <strong>For Women's</strong> - Players 16 years of age and above are eligible to participate in the league.
                                     </div>
                                 </div>

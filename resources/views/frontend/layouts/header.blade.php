@@ -2,7 +2,7 @@
      <html lang="en">
 
      <head>
-         <title>@yield('title', $web_setting->site_name ?? 'Haryana Cricket Premier League (HCPL)')</title>
+         <title>@yield('title', $web_setting->site_name ?? 'Haryana Corporate Premier League (HCPL)')</title>
          <meta charset="utf-8">
          <meta name="viewport" content="width=device-width; initial-scale=1.0" />
          <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />
