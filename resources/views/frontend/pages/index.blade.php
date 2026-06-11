@@ -924,6 +924,41 @@
                 text-transform: uppercase;
                 font-weight: normal;
             }
+
+            /* League Host Responsive overrides */
+            @media (max-width: 991px) {
+                .league-host-card {
+                    padding: 20px !important;
+                    border-radius: 20px !important;
+                }
+                .league-host-card .mentor-image-container {
+                    max-width: 240px !important;
+                    margin: 0 auto 20px auto !important;
+                }
+                .league-host-card .mentor-info-container {
+                    padding: 10px 0 0 0 !important;
+                    text-align: center !important;
+                }
+                .league-host-card .mentor-info-container .badge-tag {
+                    align-self: center !important;
+                    margin: 0 auto 15px auto !important;
+                    display: inline-block !important;
+                }
+                .league-host-card .mentor-name {
+                    font-size: 24px !important;
+                    text-align: center !important;
+                }
+                .league-host-card .mentor-designation {
+                    font-size: 16px !important;
+                    text-align: center !important;
+                    margin-bottom: 15px !important;
+                }
+                .league-host-card .mentor-desc {
+                    font-size: 14px !important;
+                    text-align: center !important;
+                    line-height: 1.6 !important;
+                }
+            }
         </style>
 
         <section class="home-reg-section pad100">
@@ -1924,7 +1959,7 @@
                         <p style="color: #cbd5e1;">The entertaining and charismatic voice of HCPL</p>
                     </div>
                 </div>
-                <div class="mentor-card-v2" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 15px 45px rgba(0,0,0,0.05); margin-top: 40px;">
+                <div class="mentor-card-v2 league-host-card" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 15px 45px rgba(0,0,0,0.05); margin-top: 40px;">
                     <div class="row align-items-center">
                         <!-- Image Left -->
                         <div class="col-lg-4 col-md-12 text-center">
