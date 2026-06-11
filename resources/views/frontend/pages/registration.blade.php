@@ -582,7 +582,7 @@
                                         <div class="p-4 rounded-4"
                                             style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
                                             <small class="text-white-50 d-block mb-2">Need help?</small>
-                                            <h6 class="mb-0 text-white">Call: +91 9211335612</h6>
+                                            <h6 class="mb-0 text-white">Call: +91 9211335613</h6>
                                             <small class="text-white-50">Support available 10AM - 6PM</small>
                                         </div>
                                     </div>

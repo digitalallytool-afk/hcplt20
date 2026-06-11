@@ -1972,7 +1972,6 @@
                         <div class="d-flex justify-content-center gap-3 mb-5 mt-4" style="position: relative; z-index: 10;">
                             <button class="nav-link px-4 py-2" id="mens-tab-btn" onclick="switchTeams('men')" style="font-weight: 800; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #ffffff; transition: all 0.3s; cursor: pointer;">Men's (8 Teams)</button>
                             <button class="nav-link px-4 py-2" id="womens-tab-btn" onclick="switchTeams('women')" style="font-weight: 800; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #ffffff; transition: all 0.3s; cursor: pointer;">Women's Teams</button>
-                        </div>
                     </div>
                     
                     <div class="col-md-12" style="position: relative; z-index: 10;">
@@ -1981,62 +1980,43 @@
                             @if($mens_db_teams->count() > 0)
                                 <div class="team-slider">
                                     @foreach ($mens_db_teams as $team)
-                                        <div class="team-card">
-                                            <div class="team-logo">
-                                                @if ($team->logo)
-                                                    <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }}"
-                                                        style="width: 64px; height: 64px; object-fit: contain;">
-                                                @else
-                                                    🛡️
-                                                @endif
+                                        @if ($team->logo)
+                                            <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                                <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }}"
+                                                    style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                             </div>
-                                            <div class="team-name">{{ $team->name }}</div>
-                                            <div class="team-city">{{ $team->city }}</div>
-                                        </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             @else
                                 <div class="team-slider">
-                                    <div class="team-card">
-                                        <div class="team-logo">⚔️</div>
-                                        <div class="team-name">Rohtak Warriors</div>
-                                        <div class="team-city">Rohtak</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Rohtak-Warriors-Logo-(1).png') }}" alt="Rohtak Warriors" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🦅</div>
-                                        <div class="team-name">Hisar Titans</div>
-                                        <div class="team-city">Hisar</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Hisar-titans-logo-(1).png') }}" alt="Hisar Titans" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">👑</div>
-                                        <div class="team-name">Sirsa Royals</div>
-                                        <div class="team-city">Sirsa</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Sirsa-Royals-logo-(2).png') }}" alt="Sirsa Royals" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🏔️</div>
-                                        <div class="team-name">Gurugram Giants</div>
-                                        <div class="team-city">Gurugram</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Gurugram-giants-logo-(1).png') }}" alt="Gurugram Giants" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🐆</div>
-                                        <div class="team-name">Sonipat Tigers</div>
-                                        <div class="team-city">Sonipat</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Sonipat-tigers-logo-(1).png') }}" alt="Sonipat Tigers" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🦁</div>
-                                        <div class="team-name">Karnal Kings</div>
-                                        <div class="team-city">Karnal</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Karnal-kings-logo-(1).png') }}" alt="Karnal Kings" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🦈</div>
-                                        <div class="team-name">Faridabad Fighters</div>
-                                        <div class="team-city">Faridabad</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/Ambala-avengers-logo-(1).png') }}" alt="Ambala Avengers" style="width: 100%; height: auto; max-height: 180px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
-                                    <div class="team-card">
-                                        <div class="team-logo">🦊</div>
-                                        <div class="team-name">Ambala Avengers</div>
-                                        <div class="team-city">Ambala</div>
+                                    <div class="team-card" style="border: none; background: transparent; backdrop-filter: none; padding: 10px; box-shadow: none;">
+                                        <img src="{{ asset('frontend/images/hpcl/faridabad.png') }}" alt="Ambala Avengers" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; display: block; margin: 0 auto;">
                                     </div>
+
+
+                                    
                                 </div>
                             @endif
                         </div>
