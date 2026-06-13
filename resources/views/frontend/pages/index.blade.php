@@ -1086,20 +1086,20 @@
                                         <div class="mb-3">
                                             <label class="form-label-dark">Create Password</label>
                                             <div class="input-group">
-                                                <input type="password" id="password" class="form-control light-input" placeholder="At least 8 characters">
-                                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password" style="border-color: rgba(255,255,255,0.1); color: #fff; border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                <input type="password" id="password" class="form-control light-input" placeholder="At least 8 characters" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; border-right: none !important;">
+                                                <button class="btn toggle-password" type="button" data-target="password" style="border: 2px solid #e2e8f0 !important; border-left: none !important; color: #4a5568 !important; background: #fcfcfc !important; border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; border-top-right-radius: 10px !important; border-bottom-right-radius: 10px !important; padding: 0 20px !important;">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
-                                            <small class="text-light opacity-75 d-block mt-2" style="font-size: 0.78rem; line-height: 1.4;">
-                                                <i class="fa fa-info-circle me-1 text-warning"></i> Must be at least 8 characters with 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9) & 1 special character (e.g. @, #, $, %).
+                                            <small class="d-block mt-2" style="font-size: 0.78rem; line-height: 1.4; color: #4a5568 !important;">
+                                                <i class="fa fa-info-circle me-1" style="color: #ff6600 !important;"></i> Must be at least 8 characters with 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9) & 1 special character (e.g. @, #, $, %).
                                             </small>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label-dark">Confirm Password</label>
                                             <div class="input-group">
-                                                <input type="password" id="password_confirmation" class="form-control light-input" placeholder="Repeat password">
-                                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password_confirmation" style="border-color: rgba(255,255,255,0.1); color: #fff; border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                <input type="password" id="password_confirmation" class="form-control light-input" placeholder="Repeat password" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; border-right: none !important;">
+                                                <button class="btn toggle-password" type="button" data-target="password_confirmation" style="border: 2px solid #e2e8f0 !important; border-left: none !important; color: #4a5568 !important; background: #fcfcfc !important; border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; border-top-right-radius: 10px !important; border-bottom-right-radius: 10px !important; padding: 0 20px !important;">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
