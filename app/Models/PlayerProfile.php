@@ -48,10 +48,20 @@ class PlayerProfile extends Model
         $maxRetries = 15;
         $retryCount = 0;
         $success = false;
+        $alreadyCompletedByOther = false;
 
         while ($retryCount < $maxRetries && !$success) {
             try {
-                \Illuminate\Support\Facades\DB::transaction(function () use ($paymentId, $amount, $paymentResponse) {
+                \Illuminate\Support\Facades\DB::transaction(function () use ($paymentId, $amount, $paymentResponse, &$alreadyCompletedByOther) {
+                    // Lock this profile row for update to prevent concurrent duplicate processing
+                    $freshProfile = self::where('id', $this->id)->lockForUpdate()->first();
+
+                    if ($freshProfile && $freshProfile->payment_status === 'completed') {
+                        $alreadyCompletedByOther = true;
+                        $this->refresh();
+                        return;
+                    }
+
                     if (!$this->player_id) {
                         // Find the last player ID matching 1-HCPL- prefix (Optimized search with lock)
                         $lastProfile = self::where('player_id', 'LIKE', '1-HCPL-%')
@@ -91,6 +101,11 @@ class PlayerProfile extends Model
 
         if (!$success) {
             throw new \Exception("Failed to generate a unique Player ID after {$maxRetries} attempts due to high concurrent traffic.");
+        }
+
+        // If another concurrent thread (e.g. webhook) completed it first, exit gracefully without sending double notifications
+        if ($alreadyCompletedByOther) {
+            return true;
         }
 
         // Send notifications

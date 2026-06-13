@@ -171,48 +171,48 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about-us', [HomeController::class, 'about'])->name('about');
-Route::get('/developer-testing-test', [HomeController::class, 'player_registration'])->name('developer-testing-test');
-Route::get('/player-registration', function () {
-    return '
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        background:linear-gradient(135deg,#f8fafc,#e2e8f0);
-        font-family:Arial,sans-serif;
-    ">
-        <div style="
-            text-align:center;
-            background:#fff;
-            padding:40px;
-            border-radius:20px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.1);
-            max-width:500px;
-        ">
-            <div style="font-size:70px;margin-bottom:20px;">🚧</div>
-            <h1 style="color:#1e293b;margin-bottom:15px;">
-                Registration Process Under Maintenance
-            </h1>
-            <p style="color:#64748b;font-size:16px;line-height:1.6;">
-                We are currently updating the registration process to provide you a better experience. <br>
-                Please try again after some time. <br><br>
-                Thank you for your patience.
-            </p>
-            <a href="/" style="
-                display:inline-block;
-                margin-top:20px;
-                padding:12px 25px;
-                background:#2563eb;
-                color:#fff;
-                text-decoration:none;
-                border-radius:8px;
-            ">
-                Go Back Home
-            </a>
-        </div>
-    </div>';
-})->name('player-registration');
+Route::get('/player-registration', [HomeController::class, 'player_registration'])->name('player-registration');
+// Route::get('/player-registration', function () {
+//     return '
+//     <div style="
+//         display:flex;
+//         justify-content:center;
+//         align-items:center;
+//         height:100vh;
+//         background:linear-gradient(135deg,#f8fafc,#e2e8f0);
+//         font-family:Arial,sans-serif;
+//     ">
+//         <div style="
+//             text-align:center;
+//             background:#fff;
+//             padding:40px;
+//             border-radius:20px;
+//             box-shadow:0 10px 30px rgba(0,0,0,0.1);
+//             max-width:500px;
+//         ">
+//             <div style="font-size:70px;margin-bottom:20px;">🚧</div>
+//             <h1 style="color:#1e293b;margin-bottom:15px;">
+//                 Registration Process Under Maintenance
+//             </h1>
+//             <p style="color:#64748b;font-size:16px;line-height:1.6;">
+//                 We are currently updating the registration process to provide you a better experience. <br>
+//                 Please try again after some time. <br><br>
+//                 Thank you for your patience.
+//             </p>
+//             <a href="/" style="
+//                 display:inline-block;
+//                 margin-top:20px;
+//                 padding:12px 25px;
+//                 background:#2563eb;
+//                 color:#fff;
+//                 text-decoration:none;
+//                 border-radius:8px;
+//             ">
+//                 Go Back Home
+//             </a>
+//         </div>
+//     </div>';
+// })->name('player-registration');
 
 Route::post('/player-registration/send-otp', [PlayerRegistrationController::class, 'sendOtp'])->name('player-registration.send-otp');
 Route::post('/player-registration/resend-otp', [PlayerRegistrationController::class, 'resendOtp'])->name('player-registration.resend-otp');
