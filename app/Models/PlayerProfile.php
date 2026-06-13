@@ -119,7 +119,7 @@ class PlayerProfile extends Model
                     'json' => [
                         'route' => 'dlt',
                         'sender_id' => 'ARKSPT',
-                        'message' => '217194',
+                        'message' => '217878',
                         'variables_values' => "{$name}|{$this->player_id}|{$this->age_category}",
                         'numbers' => $this->phone_number,
                         'flash' => 0,
