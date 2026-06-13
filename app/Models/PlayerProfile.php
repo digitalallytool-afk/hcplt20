@@ -53,19 +53,22 @@ class PlayerProfile extends Model
         while ($retryCount < $maxRetries && !$success) {
             try {
                 \Illuminate\Support\Facades\DB::transaction(function () use ($paymentId, $amount, $paymentResponse, &$alreadyCompletedByOther) {
-                    // Lock this profile row for update to prevent concurrent duplicate processing
+                    // Step 1: Lock THIS profile row so no other thread processes the same user simultaneously
                     $freshProfile = self::where('id', $this->id)->lockForUpdate()->first();
 
+                    // Step 2: If another concurrent thread already completed this — exit gracefully
                     if ($freshProfile && $freshProfile->payment_status === 'completed') {
                         $alreadyCompletedByOther = true;
                         $this->refresh();
                         return;
                     }
 
-                    if (!$this->player_id) {
-                        // Find the last player ID matching 1-HCPL- prefix (Optimized search with lock)
+                    // Step 3: Use $freshProfile->player_id (not stale $this->player_id) for the check
+                    if (!$freshProfile->player_id) {
+                        // Step 4: Lock ALL existing 1-HCPL- rows so no concurrent transaction
+                        // can read a stale MAX and generate the same next number
                         $lastProfile = self::where('player_id', 'LIKE', '1-HCPL-%')
-                                           ->orderByRaw('LENGTH(player_id) DESC, player_id DESC')
+                                           ->orderByRaw('CAST(SUBSTRING(player_id, 8) AS UNSIGNED) DESC')
                                            ->lockForUpdate()
                                            ->first();
 
@@ -74,15 +77,34 @@ class PlayerProfile extends Model
                             $nextIdNum = (int)$matches[1] + 1;
                         }
 
-                        $this->player_id = '1-HCPL-' . str_pad($nextIdNum, 3, '0', STR_PAD_LEFT);
-                    }
+                        $newPlayerId = '1-HCPL-' . str_pad($nextIdNum, 3, '0', STR_PAD_LEFT);
 
-                    $this->payment_status = 'completed';
-                    $this->razorpay_payment_id = $paymentId;
-                    $this->payment_amount = $amount;
-                    $this->payment_date = now();
-                    $this->payment_response = $paymentResponse;
-                    $this->save();
+                        // Step 5: Write the new player_id onto the freshProfile (locked row) and save
+                        $freshProfile->player_id      = $newPlayerId;
+                        $freshProfile->payment_status  = 'completed';
+                        $freshProfile->razorpay_payment_id = $paymentId;
+                        $freshProfile->payment_amount  = $amount;
+                        $freshProfile->payment_date    = now();
+                        $freshProfile->payment_response = $paymentResponse;
+                        $freshProfile->save();
+
+                        // Step 6: Sync stale $this so notifications below use correct data
+                        $this->player_id        = $freshProfile->player_id;
+                        $this->payment_status   = 'completed';
+                        $this->payment_amount   = $freshProfile->payment_amount;
+                        $this->payment_date     = $freshProfile->payment_date;
+                    } else {
+                        // player_id was already set — just update payment fields
+                        $freshProfile->payment_status  = 'completed';
+                        $freshProfile->razorpay_payment_id = $paymentId;
+                        $freshProfile->payment_amount  = $amount;
+                        $freshProfile->payment_date    = now();
+                        $freshProfile->payment_response = $paymentResponse;
+                        $freshProfile->save();
+
+                        $this->player_id        = $freshProfile->player_id;
+                        $this->payment_status   = 'completed';
+                    }
                 });
                 
                 $success = true;
