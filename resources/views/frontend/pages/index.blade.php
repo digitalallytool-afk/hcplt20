@@ -1038,7 +1038,7 @@
                             </div>
 
                             <div class="home-wizard-body d-flex flex-column justify-content-between" style="flex-grow: 1; padding: 40px 40px;">
-                                {{-- <form id="playerForm">
+                                <form id="playerForm">
                                     @csrf
                                     <!-- Step 1: Contact Details -->
                                     <div id="step1">
@@ -1109,16 +1109,16 @@
                                             Complete Registration <i class="fa fa-spinner fa-spin ms-2" id="loader-3" style="display: none;"></i>
                                         </button>
                                     </div>
-                                </form> --}}
+                                </form> 
 
                                 <!-- Registration Opening Soon Notice -->
-                                <div class="text-center py-1" style="background: #f8fafc; border: 2px dashed rgba(255, 102, 0, 0.2); border-radius: 16px; margin: 2px 0;">
+                               {{--  <div class="text-center py-1" style="background: #f8fafc; border: 2px dashed rgba(255, 102, 0, 0.2); border-radius: 16px; margin: 2px 0;">
                                     <div style="font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));">🏏</div>
                                     <h4 style="color: #0a1c3e; font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 8px;">Registration Opening Soon</h4>
                                     <p style="color: #475569; font-size: 0.95rem; margin-bottom: 0; max-width: 320px; margin-left: auto; margin-right: auto; line-height: 1.5;">
                                         Stay tuned! The online player registration portal will be live shortly for Season 1 trials.
                                     </p>
-                                </div>
+                                </div> --}}
 
                                 <!-- Trust Badges / Key Highlights -->
                                 <div class="mt-4 pt-4" style="border-top: 1px dashed #e2e8f0; font-family: 'DM Sans', sans-serif;">
