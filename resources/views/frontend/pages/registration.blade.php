@@ -646,11 +646,24 @@
                                         <div class="row g-3">
                                             <div class="col-md-12">
                                                 <label class="form-label">Create Password</label>
-                                                <input type="password" id="password" class="form-control" placeholder="Enter password">
+                                                <div class="input-group">
+                                                    <input type="password" id="password" class="form-control" placeholder="Enter password">
+                                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                                <small class="text-muted d-block mt-2" style="font-size: 0.78rem; line-height: 1.4;">
+                                                    <i class="fa fa-info-circle me-1 text-primary"></i> Must be at least 8 characters with 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9) & 1 special character (e.g. @, #, $, %).
+                                                </small>
                                             </div>
                                             <div class="col-md-12">
                                                 <label class="form-label">Confirm Password</label>
-                                                <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm password">
+                                                <div class="input-group">
+                                                    <input type="password" id="password_confirmation" class="form-control" placeholder="Confirm password">
+                                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password_confirmation" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -1033,6 +1046,26 @@
                     btn.disabled = false;
                     loader.style.display = 'none';
                 }
+            });
+
+            // Toggle Password View
+            document.querySelectorAll('.toggle-password').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+                    if (input && icon) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            icon.classList.remove('fa-eye');
+                            icon.classList.add('fa-eye-slash');
+                        } else {
+                            input.type = 'password';
+                            icon.classList.remove('fa-eye-slash');
+                            icon.classList.add('fa-eye');
+                        }
+                    }
+                });
             });
         });
     </script>

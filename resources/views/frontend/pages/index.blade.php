@@ -1085,11 +1085,24 @@
                                         
                                         <div class="mb-3">
                                             <label class="form-label-dark">Create Password</label>
-                                            <input type="password" id="password" class="form-control light-input" placeholder="At least 8 characters">
+                                            <div class="input-group">
+                                                <input type="password" id="password" class="form-control light-input" placeholder="At least 8 characters">
+                                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password" style="border-color: rgba(255,255,255,0.1); color: #fff; border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <small class="text-light opacity-75 d-block mt-2" style="font-size: 0.78rem; line-height: 1.4;">
+                                                <i class="fa fa-info-circle me-1 text-warning"></i> Must be at least 8 characters with 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9) & 1 special character (e.g. @, #, $, %).
+                                            </small>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label-dark">Confirm Password</label>
-                                            <input type="password" id="password_confirmation" class="form-control light-input" placeholder="Repeat password">
+                                            <div class="input-group">
+                                                <input type="password" id="password_confirmation" class="form-control light-input" placeholder="Repeat password">
+                                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password_confirmation" style="border-color: rgba(255,255,255,0.1); color: #fff; border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                         
                                         <button type="button" class="btn btn-gold-neon w-100" id="btn-create-password">
@@ -2540,6 +2553,26 @@
                         }
                     });
                 }
+                
+                // Toggle Password View
+                document.querySelectorAll('.toggle-password').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const targetId = this.getAttribute('data-target');
+                        const input = document.getElementById(targetId);
+                        const icon = this.querySelector('i');
+                        if (input && icon) {
+                            if (input.type === 'password') {
+                                input.type = 'text';
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            } else {
+                                input.type = 'password';
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            }
+                        }
+                    });
+                });
             });
 
             // Dynamic video player helper

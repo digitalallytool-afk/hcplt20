@@ -95,11 +95,14 @@ class PlayerRegistrationController extends Controller
         $type = $request->type;
         $otp = $request->otp;
 
+        Log::info("Verify OTP Request: contact={$contact}, type={$type}, otp={$otp}");
+
         if ($type === 'mobile') {
             return $this->verifyFast2SmsOtp($contact, $otp);
         } else {
             $savedOtp = session()->get('email_otp_' . $contact);
             $otpTime = session()->get('email_otp_time_' . $contact);
+            Log::info("Verify Email OTP Details: email={$contact}, input_otp={$otp}, saved_otp={$savedOtp}, time=" . ($otpTime ? (is_string($otpTime) ? $otpTime : $otpTime->toIso8601String()) : 'null'));
             if ($savedOtp && $otpTime && now()->diffInMinutes($otpTime) <= 5 && $savedOtp == $otp) {
                 session()->put('otp_verified_' . $contact, true);
                 return response()->json(['success' => true, 'message' => 'OTP verified successfully']);
@@ -196,6 +199,9 @@ class PlayerRegistrationController extends Controller
     {
         $savedOtp = session()->get('mobile_otp_' . $mobile);
         $otpTime = session()->get('mobile_otp_time_' . $mobile);
+        
+        Log::info("Verify Mobile OTP Details: mobile={$mobile}, input_otp={$otp}, saved_otp={$savedOtp}, time=" . ($otpTime ? ($otpTime instanceof \Carbon\Carbon ? $otpTime->toIso8601String() : (string)$otpTime) : 'null'));
+        
         if ($savedOtp && $otpTime && now()->diffInMinutes($otpTime) <= 5 && $savedOtp == $otp) {
             session()->put('otp_verified_' . $mobile, true);
             return response()->json(['success' => true, 'message' => 'OTP verified successfully']);

@@ -245,6 +245,20 @@
       }
     }
 
+    function toggleFpPw(inputId, iconId) {
+      var pw = document.getElementById(inputId);
+      var ic = document.getElementById(iconId);
+      if (pw && ic) {
+        if (pw.type === 'password') {
+          pw.type = 'text';
+          ic.className = 'ti ti-eye-off';
+        } else {
+          pw.type = 'password';
+          ic.className = 'ti ti-eye';
+        }
+      }
+    }
+
     @if($errors->has('email'))
     document.addEventListener('DOMContentLoaded', function() {
         var myModal = new bootstrap.Modal(document.getElementById('login'));
@@ -316,13 +330,22 @@
                             <div class="input-row">
                                 <span><i class="ti ti-lock" aria-hidden="true"></i></span>
                                 <input type="password" id="fp_password" placeholder="Enter new password" required />
+                                <span class="eye-btn" onclick="toggleFpPw('fp_password', 'fp_eyeIcon')">
+                                    <i class="ti ti-eye" id="fp_eyeIcon" aria-hidden="true"></i>
+                                </span>
                             </div>
+                            <small class="d-block mt-2" style="font-size: 0.78rem; line-height: 1.4; color: #5a6b7e;">
+                                <i class="ti ti-info-circle me-1" style="color: #ff6600;"></i> Must be at least 8 characters with 1 uppercase, 1 lowercase, 1 number & 1 symbol.
+                            </small>
                         </div>
                         <div class="field mt-3">
                             <label class="field-label">Confirm Password</label>
                             <div class="input-row">
                                 <span><i class="ti ti-lock" aria-hidden="true"></i></span>
                                 <input type="password" id="fp_password_confirmation" placeholder="Confirm new password" required />
+                                <span class="eye-btn" onclick="toggleFpPw('fp_password_confirmation', 'fp_confirm_eyeIcon')">
+                                    <i class="ti ti-eye" id="fp_confirm_eyeIcon" aria-hidden="true"></i>
+                                </span>
                             </div>
                         </div>
                         <button type="button" class="btn-login mt-3" id="fp-btn-reset-password">Update Password <i class="fa fa-spinner fa-spin ms-2" id="fp-loader-3" style="display: none;"></i></button>
