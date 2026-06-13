@@ -171,7 +171,7 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about-us', [HomeController::class, 'about'])->name('about');
-Route::get('/player-registration-test', [HomeController::class, 'player_registration'])->name('player-registration-test');
+Route::get('/developer-testing-test', [HomeController::class, 'player_registration'])->name('developer-testing-test');
 Route::get('/player-registration', function () {
     return '
     <div style="
