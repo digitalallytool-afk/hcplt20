@@ -38,9 +38,9 @@ class SendMobileOtpJob implements ShouldQueue
         try {
             $client = new Client();
             if ($this->type === 'Password Reset') {
-                $templateId = '217197';
+                $templateId = '217880';
             } else {
-                $templateId = '217193';
+                $templateId = '217879';
             }
             
             $response = $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
