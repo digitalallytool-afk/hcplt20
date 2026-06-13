@@ -1182,27 +1182,42 @@
             // Auto-Save and Validation Helpers
             const form = document.getElementById('profile-form');
 
-            const dbDraft = @json($profile ? [
-                'first_name' => $profile->first_name,
-                'last_name' => $profile->last_name,
-                'father_name' => $profile->father_name,
-                'mother_name' => $profile->mother_name,
-                'gender' => $profile->gender,
-                'dob' => $profile->dob ? (is_string($profile->dob) ? date('Y-m-d', strtotime($profile->dob)) : $profile->dob->format('Y-m-d')) : '',
-                'age_category' => $profile->age_category,
-                'phone_number' => $profile->phone_number,
-                'alternate_phone_number' => $profile->alternate_phone_number,
-                'address' => $profile->address,
-                'state' => $profile->state,
-                'district' => $profile->district,
-                'aadhar_number' => $profile->aadhar_number,
-                'player_role' => $profile->player_role,
-                'batting_style' => $profile->batting_style,
-                'bowler_type' => $profile->bowler_type,
-                'bowling_style' => $profile->bowling_style,
-                'trial_state' => $profile->trial_state,
-                'trial_district' => $profile->trial_district,
-            ] : null);
+            @php
+            $dbDraftData = null;
+            if ($profile) {
+                $dobValue = '';
+                if ($profile->dob) {
+                    if (is_string($profile->dob)) {
+                        $dobValue = date('Y-m-d', strtotime($profile->dob));
+                    } else {
+                        $dobValue = $profile->dob->format('Y-m-d');
+                    }
+                }
+                $dbDraftData = [
+                    'first_name' => $profile->first_name,
+                    'last_name' => $profile->last_name,
+                    'father_name' => $profile->father_name,
+                    'mother_name' => $profile->mother_name,
+                    'gender' => $profile->gender,
+                    'dob' => $dobValue,
+                    'age_category' => $profile->age_category,
+                    'phone_number' => $profile->phone_number,
+                    'alternate_phone_number' => $profile->alternate_phone_number,
+                    'address' => $profile->address,
+                    'state' => $profile->state,
+                    'district' => $profile->district,
+                    'aadhar_number' => $profile->aadhar_number,
+                    'player_role' => $profile->player_role,
+                    'batting_style' => $profile->batting_style,
+                    'bowler_type' => $profile->bowler_type,
+                    'bowling_style' => $profile->bowling_style,
+                    'trial_state' => $profile->trial_state,
+                    'trial_district' => $profile->trial_district,
+                ];
+            }
+            @endphp
+            const dbDraft = @json($dbDraftData);
+
 
             function resumeDraft() {
                 if (!form) return;
