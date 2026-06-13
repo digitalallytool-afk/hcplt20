@@ -136,6 +136,12 @@ class PlayerRegistrationController extends Controller
              return response()->json(['success' => false, 'message' => 'Please verify OTP first'], 400);
         }
 
+        // Double check if user already exists (in case another registration completed in the meantime)
+        $exists = User::where($request->type === 'email' ? 'email' : 'phone', $contact)->exists();
+        if ($exists) {
+            return response()->json(['success' => false, 'message' => 'Contact already registered. Please login.'], 400);
+        }
+
         // Create user
         $user = new User();
         if ($request->type === 'email') {
@@ -154,6 +160,9 @@ class PlayerRegistrationController extends Controller
         // Clear session flags
         session()->forget('otp_verified_' . $contact);
         session()->forget('email_otp_' . $contact);
+        session()->forget('email_otp_time_' . $contact);
+        session()->forget('mobile_otp_' . $contact);
+        session()->forget('mobile_otp_time_' . $contact);
 
         return response()->json([
             'success' => true, 

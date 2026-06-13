@@ -72,6 +72,46 @@ class ProfileController extends Controller
                 'currency' => 'INR',
             ]);
 
+            // Save/Update the PlayerProfile details as a pending draft in the database
+            $role = $request->player_role;
+            $batting_style = $request->batting_style;
+            $bowler_type = $request->bowler_type;
+            $bowling_style = $request->bowling_style;
+
+            if ($role === 'Batsman' || $role === 'Wicket Keeper') {
+                $bowler_type = null;
+                $bowling_style = null;
+            } elseif ($role === 'Bowler') {
+                $batting_style = null;
+            }
+
+            PlayerProfile::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'father_name' => $request->father_name,
+                    'mother_name' => $request->mother_name,
+                    'gender' => $request->gender,
+                    'dob' => $request->dob,
+                    'age_category' => $request->age_category,
+                    'address' => $request->address,
+                    'phone_number' => $request->phone_number,
+                    'alternate_phone_number' => $request->alternate_phone_number,
+                    'aadhar_number' => $request->aadhar_number,
+                    'state' => $request->state,
+                    'district' => $request->district,
+                    'player_role' => $role,
+                    'batting_style' => $batting_style,
+                    'bowler_type' => $bowler_type,
+                    'bowling_style' => $bowling_style,
+                    'trial_state' => $request->trial_state,
+                    'trial_district' => $request->trial_district,
+                    'razorpay_order_id' => $order->id,
+                    'payment_status' => 'pending',
+                ]
+            );
+
             return response()->json([
                 'success' => true,
                 'order_id' => $order->id,
@@ -111,128 +151,40 @@ class ProfileController extends Controller
 
             $api->utility->verifyPaymentSignature($attributes);
 
-            // Payment successful, now create the profile safely with DB Transaction
-            $profile = DB::transaction(function () use ($request, $api) {
-                $user = Auth::user();
-                
-                $role = $request->player_role;
-                $batting_style = $request->batting_style;
-                $bowler_type = $request->bowler_type;
-                $bowling_style = $request->bowling_style;
+            // Payment successful, now retrieve draft profile and complete payment
+            $user = Auth::user();
+            $profile = PlayerProfile::where('user_id', $user->id)
+                                    ->where('razorpay_order_id', $request->razorpay_order_id)
+                                    ->first();
 
-                if ($role === 'Batsman' || $role === 'Wicket Keeper') {
-                    $bowler_type = null;
-                    $bowling_style = null;
-                } elseif ($role === 'Bowler') {
-                    $batting_style = null;
-                }
-
-                // Save profile data
-                $profile = PlayerProfile::updateOrCreate(
-                    ['user_id' => $user->id],
-                    [
-                        'first_name' => $request->first_name,
-                        'last_name' => $request->last_name,
-                        'father_name' => $request->father_name,
-                        'mother_name' => $request->mother_name,
-                        'gender' => $request->gender,
-                        'dob' => $request->dob,
-                        'age_category' => $request->age_category,
-                        'address' => $request->address,
-                        'phone_number' => $request->phone_number,
-                        'alternate_phone_number' => $request->alternate_phone_number,
-                        'aadhar_number' => $request->aadhar_number,
-                        'state' => $request->state,
-                        'district' => $request->district,
-                        'player_role' => $role,
-                        'batting_style' => $batting_style,
-                        'bowler_type' => $bowler_type,
-                        'bowling_style' => $bowling_style,
-                        'trial_state' => $request->trial_state,
-                        'trial_district' => $request->trial_district,
-                        'razorpay_order_id' => $request->razorpay_order_id,
-                    ]
-                );
-                
-                if ($profile) {
-                    // Generate Player ID if it doesn't have one
-                    if (!$profile->player_id) {
-                        // Lock the last profile row to prevent race conditions when reading the ID
-                        $lastProfile = PlayerProfile::whereNotNull('player_id')->orderBy('id', 'desc')->lockForUpdate()->first();
-                        
-                        $nextIdNum = 1;
-                        if ($lastProfile && preg_match('/1-HCPL-(\d+)/', $lastProfile->player_id, $matches)) {
-                            $nextIdNum = (int)$matches[1] + 1;
-                        }
-                        
-                        $profile->player_id = '1-HCPL-' . str_pad($nextIdNum, 3, '0', STR_PAD_LEFT);
-                    }
-
-                    $profile->payment_status = 'completed';
-                    $profile->razorpay_payment_id = $request->razorpay_payment_id;
-                    
-                    try {
-                        // Fetch the full payment details from Razorpay
-                        $paymentResponse = $api->payment->fetch($request->razorpay_payment_id);
-                        $profile->payment_amount = $paymentResponse->amount / 100;
-                        $profile->payment_date = now();
-                        $profile->payment_response = $paymentResponse->toArray();
-                    } catch (\Exception $e) {
-                        Log::error('Razorpay Payment Fetch Failed: ' . $e->getMessage());
-                    }
-
-                    $profile->save();
-                }
-                
-                return $profile;
-            });
-
-            if ($profile) {
-                // Send Fast2SMS Success Message
-                if ($profile->phone_number) {
-                    try {
-                        $name = trim($profile->first_name . ' ' . $profile->last_name);
-                        $client = new Client();
-                        $fast2SmsApiKey = 'u1YtfjPlkHRa2EzeVOw4ymUWF7IQbLpvDXNc0nhKg8Zir3SqosB7yVCPx6flwh2Fojg5RNG8JEUrktT1';
-                        
-                        $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
-                            'headers' => [
-                                'accept' => 'application/json',
-                                'authorization' => $fast2SmsApiKey,
-                                'content-type' => 'application/json',
-                            ],
-                            'json' => [
-                                'route' => 'dlt',
-                                'sender_id' => 'ARKSPT',
-                                'message' => '217194',
-                                'variables_values' => "{$name}|{$profile->player_id}|{$profile->age_category}",
-                                'numbers' => $profile->phone_number,
-                                'flash' => 0,
-                            ]
-                        ]);
-                    } catch (\Exception $e) {
-                        Log::error('Fast2SMS failed after payment: ' . $e->getMessage());
-                    }
-                }
-
-                // Send Email Notification
-                $userEmail = $profile->user->email ?? null;
-                if ($userEmail) {
-                    try {
-                        Mail::to($userEmail)->send(new PlayerRegistrationMail($profile));
-                    } catch (\Exception $e) {
-                        Log::error('Email failed after payment: ' . $e->getMessage());
-                    }
-                }
-
-                return response()->json(['success' => true, 'message' => 'Payment verified successfully']);
+            if (!$profile) {
+                // If profile draft wasn't found under that order ID, lookup by user_id
+                $profile = PlayerProfile::where('user_id', $user->id)->first();
             }
 
-            return response()->json(['success' => false, 'message' => 'Profile not found'], 404);
+            if (!$profile) {
+                return response()->json(['success' => false, 'message' => 'Profile draft not found'], 404);
+            }
+
+            // Fetch payment details to get exact amount
+            $paymentAmount = \App\Models\WebSetting::getCurrentRegistrationPrice();
+            $paymentResponseArray = null;
+            try {
+                $paymentResponse = $api->payment->fetch($request->razorpay_payment_id);
+                $paymentAmount = $paymentResponse->amount / 100;
+                $paymentResponseArray = $paymentResponse->toArray();
+            } catch (\Exception $e) {
+                Log::error('Razorpay Payment Fetch Failed: ' . $e->getMessage());
+            }
+
+            // Call completePayment method on model
+            $profile->completePayment($request->razorpay_payment_id, $paymentAmount, $paymentResponseArray);
+
+            return response()->json(['success' => true, 'message' => 'Payment verified successfully']);
 
         } catch (\Exception $e) {
             Log::error('Razorpay Signature Verification Failed: ' . $e->getMessage());
-            return response()->json(['success' => false, 'message' => 'Payment verification failed'], 400);
+            return response()->json(['success' => false, 'message' => 'Payment verification failed: ' . $e->getMessage()], 400);
         }
     }
 }

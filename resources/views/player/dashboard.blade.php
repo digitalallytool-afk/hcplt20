@@ -1182,31 +1182,114 @@
             // Auto-Save and Validation Helpers
             const form = document.getElementById('profile-form');
 
+            const dbDraft = @json($profile ? [
+                'first_name' => $profile->first_name,
+                'last_name' => $profile->last_name,
+                'father_name' => $profile->father_name,
+                'mother_name' => $profile->mother_name,
+                'gender' => $profile->gender,
+                'dob' => $profile->dob ? (is_string($profile->dob) ? date('Y-m-d', strtotime($profile->dob)) : $profile->dob->format('Y-m-d')) : '',
+                'age_category' => $profile->age_category,
+                'phone_number' => $profile->phone_number,
+                'alternate_phone_number' => $profile->alternate_phone_number,
+                'address' => $profile->address,
+                'state' => $profile->state,
+                'district' => $profile->district,
+                'aadhar_number' => $profile->aadhar_number,
+                'player_role' => $profile->player_role,
+                'batting_style' => $profile->batting_style,
+                'bowler_type' => $profile->bowler_type,
+                'bowling_style' => $profile->bowling_style,
+                'trial_state' => $profile->trial_state,
+                'trial_district' => $profile->trial_district,
+            ] : null);
+
             function resumeDraft() {
+                if (!form) return;
+
+                // Try to get from localStorage first
+                let data = null;
                 const savedState = localStorage.getItem('hcpl_profile_draft');
                 if (savedState) {
                     try {
-                        const data = JSON.parse(savedState);
-                        Object.keys(data).forEach(key => {
-                            const el = form.elements[key];
-                            if (el && key !== '_token') {
-                                if (el.type === 'checkbox' || el.type === 'radio') {
-                                    el.checked = data[key];
-                                } else {
-                                    el.value = data[key];
-                                }
-                                const event = new Event('change', {
-                                    bubbles: true
-                                });
-                                el.dispatchEvent(event);
-
-                                // If it's a select2 element, trigger jQuery change
-                                if ($(el).hasClass('select2-hidden-accessible')) {
-                                    $(el).trigger('change');
-                                }
-                            }
-                        });
+                        data = JSON.parse(savedState);
                     } catch (e) {}
+                }
+                
+                // Fallback / merge with dbDraft
+                if (dbDraft) {
+                    data = Object.assign({}, dbDraft, data || {});
+                }
+
+                if (data) {
+                    // Populate gender and DOB first to allow updateAgeCategory to compute correctly
+                    const genderSelect = document.getElementById('gender');
+                    const dobSelect = document.getElementById('dob');
+                    
+                    if (genderSelect && data.gender) {
+                        genderSelect.value = data.gender;
+                    }
+                    if (dobSelect && data.dob) {
+                        dobSelect.value = data.dob;
+                    }
+                    if (typeof updateAgeCategory === 'function') {
+                        updateAgeCategory();
+                    }
+
+                    // Populate States and Districts explicitly to ensure options are loaded first
+                    const stateEl = document.getElementById('state');
+                    const trialStateEl = document.getElementById('trial_state');
+                    const districtEl = document.getElementById('district');
+                    const trialDistrictEl = document.getElementById('trial_district');
+
+                    if (stateEl && data.state) {
+                        stateEl.value = data.state;
+                        populateDistricts(data.state, districtEl, false);
+                        if (typeof $ !== 'undefined' && $(stateEl).hasClass('select2-hidden-accessible')) {
+                            $(stateEl).trigger('change.select2');
+                        }
+                    }
+                    if (districtEl && data.district) {
+                        districtEl.value = data.district;
+                        if (typeof $ !== 'undefined' && $(districtEl).hasClass('select2-hidden-accessible')) {
+                            $(districtEl).trigger('change.select2');
+                        }
+                    }
+                    if (trialStateEl && data.trial_state) {
+                        trialStateEl.value = data.trial_state;
+                        populateDistricts(data.trial_state, trialDistrictEl, true);
+                        if (typeof $ !== 'undefined' && $(trialStateEl).hasClass('select2-hidden-accessible')) {
+                            $(trialStateEl).trigger('change.select2');
+                        }
+                    }
+                    if (trialDistrictEl && data.trial_district) {
+                        trialDistrictEl.value = data.trial_district;
+                        if (typeof $ !== 'undefined' && $(trialDistrictEl).hasClass('select2-hidden-accessible')) {
+                            $(trialDistrictEl).trigger('change.select2');
+                        }
+                    }
+
+                    // Populate all other fields
+                    Object.keys(data).forEach(key => {
+                        if (['state', 'district', 'trial_state', 'trial_district', 'gender', 'dob', '_token'].includes(key)) {
+                            return;
+                        }
+                        const el = form.elements[key];
+                        if (el) {
+                            if (el.type === 'checkbox' || el.type === 'radio') {
+                                el.checked = data[key];
+                            } else {
+                                el.value = data[key];
+                            }
+                        }
+                    });
+
+                    // Trigger player_role change event to show/hide batting/bowling style wraps
+                    const roleSelect = document.getElementById('player_role');
+                    if (roleSelect) {
+                        const event = new Event('change', { bubbles: true });
+                        roleSelect.dispatchEvent(event);
+                    }
                 }
             }
 
@@ -1430,6 +1513,51 @@
 
             // AJAX Save Profile and Init Razorpay
             let razorpayOptions = {};
+            @if ($profile && $profile->payment_status === 'pending' && $profile->razorpay_order_id)
+            razorpayOptions = {
+                "key": "{{ config('services.razorpay.key') }}",
+                "amount": "{{ \App\Models\WebSetting::getCurrentRegistrationPrice() * 100 }}",
+                "currency": "INR",
+                "name": "HCPL Registration",
+                "description": "Player Profile Registration Fee",
+                "image": "https://dummyimage.com/200x200/f4c242/000&text=HCPL",
+                "order_id": "{{ $profile->razorpay_order_id }}",
+                "handler": function(response) {
+                    verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
+                },
+                "prefill": {
+                    "name": "{{ $profile->first_name . ' ' . $profile->last_name }}",
+                    "email": "{{ auth()->user()->email }}",
+                    "contact": "{{ $profile->phone_number ?? auth()->user()->phone }}"
+                },
+                "theme": {
+                    "color": "#19398a"
+                }
+            };
+            
+            // Auto-transition to Step 3 (Payment Step) on load
+            document.addEventListener("DOMContentLoaded", function() {
+                const step1 = document.getElementById('step1');
+                const step2 = document.getElementById('step2');
+                const step3 = document.getElementById('step3');
+                const nav1 = document.getElementById('nav-step1');
+                const nav2 = document.getElementById('nav-step2');
+                const nav3 = document.getElementById('nav-step3');
+                
+                if (step1 && step2 && step3) {
+                    step1.classList.remove('active');
+                    step2.classList.remove('active');
+                    step3.classList.add('active');
+                }
+                if (nav1 && nav2 && nav3) {
+                    nav1.classList.remove('active');
+                    nav1.classList.add('completed');
+                    nav2.classList.remove('active');
+                    nav2.classList.add('completed');
+                    nav3.classList.add('active');
+                }
+            });
+            @endif
 
             document.getElementById('btn-save-proceed').addEventListener('click', async function() {
                 // Validate Step 2
@@ -1546,7 +1674,14 @@
                 if (!razorpayOptions.key) return;
                 const rzp = new Razorpay(razorpayOptions);
                 rzp.on('payment.failed', function(response) {
-                    alert("Payment Failed. Reason: " + response.error.description);
+                    const errorBox = document.getElementById('alert-error');
+                    if (errorBox) {
+                        errorBox.textContent = "Payment failed: " + response.error.description + ". Please try again using a different payment method (like another UPI app, Card, or Netbanking).";
+                        errorBox.style.display = 'block';
+                        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert("Payment Failed. Reason: " + response.error.description);
+                    }
                 });
                 rzp.open();
                 e.preventDefault();
@@ -1555,6 +1690,11 @@
             async function verifyPayment(payment_id, order_id, signature) {
                 document.getElementById('btn-pay-now').disabled = true;
                 document.getElementById('btn-pay-now').textContent = "Verifying Payment...";
+                
+                const errorBox = document.getElementById('alert-error');
+                if (errorBox) {
+                    errorBox.style.display = 'none';
+                }
 
                 // Collect entire form payload
                 const formData = new FormData(document.getElementById('profile-form'));
@@ -1585,12 +1725,24 @@
                         nav3.classList.add('completed');
                         localStorage.removeItem('hcpl_profile_draft');
                     } else {
-                        alert("Payment verification failed: " + data.message);
+                        if (errorBox) {
+                            errorBox.textContent = "Payment verification failed: " + data.message + ". Please try reloading the dashboard or check back in a few minutes, as webhook processing might be in progress.";
+                            errorBox.style.display = 'block';
+                            errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else {
+                            alert("Payment verification failed: " + data.message);
+                        }
                         document.getElementById('btn-pay-now').disabled = false;
                         document.getElementById('btn-pay-now').textContent = "Pay Securely with Razorpay";
                     }
                 } catch (err) {
-                    alert("Network error during verification.");
+                    if (errorBox) {
+                        errorBox.textContent = "Network error during verification. Please reload the dashboard to check if your registration has updated.";
+                        errorBox.style.display = 'block';
+                        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert("Network error during verification.");
+                    }
                     document.getElementById('btn-pay-now').disabled = false;
                     document.getElementById('btn-pay-now').textContent = "Pay Securely with Razorpay";
                 }

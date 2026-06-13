@@ -35,4 +35,109 @@ class PlayerProfile extends Model
                     ->orderBy('player_trials.created_at', 'desc')
                     ->limit(1);
     }
+
+    /**
+     * Completes payment, generates sequential player ID with optimistic retry loop, and sends notifications.
+     */
+    public function completePayment($paymentId, $amount, $paymentResponse = null)
+    {
+        if ($this->payment_status === 'completed') {
+            return true;
+        }
+
+        $maxRetries = 5;
+        $retryCount = 0;
+        $success = false;
+
+        while ($retryCount < $maxRetries && !$success) {
+            try {
+                \Illuminate\Support\Facades\DB::transaction(function () use ($paymentId, $amount, $paymentResponse) {
+                    if (!$this->player_id) {
+                        // Find the last player ID matching 1-HCPL- prefix (Lock-free optimistic logic)
+                        $lastProfile = self::where('player_id', 'LIKE', '1-HCPL-%')
+                                           ->orderBy('id', 'desc')
+                                           ->first();
+
+                        $nextIdNum = 1;
+                        if ($lastProfile && preg_match('/1-HCPL-(\d+)/', $lastProfile->player_id, $matches)) {
+                            $nextIdNum = (int)$matches[1] + 1;
+                        }
+
+                        $this->player_id = '1-HCPL-' . str_pad($nextIdNum, 3, '0', STR_PAD_LEFT);
+                    }
+
+                    $this->payment_status = 'completed';
+                    $this->razorpay_payment_id = $paymentId;
+                    $this->payment_amount = $amount;
+                    $this->payment_date = now();
+                    $this->payment_response = $paymentResponse;
+                    $this->save();
+                });
+                
+                $success = true;
+            } catch (\Illuminate\Database\QueryException $e) {
+                // If it is a duplicate entry error (SQLSTATE 23000)
+                if ($e->getCode() == '23000' || strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                    $retryCount++;
+                    // Tiny backoff (random 5 to 50ms) to avoid simultaneous retry locksteps
+                    usleep(rand(5000, 50000));
+                    $this->refresh();
+                } else {
+                    throw $e;
+                }
+            }
+        }
+
+        if (!$success) {
+            throw new \Exception("Failed to generate a unique Player ID after {$maxRetries} attempts due to high concurrent traffic.");
+        }
+
+        // Send notifications
+        $this->sendRegistrationNotifications();
+        
+        return true;
+    }
+
+    /**
+     * Dispatches Fast2SMS and email notifications.
+     */
+    public function sendRegistrationNotifications()
+    {
+        // Send Fast2SMS Success Message
+        if ($this->phone_number) {
+            try {
+                $name = trim($this->first_name . ' ' . $this->last_name);
+                $client = new \GuzzleHttp\Client();
+                $fast2SmsApiKey = 'u1YtfjPlkHRa2EzeVOw4ymUWF7IQbLpvDXNc0nhKg8Zir3SqosB7yVCPx6flwh2Fojg5RNG8JEUrktT1';
+                
+                $client->request('POST', 'https://www.fast2sms.com/dev/bulkV2', [
+                    'headers' => [
+                        'accept' => 'application/json',
+                        'authorization' => $fast2SmsApiKey,
+                        'content-type' => 'application/json',
+                    ],
+                    'json' => [
+                        'route' => 'dlt',
+                        'sender_id' => 'ARKSPT',
+                        'message' => '217194',
+                        'variables_values' => "{$name}|{$this->player_id}|{$this->age_category}",
+                        'numbers' => $this->phone_number,
+                        'flash' => 0,
+                    ]
+                ]);
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Fast2SMS failed after payment: ' . $e->getMessage());
+            }
+        }
+
+        // Send Email Notification
+        $userEmail = $this->user->email ?? null;
+        if ($userEmail) {
+            try {
+                \Illuminate\Support\Facades\Mail::to($userEmail)->send(new \App\Mail\PlayerRegistrationMail($this));
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Email failed after payment: ' . $e->getMessage());
+            }
+        }
+    }
 }

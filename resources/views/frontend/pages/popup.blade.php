@@ -26,7 +26,7 @@
                         @endphp
                         <div style="display: flex; align-items: baseline; gap: 6px;">
                             <span
-                                style="font-size: 46px; font-weight: 900; color: #ff6600; line-height: 1;">₹{{ $currentPrice }}</span>
+                                style="font-size: 46px; font-weight: 900; color: #ff6600; line-height: 1;">₹1499</span>
                             @if($remainingSlots > 0 && $currentPrice < $actualPrice)
                                 <span style="font-size: 20px; color: #888; text-decoration: line-through;">₹{{ $actualPrice }}</span>
                             @else
