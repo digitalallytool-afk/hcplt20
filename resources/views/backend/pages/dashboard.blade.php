@@ -48,10 +48,10 @@
         <div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-amber-400 transition-colors">
           <div class="flex justify-between items-start">
             <span class="material-symbols-outlined text-indigo-600 p-2 bg-indigo-50 rounded-lg">payments</span>
-            <span class="text-label-sm font-label-sm text-indigo-600 px-2 py-1 bg-indigo-50 rounded">Estimated</span>
+            <span class="text-label-sm font-label-sm text-indigo-600 px-2 py-1 bg-indigo-50 rounded">Actual</span>
           </div>
           <div class="mt-4">
-            <p class="text-label-md font-label-md text-on-surface-variant">Total Est. Revenue</p>
+            <p class="text-label-md font-label-md text-on-surface-variant">Total Collected Revenue</p>
             <h3 class="text-display font-display text-on-surface">₹{{ number_format($totalRevenue) }}</h3>
           </div>
         </div>

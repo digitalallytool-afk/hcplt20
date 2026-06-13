@@ -12,7 +12,10 @@ class AdminController extends Controller
         $totalPlayers = \App\Models\PlayerProfile::count();
         $verifiedPlayers = \App\Models\PlayerProfile::where('payment_status', 'completed')->count();
         $upcomingTrials = \App\Models\Trial::where('is_active', 1)->count();
-        $totalRevenue = $verifiedPlayers * 999; // Assuming ₹999 per registration for now
+        // Sum actual payment_amount stored at time of payment (not hardcoded price)
+        $totalRevenue = \App\Models\PlayerProfile::where('payment_status', 'completed')
+                            ->whereNotNull('payment_amount')
+                            ->sum('payment_amount');
 
         // 2. Recent Activity Feed
         // Fetch latest 6 players based on updated_at to get recent registrations or payments
@@ -107,7 +110,7 @@ class AdminController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = ['Player ID', 'First Name', 'Last Name', 'Gender', 'Date of Birth', 'Role', 'Age Category', 'Phone Number', 'Alt Phone', 'State', 'District', 'Trial State', 'Trial District', 'Payment Status', 'Registration Date'];
+        $columns = ['Player ID', 'First Name', 'Last Name', 'Gender', 'Date of Birth', 'Role', 'Age Category', 'Phone Number', 'Alt Phone', 'State', 'District', 'Trial State', 'Trial District', 'Payment Status', 'Amount Paid (INR)', 'Registration Date'];
 
         $callback = function() use($players, $columns) {
             $file = fopen('php://output', 'w');
@@ -128,9 +131,10 @@ class AdminController extends Controller
                 $row['Trial State']  = $player->trial_state;
                 $row['Trial District']  = $player->trial_district;
                 $row['Payment Status']  = $player->payment_status;
+                $row['Amount Paid (INR)'] = $player->payment_amount ? number_format($player->payment_amount, 2, '.', '') : '';
                 $row['Registration Date']  = $player->created_at->format('Y-m-d');
 
-                fputcsv($file, array($row['Player ID'], $row['First Name'], $row['Last Name'], $row['Gender'], $row['Date of Birth'], $row['Role'], $row['Age Category'], $row['Phone Number'], $row['Alt Phone'], $row['State'], $row['District'], $row['Trial State'], $row['Trial District'], $row['Payment Status'], $row['Registration Date']));
+                fputcsv($file, array($row['Player ID'], $row['First Name'], $row['Last Name'], $row['Gender'], $row['Date of Birth'], $row['Role'], $row['Age Category'], $row['Phone Number'], $row['Alt Phone'], $row['State'], $row['District'], $row['Trial State'], $row['Trial District'], $row['Payment Status'], $row['Amount Paid (INR)'], $row['Registration Date']));
             }
             fclose($file);
         };

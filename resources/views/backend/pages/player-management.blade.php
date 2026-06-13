@@ -150,6 +150,7 @@
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider">Contact</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider">Trial Info</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Payment Status</th>
+                <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Amount Paid</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Actions</th>
               </tr>
             </thead>
@@ -205,6 +206,13 @@
                   </span>
                   @endif
                 </td>
+                <td class="px-6 py-4 text-center">
+                  @if($player->payment_status === 'completed' && $player->payment_amount)
+                    <span class="font-semibold text-green-700 text-sm">₹{{ number_format($player->payment_amount, 0) }}</span>
+                  @else
+                    <span class="text-slate-400 text-sm">—</span>
+                  @endif
+                </td>
                 <td class="px-6 py-4">
                   <div class="flex items-center justify-center gap-2">
                     <button class="p-2 hover:bg-slate-200 rounded transition-colors text-slate-500 hover:text-slate-900 btn-view-player" 
@@ -220,7 +228,7 @@
               </tr>
               @empty
               <tr>
-                <td colspan="8" class="px-6 py-8 text-center text-slate-500 font-body-sm">
+                <td colspan="9" class="px-6 py-8 text-center text-slate-500 font-body-sm">
                   <span class="material-symbols-outlined text-4xl mb-2 text-slate-300">group_off</span>
                   <p>No players registered yet.</p>
                 </td>
@@ -375,6 +383,10 @@
             <div>
               <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Payment Status</p>
               <p class="font-medium ${player.payment_status === 'completed' ? 'text-green-600' : 'text-amber-600'}">${player.payment_status || 'Pending'}</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Amount Paid</p>
+              <p class="font-medium text-slate-900">${player.payment_amount ? '₹' + Number(player.payment_amount).toLocaleString('en-IN') : '—'}</p>
             </div>
           `;
           
