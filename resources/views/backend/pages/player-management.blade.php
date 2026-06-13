@@ -151,6 +151,7 @@
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider">Trial Info</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Payment Status</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Amount Paid</th>
+                <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Registered On</th>
                 <th class="px-6 py-4 font-label-md text-slate-500 uppercase tracking-wider text-center">Actions</th>
               </tr>
             </thead>
@@ -213,6 +214,10 @@
                     <span class="text-slate-400 text-sm">—</span>
                   @endif
                 </td>
+                <td class="px-6 py-4 text-center">
+                  <p class="font-body-sm text-slate-800 text-xs mb-0">{{ $player->created_at->format('d M Y') }}</p>
+                  <p class="font-body-sm text-slate-400 text-xs mt-0.5">{{ $player->created_at->format('h:i A') }}</p>
+                </td>
                 <td class="px-6 py-4">
                   <div class="flex items-center justify-center gap-2">
                     <button class="p-2 hover:bg-slate-200 rounded transition-colors text-slate-500 hover:text-slate-900 btn-view-player" 
@@ -228,7 +233,7 @@
               </tr>
               @empty
               <tr>
-                <td colspan="9" class="px-6 py-8 text-center text-slate-500 font-body-sm">
+                <td colspan="10" class="px-6 py-8 text-center text-slate-500 font-body-sm">
                   <span class="material-symbols-outlined text-4xl mb-2 text-slate-300">group_off</span>
                   <p>No players registered yet.</p>
                 </td>
@@ -387,6 +392,10 @@
             <div>
               <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Amount Paid</p>
               <p class="font-medium text-slate-900">${player.payment_amount ? '₹' + Number(player.payment_amount).toLocaleString('en-IN') : '—'}</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Registered On</p>
+              <p class="font-medium text-slate-900">${player.created_at ? new Date(player.created_at).toLocaleString('en-IN', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true}) : 'N/A'}</p>
             </div>
           `;
           
