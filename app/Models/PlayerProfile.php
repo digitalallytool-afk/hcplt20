@@ -45,7 +45,7 @@ class PlayerProfile extends Model
             return true;
         }
 
-        $maxRetries = 5;
+        $maxRetries = 15;
         $retryCount = 0;
         $success = false;
 
@@ -53,9 +53,10 @@ class PlayerProfile extends Model
             try {
                 \Illuminate\Support\Facades\DB::transaction(function () use ($paymentId, $amount, $paymentResponse) {
                     if (!$this->player_id) {
-                        // Find the last player ID matching 1-HCPL- prefix (Lock-free optimistic logic)
+                        // Find the last player ID matching 1-HCPL- prefix (Optimized search with lock)
                         $lastProfile = self::where('player_id', 'LIKE', '1-HCPL-%')
-                                           ->orderBy('id', 'desc')
+                                           ->orderByRaw('LENGTH(player_id) DESC, player_id DESC')
+                                           ->lockForUpdate()
                                            ->first();
 
                         $nextIdNum = 1;
