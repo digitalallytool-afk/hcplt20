@@ -3,6 +3,8 @@
 
      <head>
          <title>@yield('title', $web_setting->site_name ?? 'Haryana Corporate Premier League (HCPL)')</title>
+         <meta name="description" content="@yield('meta_description', 'Haryana Corporate Premier League (HCPL) is a professional T20 cricket league providing a platform for emerging talent across Haryana to showcase their skills.')">
+         <meta name="keywords" content="@yield('meta_keywords', 'haryana corporate premier league, hcpl, cricket league haryana, corporate cricket, t20 league, hcpl t20')">
          <meta charset="utf-8">
          <meta name="viewport" content="width=device-width; initial-scale=1.0" />
          <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />

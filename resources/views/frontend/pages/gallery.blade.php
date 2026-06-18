@@ -3,11 +3,11 @@
    
     @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Official Gallery - Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Browse official photos and images from the trials, matches, team launches, and special events of the Haryana Corporate Premier League (HCPL).')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'hcpl gallery, haryana corporate premier league photos, hcpl pictures, corporate cricket photos')
 
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />

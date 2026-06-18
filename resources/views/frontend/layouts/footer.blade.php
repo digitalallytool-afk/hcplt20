@@ -100,32 +100,33 @@
 
             <div class="col-md-12">
                 <div class="copy-right">
-
                     <div class="row">
-                        <div class="col-md-12 text-center mt-4">
-                            <p>© 2026 {{ $web_setting->site_name ?? 'HCPL — Haryana Corporate Premier League' }}. All
-                                rights reserved. </p>
+                        <div class="col-md-6"> 
+                            <p>© {{ date('Y') }} All Rights Reserved by {{ $web_setting->site_name ?? 'Haryana Corporate Premier League' }}</p>
                         </div>
-
-
-                        <!--<div class="col-md-12 col-lg-3">
-              <div class="social-media " >
-              <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="javascript:void(0)" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="javascript:void(0)" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-               <a href="#" target="_blank"><img src="https://websitework.online/duron/upvc/images/twitterx.svg" alt="twitterx" width="17"></a>
-           </div>
-            </div>-->
-                        <!--<div class="col-lg-1 ">
-<div class="digital">
-     <a href="http://thedigitalally.in/" target="_blank"><img src="images/digitalally.webp" alt="the digital ally logo" class="w-100"></a>
-    </div>
-            
-          
-         </div>-->
+                        <div class="col-lg-5 col-md-4"> 
+                            <div class="social">
+                                <ul>
+                                    <div class="ft-social">
+                                        <a href="{{ $web_setting->facebook_url ?? '#' }}" target="_blank" aria-label="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <a href="{{ $web_setting->instagram_url ?? '#' }}" target="_blank" aria-label="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                        <a href="{{ $web_setting->twitter_url ?? '#' }}" target="_blank" aria-label="twitterx">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-bottom: 2px;">
+                                              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="{{ $web_setting->youtube_url ?? '#' }}" target="_blank" aria-label="youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                                    </div> 
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1">
+                            <div class="digital">
+                                <a href="http://thedigitalally.in/" target="_blank"><img src="{{ asset('frontend/images/digitalally.webp') }}" alt="digitalally" class="w-100"></a>
+                            </div>
+                        </div> 
                     </div>
                 </div>
-
             </div>
         </div>
 

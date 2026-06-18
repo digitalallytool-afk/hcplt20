@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
-@section('title', 'hcpl')
-@section('meta_description', 'hcpl')
-@section('meta_keywords', 'hcpl')
+@section('title', 'Official Videos - Haryana Corporate Premier League (HCPL)')
+@section('meta_description', 'Watch the latest matches, trials highlights, player interviews, and exciting moments from Haryana Corporate Premier League (HCPL).')
+@section('meta_keywords', 'hcpl videos, haryana corporate premier league videos, hcpl highlights, cricket videos')
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />
 @endsection

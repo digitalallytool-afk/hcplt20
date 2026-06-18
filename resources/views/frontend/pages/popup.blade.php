@@ -36,12 +36,12 @@
                         </div>
                         
                         @if($remainingSlots > 0)
-                            <p style="margin-bottom: 2px;">First <b style="color: #ff6600;">{{ $maxPlayers }}</b> players only.</p>
-                            <p style="font-size: 0.85em; color: #d9534f; font-weight: 800; margin-top:0;">Only {{ $remainingSlots }} spots left!</p>
+                            {{--<p style="margin-bottom: 2px;">First <b style="color: #ff6600;">{{ $maxPlayers }}</b> players only.</p>--}}
+                  			<p style="margin-bottom: 2px;"><b style="color: #ff6600;">Early Birds Offer</p>
+                            <p style="font-size: 0.85em; color: #d9534f; font-weight: 800; margin-top:0;">Offer Valid Till Sunday 21/06/2026 </p>
                         @else
                             <p>Registration Open</p>
                         @endif
-                        
                         <a href="{{ route('player-registration') }}" class="register-btn" style="display:block; text-decoration:none;">REGISTER NOW</a>
 
                     </div>

@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Haryana Corporate Premier League (HCPL) is a professional T20 cricket league providing a platform for emerging talent across Haryana to showcase their skills on a grand stage.')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'haryana corporate premier league, hcpl, cricket league haryana, corporate cricket, t20 league, hcpl t20')
 
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -36,9 +36,9 @@
                                                 <p class="tagline">From Grounds to Glory</p>
                                                 <div class="season-pill">
                                                     <span class="dot-live"></span>
-                                                    Season 1 &nbsp;·&nbsp; Coming Soon
+                                                    Season 1
                                                 </div><br>
-                                                <div class="season-badge">REGISTRATIONS<br>OPENING SOON</div>
+                                                <div class="season-badge">REGISTER NOW</div>
                                                 <!-- <div class="reg-text">REGISTRATIONS<br>OPENING SOON</div>-->
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@
                                 <div class="container">
                                     <div class="content-left">
                                         <div class="join-tag">Join HCPL</div>
-                                        <h1 class="title-main">HARYANA CRICKET<br><span>PREMIER LEAGUE</span></h1>
+                                        <h1 class="title-main">HARYANA CORPORATE<br><span>PREMIER LEAGUE</span></h1>
                                         <p class="tagline">From Grounds to Glory &nbsp;&nbsp;<span class="hashtag-badge-brush banner-size"><span class="lath">#Lath</span><span class="gaddiya">GadDiya</span></span></p>
                                         <div class="season-pill">
                                             <span class="dot-live"></span>

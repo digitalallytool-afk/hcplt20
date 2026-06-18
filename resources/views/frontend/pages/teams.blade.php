@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Franchise Teams - Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Discover the 8 powerful franchise teams of the Haryana Corporate Premier League (HCPL) representing different cities of Haryana.')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'hcpl teams, haryana corporate premier league teams, franchise teams, hcpl players squad')
 
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />

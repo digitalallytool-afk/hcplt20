@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Player Registration - Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Register for Haryana Corporate Premier League (HCPL) season 1 player trials. Sign up online, attend zone-wise trials, and get a chance to play professional T20 cricket.')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'hcpl player registration, register for trials, haryana corporate premier league trials, register hcpl, corporate cricket registration')
 
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
-@section('title', 'hcpl')
-@section('meta_description', 'hcpl')
-@section('meta_keywords', 'hcpl')
+@section('title', 'Contact Us - Haryana Corporate Premier League (HCPL)')
+@section('meta_description', 'Contact the Haryana Corporate Premier League (HCPL) team. Get in touch for player registrations, trials, franchise inquiries, and sponsorships.')
+@section('meta_keywords', 'contact hcpl, haryana corporate premier league contact, hcpl phone number, hcpl email, hcpl address')
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />
 @endsection

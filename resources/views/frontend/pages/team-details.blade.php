@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', $team->name . ' - Haryana Corporate Premier League (HCPL)')
 
 @section('content')
 <style>

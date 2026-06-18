@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Sponsor Registration - Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Partner with Haryana Corporate Premier League (HCPL). Register your brand or company to explore title sponsorships, team sponsorships, and other official partnership opportunities.')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'hcpl sponsor registration, partner with hcpl, haryana corporate premier league sponsorship, corporate cricket sponsors')
 
 @section('canonical')
     <link rel="canonical" href="{{ url()->current() }}" />

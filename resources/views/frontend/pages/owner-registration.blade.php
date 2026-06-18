@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-@section('title', 'hcpl')
+@section('title', 'Franchise Owner Registration - Haryana Corporate Premier League (HCPL)')
 
-@section('meta_description', 'hcpl')
+@section('meta_description', 'Apply for franchise team ownership in Haryana Corporate Premier League (HCPL). Own one of the 8 professional teams representing Haryana cities.')
 
-@section('meta_keywords', 'hcpl')
+@section('meta_keywords', 'hcpl team owner registration, own a cricket franchise haryana, team ownership opportunity, corporate premier league team owner')
 
 @section('canonical')
 <link rel="canonical" href="{{ url()->current() }}" />
